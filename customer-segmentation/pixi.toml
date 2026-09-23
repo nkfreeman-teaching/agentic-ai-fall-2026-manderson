@@ -1,0 +1,24 @@
+[workspace]
+authors = ["Nickolas K Freeman <nick.freeman524@gmail.com>"]
+channels = ["conda-forge"]
+name = "customer-segmentation"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "3.12.*"
+polars = ">=1.44.2,<2"
+pyarrow = ">=25.0.0,<26"
+numpy = ">=2.5.3,<3"
+scipy = ">=1.18.1,<2"
+scikit-learn = ">=1.9.1,<2"
+matplotlib = ">=3.11.2,<4"
+seaborn = ">=0.13.2,<0.14"
+python-docx = ">=1.2.0,<2"
+requests = ">=2.34.2,<3"
+jinja2 = ">=3.1.6,<4"
+
+[pypi-dependencies]
+playwright = ">=1.63.0, <2"

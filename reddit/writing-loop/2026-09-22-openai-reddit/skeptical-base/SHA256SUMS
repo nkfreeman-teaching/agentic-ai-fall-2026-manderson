@@ -1,0 +1,9 @@
+c35cd8e822756575c09ca88b55333b866cfb5cf3cc21bbccffe5c1c1854887c8  writing-loop/2026-09-22-openai-reddit/skeptical-base/analyze.py
+6c03e6bab679d095d22f6b41e82880c23e3d9fcfd46da21335cd9e9ef8dcab7f  writing-loop/2026-09-22-openai-reddit/skeptical-base/derived/daily_summary.parquet
+16bff8970349fb8a381fdce9991b043bbb1ecc78ee1ab2b04083f23c4f2af880  writing-loop/2026-09-22-openai-reddit/skeptical-base/derived/summary.json
+17503920b72130fe7d5149d05bae4b4ba4f3668d3e06a0eb4ce1730bb41c2639  writing-loop/2026-09-22-openai-reddit/skeptical-base/generate_outputs.py
+4a69e16c0baad0d930cb693ca40f5b576fdb174c083ea42ef7b8ae8552c33f57  writing-loop/2026-09-22-openai-reddit/skeptical-base/paper/figures/monthly_volume.pdf
+4abbc5e71e89587c8594c854bacaf7b46b4cc016f5109ec3d33ca6bde2d5f876  writing-loop/2026-09-22-openai-reddit/skeptical-base/paper/figures/recent_activity.pdf
+4added4ec0b23cec61b4a1065882d10f1cc6098e63290f718fbbaad92057ad43  writing-loop/2026-09-22-openai-reddit/skeptical-base/paper/main.pdf
+4ff0810aa829c3113909a2a162c991818653eefe6bd31c8fc1855f400c1b1481  writing-loop/2026-09-22-openai-reddit/skeptical-base/paper/main.tex
+983bf2ed6d9b4531ab54895c6497dad093f04e4f359e5de5339fe8fd383ec0c1  writing-loop/2026-09-22-openai-reddit/skeptical-base/paper/variables.tex

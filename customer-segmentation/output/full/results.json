@@ -1,0 +1,229 @@
+{
+  "source": {
+    "purchase_lines": 1469307,
+    "households": 2469,
+    "baskets": 155848,
+    "first_purchase": "2017-01-01T11:53:26",
+    "last_purchase": "2018-01-01T04:01:20",
+    "retailer_receipts": 4596039.58,
+    "zero_sales_lines": 11226,
+    "zero_quantity_lines": 8869,
+    "unmatched_product_lines": 4836,
+    "fuel_receipts": 329594.45,
+    "demographic_file_rows": 801,
+    "demographic_households": 801,
+    "coupon_redemptions": 2102,
+    "households_under_four_baskets": 102,
+    "median_baskets": 41.0,
+    "median_receipts": 1159.84,
+    "profile_quantiles": {
+      "baskets_p10": 8.0,
+      "baskets_p90": 123.0,
+      "receipts_p10": 160.14000000000001,
+      "receipts_p90": 4017.68,
+      "recency_p90": 56.0
+    },
+    "grocery_receipts": 4266445.130000001,
+    "model_households": 2467,
+    "fuel_only_households": 2,
+    "demographic_coverage": 0.32468585326307253,
+    "redemptions_without_campaign_assignment": 0,
+    "redemptions_outside_campaign_dates": 0
+  },
+  "model": {
+    "selected_k": 2,
+    "candidates": [
+      {
+        "k": 2,
+        "silhouette": 0.1585,
+        "stability_ari": 0.9858,
+        "smallest_segment": 1166,
+        "smallest_share": 0.4726
+      },
+      {
+        "k": 3,
+        "silhouette": 0.1325,
+        "stability_ari": 0.9569,
+        "smallest_segment": 408,
+        "smallest_share": 0.1654
+      },
+      {
+        "k": 4,
+        "silhouette": 0.1112,
+        "stability_ari": 0.8638,
+        "smallest_segment": 343,
+        "smallest_share": 0.139
+      },
+      {
+        "k": 5,
+        "silhouette": 0.1152,
+        "stability_ari": 0.8957,
+        "smallest_segment": 306,
+        "smallest_share": 0.124
+      },
+      {
+        "k": 6,
+        "silhouette": 0.1174,
+        "stability_ari": 0.9111,
+        "smallest_segment": 241,
+        "smallest_share": 0.0977
+      },
+      {
+        "k": 7,
+        "silhouette": 0.1118,
+        "stability_ari": 0.7426,
+        "smallest_segment": 229,
+        "smallest_share": 0.0928
+      },
+      {
+        "k": 8,
+        "silhouette": 0.1102,
+        "stability_ari": 0.8956,
+        "smallest_segment": 207,
+        "smallest_share": 0.0839
+      }
+    ],
+    "features": [
+      "baskets_per_week",
+      "mean_basket_receipts",
+      "recency_days",
+      "retail_discount_share",
+      "private_label_share",
+      "share_grocery",
+      "share_drug_gm",
+      "share_produce",
+      "share_meat",
+      "share_meat_pckgd"
+    ],
+    "fuel_inclusion_sensitivity": {
+      "selected_k": 2,
+      "agreement_ari": 0.9519,
+      "changed_households": 30
+    },
+    "sparse_history_sensitivity": {
+      "retained_households": 2365,
+      "agreement_ari": 0.9899
+    }
+  },
+  "segments": [
+    {
+      "segment": 1,
+      "households": 1301,
+      "with_demographics": 452,
+      "redeeming_households": 206,
+      "basket_count": 40.0,
+      "baskets_per_week": 0.7547169811320754,
+      "mean_basket_receipts": 30.238235294117644,
+      "receipts": 1249.96,
+      "recency_days": 7.0,
+      "retail_discount_share": 0.12366486126660413,
+      "private_label_share": 0.165463684796677,
+      "fuel_share_total": 0.0,
+      "active_weeks": 28.0,
+      "share_meat_combined": 0.08641483466734273,
+      "share_grocery": 0.5312772365230448,
+      "share_drug_gm": 0.1490076747522798,
+      "share_produce": 0.06610399538214326,
+      "share_meat": 0.04061134948230941,
+      "share_meat_pckgd": 0.03441623840014148,
+      "share": 0.5273611674098095,
+      "redeeming_share": 0.15833973866256726
+    },
+    {
+      "segment": 2,
+      "households": 1166,
+      "with_demographics": 349,
+      "redeeming_households": 204,
+      "basket_count": 41.0,
+      "baskets_per_week": 0.7735849056603773,
+      "mean_basket_receipts": 24.21172206242676,
+      "receipts": 1080.635,
+      "recency_days": 5.0,
+      "retail_discount_share": 0.19122882736413946,
+      "private_label_share": 0.28393197112263785,
+      "fuel_share_total": 0.0,
+      "active_weeks": 28.0,
+      "share_meat_combined": 0.15223715770877666,
+      "share_grocery": 0.5807853376992811,
+      "share_drug_gm": 0.08384723103847468,
+      "share_produce": 0.05682751072106626,
+      "share_meat": 0.07928275692657111,
+      "share_meat_pckgd": 0.06447039692218659,
+      "share": 0.4726388325901905,
+      "redeeming_share": 0.17495711835334476
+    }
+  ],
+  "campaign_context": [
+    {
+      "campaign_type": "Type A",
+      "household_campaign_assignments": 3647,
+      "assigned_households": 1490,
+      "campaigns": 4,
+      "redemption_events": 1718,
+      "redeeming_households": 371
+    },
+    {
+      "campaign_type": "Type B",
+      "household_campaign_assignments": 2368,
+      "assigned_households": 995,
+      "campaigns": 17,
+      "redemption_events": 323,
+      "redeeming_households": 116
+    },
+    {
+      "campaign_type": "Type C",
+      "household_campaign_assignments": 574,
+      "assigned_households": 397,
+      "campaigns": 6,
+      "redemption_events": 61,
+      "redeeming_households": 30
+    }
+  ],
+  "offer_evidence": {
+    "oral_hygiene": [
+      {
+        "segment": 1,
+        "buying_households": 784,
+        "median_baskets_among_buyers": 3.0,
+        "receipts": 15526.09
+      },
+      {
+        "segment": 2,
+        "buying_households": 526,
+        "median_baskets_among_buyers": 2.0,
+        "receipts": 5564.09
+      }
+    ],
+    "private_meat": [
+      {
+        "segment": 1,
+        "buying_households": 861,
+        "median_baskets_among_buyers": 3.0,
+        "receipts": 23794.93
+      },
+      {
+        "segment": 2,
+        "buying_households": 976,
+        "median_baskets_among_buyers": 6.0,
+        "receipts": 46417.67
+      }
+    ]
+  },
+  "overall": {
+    "basket_count": 41.0,
+    "baskets_per_week": 0.7735849056603773,
+    "mean_basket_receipts": 27.498346456692914,
+    "receipts": 1159.84,
+    "recency_days": 7.0,
+    "retail_discount_share": 0.15226688534476734,
+    "private_label_share": 0.2182636608070922,
+    "fuel_share_total": 0.0,
+    "active_weeks": 28.0,
+    "share_meat_combined": 0.11338457880973135,
+    "share_grocery": 0.5537635757104518,
+    "share_drug_gm": 0.11433708249949166,
+    "share_produce": 0.060988674625038264,
+    "share_meat": 0.05739391761669879,
+    "share_meat_pckgd": 0.04715363511659808
+  }
+}

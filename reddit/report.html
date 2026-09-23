@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reddit posting study: analysis and review record</title>
+  <style>
+    :root { color-scheme: light; --ink:#162536; --muted:#53647a; --line:#d9e1ea; --navy:#173b5e; --blue:#2b6f9d; --teal:#178a82; --paper:#fff; --soft:#f3f7fa; --gold:#9b6924; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#e8eef3; color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { max-width:1100px; margin:0 auto; padding:0 28px 70px; background:var(--paper); box-shadow:0 0 35px #21384a18; }
+    header { margin:0 -28px; padding:52px 28px 38px; background:var(--navy); color:white; }
+    .eyebrow { color:#b8d8e7; font-size:.82rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
+    h1 { margin:.35em 0 .3em; max-width:830px; font-size:clamp(2rem,4vw,3.2rem); line-height:1.1; letter-spacing:-.035em; }
+    header p { max-width:800px; margin:0; color:#e4eef5; font-size:1.07rem; }
+    h2 { margin:48px 0 14px; font-size:1.5rem; letter-spacing:-.02em; }
+    h3 { margin:26px 0 8px; font-size:1.05rem; }
+    p { max-width:88ch; margin:0 0 14px; }
+    a { color:#155d8d; text-decoration-thickness:1px; text-underline-offset:2px; }
+    header a { color:#e5f6ff; }
+    .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:24px 0 14px; }
+    .metric { padding:17px 18px; border:1px solid var(--line); border-radius:8px; background:var(--soft); }
+    .metric strong { display:block; font-size:1.62rem; line-height:1.2; color:var(--navy); font-variant-numeric:tabular-nums; }
+    .metric span { display:block; margin-top:4px; color:var(--muted); font-size:.84rem; }
+    .note { border-left:4px solid var(--teal); background:#edf7f5; padding:14px 18px; margin:20px 0; }
+    .warn { border-color:var(--gold); background:#fbf7ee; }
+    .scroll { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+    th,td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:var(--soft); color:var(--navy); font-size:.88rem; }
+    td.num, th.num { text-align:right; white-space:nowrap; }
+    .caption,.small { color:var(--muted); font-size:.88rem; }
+    .caption { margin-top:5px; }
+    figure { margin:20px 0; }
+    .chart { width:100%; height:auto; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .fig-img { width:100%; max-width:850px; display:block; border:1px solid var(--line); }
+    .two { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+    ol,ul { max-width:90ch; padding-left:1.5em; }
+    li { margin:7px 0; }
+    code { background:#eef3f6; border-radius:3px; padding:.1em .25em; font-size:.92em; }
+    .tag { display:inline-block; padding:2px 8px; border-radius:20px; background:#e0f2ed; color:#176656; font-size:.78rem; font-weight:700; }
+    footer { border-top:1px solid var(--line); margin-top:48px; padding-top:20px; color:var(--muted); font-size:.88rem; }
+    @media(max-width:780px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .two { grid-template-columns:1fr; } main { padding-left:18px; padding-right:18px; } header { margin-left:-18px; margin-right:-18px; padding-left:18px; padding-right:18px; } }
+    @media print { body { background:white; } main { box-shadow:none; padding:0; } header { margin:0; padding:24px; } a { color:var(--ink); } h2 { break-after:avoid; } figure,table { break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Research workflow report · September 22, 2026</div>
+    <h1>Observed Reddit posting around two coding-tool previews</h1>
+    <p>What the supplied counts show, what they cannot establish, and how the five-page working paper changed through independent review.</p>
+  </header>
+
+  <section aria-labelledby="outcome">
+    <h2 id="outcome">Outcome</h2>
+    <p>The <a href="paper/main.pdf">working paper</a> describes posting volume and concentration, then estimates local changes around the February 24, 2025 Claude Code and May 16, 2025 cloud Codex research-preview announcements. Neither primary 30-day estimate has a confidence interval excluding zero. Codex estimates change sign with the chosen window, so the paper treats the models as descriptions of this observed series.</p>
+    <div class="grid">
+      <div class="metric"><strong>283.49m</strong><span>identifier-day records scanned</span></div>
+      <div class="metric"><strong>479.58m</strong><span>counted posts in source file</span></div>
+      <div class="metric"><strong>47.04m</strong><span>distinct identifiers</span></div>
+      <div class="metric"><strong>4.00/5</strong><span>second-round reviewer mean</span></div>
+    </div>
+    <div class="note warn"><strong>Interpretation limit.</strong> The source has no collection logs, platform denominator, content, bot labels, or tool-use records. Its identifiers are described as accounts but cannot be validated from these fields. Counts cannot identify automated posts or attribute a change to a product.</div>
+  </section>
+
+  <section aria-labelledby="data">
+    <h2 id="data">Data and checks</h2>
+    <p>The private Parquet file contains a 32-bit identifier, UTC date, and positive daily count. A 1% row-group prototype scanned 2,830,860 rows before the full scan. The full pass streamed 2,308 row groups and wrote separate aggregate outputs. The raw file was not changed and is ignored by Git.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Measure</th><th class="num">Result</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>Date span</td><td class="num">2006-04-23 to 2026-09-22</td><td>6,724 observed dates across 7,458 calendar days, leaving 734 unobserved dates.</td></tr>
+        <tr><td>Recent segment</td><td class="num">627 dates</td><td>Consecutive observed dates from 2025-01-01 through 2026-09-19.</td></tr>
+        <tr><td>Missing and key checks</td><td class="num">0</td><td>Null cells, nonpositive counts, duplicate identifier-date rows, and sort-order violations.</td></tr>
+        <tr><td>Single-day identifiers</td><td class="num">20,531,556</td><td>About 43.6% of identifiers occur on one observed date.</td></tr>
+        <tr><td>Posts per identifier</td><td class="num">2 median; 107 at p99</td><td>The distribution is strongly concentrated.</td></tr>
+        <tr><td>Top 0.1% of identifiers</td><td class="num">22.47% of posts</td><td>47,042 identifiers account for this share of observed posts.</td></tr>
+        <tr><td>High-count identifier-days</td><td class="num">1,213,143</td><td>Each has at least 20 counted posts; the maximum daily count is 8,009.</td></tr>
+      </tbody>
+    </table></div>
+    <p>The last three source dates fall from 688,357 counted posts on September 19 to 9,470 on September 22. The trend figure stops on September 19 because those boundary dates appear incomplete. Event models use dates in 2025 and are unaffected by this exclusion. Earlier missing dates remain unobserved, rather than being entered as zero.</p>
+    <figure>
+      <img class="fig-img" src="paper/figures/recent_activity.png" alt="Seven-day trailing mean of posts and active identifiers from January 2025 through September 19, 2026, with February and May 2025 announcement markers.">
+      <figcaption class="caption">Seven-day trailing means of the observed recent series. The two markers identify announcement dates, not product adoption or a measured break.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="model">
+    <h2 id="model">Announcement-window results</h2>
+    <p>Each primary model uses 30 observed calendar days before and after its announcement, omits the announcement day, and fits log(1 + daily posts) with a linear time term, an immediate post-announcement level term, a post-announcement slope, and weekday indicators. The intervals use seven-lag heteroskedasticity and autocorrelation consistent standard errors. Two primary p values receive Holm adjustment.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Announcement</th><th class="num">Immediate modeled change</th><th class="num">95% interval</th><th class="num">Holm p</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Code research preview, 2025-02-24</td><td class="num">+0.16%</td><td class="num">-0.69% to +1.01%</td><td class="num">0.718</td></tr>
+        <tr><td>Cloud Codex research preview, 2025-05-16</td><td class="num">-0.62%</td><td class="num">-1.64% to +0.41%</td><td class="num">0.473</td></tr>
+      </tbody>
+    </table></div>
+    <p>Excluding identifier-days with at least 20 posts removes 12.8% and 13.1% of posts in the two windows and changes the estimates to +0.14% and -0.47%. This is a day-level sensitivity check, not a bot classification. Across 14-, 21-, 30-, 45-, and 60-day windows, the Codex point estimate ranges from -1.37% to +2.48% and changes sign. A separate quadratic 30-day fit gives -1.59% for Codex. These variants do not support a stable product effect.</p>
+    <p class="small">The announcement descriptions were checked against <a href="https://www.anthropic.com/news/claude-3-7-sonnet">Anthropic</a> and <a href="https://openai.com/index/introducing-codex/">OpenAI</a>. OpenAI had introduced its command-line tool in <a href="https://openai.com/index/introducing-o3-and-o4-mini/">April 2025</a>, so May 16 is the cloud research preview rather than first Codex availability. OpenAI later reported <a href="https://openai.com/index/next-phase-of-enterprise-ai/">3 million weekly Codex users in April 2026</a> and <a href="https://openai.com/index/codex-for-knowledge-work/">more than 5 million in June 2026</a>. Anthropic reported a <a href="https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone">$1 billion Claude Code revenue run rate in December 2025</a>. These sparse statements use different measures and dates, so they were not treated as a comparable adoption series or regressed against posting.</p>
+  </section>
+
+  <section aria-labelledby="evidence">
+    <h2 id="evidence">Literature and source checks</h2>
+    <p>The literature search used Crossref's polite pool with a private contact address supplied for this task. Crossref metadata confirmed the two research-paper DOIs and bibliographic records. The claims were then checked against the <a href="https://www.nature.com/articles/s41598-024-61221-0">Scientific Reports article</a> and <a href="https://aclanthology.org/2025.acl-long.1120/">ACL Anthology paper</a>. The first concerns online knowledge-community activity after ChatGPT, while the second estimates machine-generated text using a different dataset and text-based detection. Neither turns this file's count series into a direct bot measure. The contact address is not stored in this report or the project files.</p>
+  </section>
+
+  <section aria-labelledby="review">
+    <h2 id="review">Independent review and revisions</h2>
+    <p>Two skeptics first reviewed the frozen initial paper. A statistics skeptic challenged the announcement-window design, window sensitivity, and missing dates. A platform skeptic challenged the interpretation of releases as adoption, uncertain collection coverage, and the meaning of high-count days. We added model and window sensitivity, named the cloud preview correctly, separated observed counts from platform claims, and retained unknown coverage as an explicit limit.</p>
+    <div class="two">
+      <div>
+        <h3>Round one</h3>
+        <p>Three independent reviewers scored the same frozen draft 3, 4, and 4. The argument reviewer found a material layout defect, including a mostly empty page and a split sentence. The parent revised float placement, removed the compressed long-history figure from the manuscript, clarified count labels, shortened captions, corrected the Scientific Reports article number, and rebuilt the paper.</p>
+      </div>
+      <div>
+        <h3>Round two</h3>
+        <p>The three reviewers scored the same revised frozen PDF 4, 4, and 4, with no major findings. Final minor edits narrowed the research question, stated the effect of background variation, named the seven-day trailing mean in Figure 1, corrected the high-count day wording, removed distracting link borders, and kept the closing section together. The loop stopped at the agreed success threshold.</p>
+      </div>
+    </div>
+    <figure>
+      <svg class="chart" viewBox="0 0 760 320" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Reviewer scores increased from round one to round two</title>
+        <desc id="chart-desc">Round one scores were 3, 4, and 4, with mean 3.67. Round two scores were 4, 4, and 4, with mean 4.00.</desc>
+        <g stroke="#d9e1ea" stroke-width="1"><line x1="95" y1="48" x2="705" y2="48"/><line x1="95" y1="91" x2="705" y2="91"/><line x1="95" y1="134" x2="705" y2="134"/><line x1="95" y1="177" x2="705" y2="177"/><line x1="95" y1="220" x2="705" y2="220"/><line x1="95" y1="263" x2="705" y2="263"/></g>
+        <g fill="#53647a" font-size="13" font-family="system-ui,sans-serif" text-anchor="end"><text x="82" y="52">5</text><text x="82" y="95">4</text><text x="82" y="138">3</text><text x="82" y="181">2</text><text x="82" y="224">1</text><text x="82" y="267">0</text></g>
+        <g fill="#162536" font-size="14" font-family="system-ui,sans-serif" text-anchor="middle"><text x="240" y="286">Round one</text><text x="510" y="286">Round two</text></g>
+        <g fill="#2b6f9d"><rect x="164" y="134" width="42" height="129"/><rect x="434" y="91" width="42" height="172"/></g>
+        <g fill="#178a82"><rect x="219" y="91" width="42" height="172"/><rect x="489" y="91" width="42" height="172"/></g>
+        <g fill="#9b6924"><rect x="274" y="91" width="42" height="172"/><rect x="544" y="91" width="42" height="172"/></g>
+        <g fill="white" font-size="14" font-family="system-ui,sans-serif" text-anchor="middle"><text x="185" y="155">3</text><text x="240" y="112">4</text><text x="295" y="112">4</text><text x="455" y="112">4</text><text x="510" y="112">4</text><text x="565" y="112">4</text></g>
+        <g fill="#173b5e" font-size="13" font-family="system-ui,sans-serif" text-anchor="middle"><text x="240" y="76">Mean 3.67</text><text x="510" y="76">Mean 4.00</text></g>
+        <g font-size="12" font-family="system-ui,sans-serif" fill="#53647a"><text x="95" y="310">Blue: argument · Teal: correctness · Gold: presentation</text></g>
+      </svg>
+      <figcaption class="caption">Scores belong to frozen, identical snapshots within each round. The final minor edits followed the second score, so the chart does not claim a separate score for the final PDF.</figcaption>
+    </figure>
+    <div class="scroll"><table>
+      <thead><tr><th>Reviewer</th><th class="num">Round one</th><th class="num">Round two</th><th>Scope</th></tr></thead>
+      <tbody>
+        <tr><td>Argument and research audience</td><td class="num">3</td><td class="num">4</td><td>Question, flow, claims, and page-scale readability.</td></tr>
+        <tr><td>Correctness and evidence</td><td class="num">4</td><td class="num">4</td><td>Generated counts, methods, cited claims, and inference limits.</td></tr>
+        <tr><td>Presentation and Nick Voice</td><td class="num">4</td><td class="num">4</td><td>Prose, abbreviations, figure and table readability.</td></tr>
+        <tr><th>Arithmetic mean</th><th class="num">3.67</th><th class="num">4.00</th><th>Success threshold reached with no major open finding.</th></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="effort">
+    <h2 id="effort">Effort and timing</h2>
+    <p>The table records observed wall-clock intervals in UTC. Review tasks ran concurrently within each round. Individual model runtime, token use, and cost were not exposed, so none are estimated. A completion bound means all responses had arrived by that time, not that every reviewer used the whole interval.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Work</th><th>Dispatch or start</th><th>Observed completion</th><th class="num">Wall interval</th><th>Agents and model</th></tr></thead>
+      <tbody>
+        <tr><td>Source inspection, prototype, full scan, research, initial paper</td><td>2026-09-22 23:36:52</td><td>Initial snapshot 23:45:32</td><td class="num">8m 40s</td><td>Primary agent, GPT-6 Astra; local commands and source sites.</td></tr>
+        <tr><td>Initial skeptical review</td><td>2026-09-22 23:45:32</td><td>Both received by 23:50:50</td><td class="num">At most 5m 18s</td><td>Statistics and platform skeptics, GPT-6 Sol high reasoning.</td></tr>
+        <tr><td>Revision and round-one snapshot</td><td>After skeptical responses</td><td>2026-09-22 23:54:21</td><td class="num">Not separately captured</td><td>Primary agent, GPT-6 Astra.</td></tr>
+        <tr><td>Round-one independent review</td><td>2026-09-22 23:54:21</td><td>All received by 23:57:22</td><td class="num">3m 01s</td><td>Argument: GPT-6 Sol medium; correctness: GPT-6 Sol high; presentation: GPT-6 Luna high.</td></tr>
+        <tr><td>Revision and round-two snapshot</td><td>After round-one responses</td><td>2026-09-23 00:00:58</td><td class="num">Not separately captured</td><td>Primary agent, GPT-6 Astra.</td></tr>
+        <tr><td>Round-two independent review</td><td>2026-09-23 00:00:58</td><td>All received by 00:03:51</td><td class="num">At most 2m 53s</td><td>Same three roles and model settings as round one.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Round-one argument, presentation, and correctness responses arrived by 23:56:08, 23:57:08, and 23:57:22, respectively. Exact individual compute times were not available. The second-round completion time above is the first recorded check after all three responses had arrived.</p>
+  </section>
+
+  <section aria-labelledby="verification">
+    <h2 id="verification">Verification and reproducibility</h2>
+    <ol>
+      <li>The sample prototype reached the row-group boundary logic before the first full scan. The full scan reconciled its row count with Parquet metadata and printed source shape, dates, counts, and data-quality checks.</li>
+      <li>The two primary model point estimates were independently re-derived with NumPy least squares. The pipeline test covers aggregation across row-group boundaries.</li>
+      <li>Generated <a href="paper/variables.tex">LaTeX variables</a>, the <a href="paper/window_table.tex">window table</a>, and figures were rebuilt from <a href="derived/summary.json">derived results</a>, then the paper was compiled.</li>
+      <li>Every page of the final PDF and its figures was inspected at page scale. Figure pages were also rendered in actual grayscale. LaTeX warnings, page count, and source-file ignore status were checked.</li>
+    </ol>
+    <p>Run commands and file roles are in the <a href="README.md">README</a>. The <a href="writing-loop/2026-09-22-openai-reddit/progress.md">review progress file</a> links the three frozen snapshots and their reviewer notes. The full source remains private. Nothing in this report establishes collection coverage or identifies which posts were written by humans or software.</p>
+  </section>
+  <footer>Prepared from the supplied Parquet file and source records on September 22, 2026, America/Chicago. Analysis code and aggregate outputs are local to this workspace. The source file is excluded from Git.</footer>
+</main>
+</body>
+</html>

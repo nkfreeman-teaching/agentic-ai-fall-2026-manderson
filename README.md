@@ -1,30 +1,24 @@
 # Agentic AI workshops
 
-This repository holds material for a series of workshops on agentic artificial intelligence (AI), i.e., systems in which a language model plans and carries out multistep tasks using tools such as a code interpreter or a file system. The material pairs a slide deck on the core concepts with two worked examples, one research-oriented and one applied, that we conduct live during the workshops.
+This repository pairs a [workshop deck](slides/agentic-ai.html) ([PDF](slides/agentic-ai.pdf)) with two completed agentic AI examples and two student starters. The examples show how an agent can analyze data, build deliverables, seek independent criticism, verify findings, and revise its work. The starters let students run those processes themselves. Their results and review scores need not match the completed examples.
 
-## Repository layout
+## Examples and starters
 
-| Folder | Contents |
-|---|---|
-| `slides/` | The workshop deck (`agentic-ai.html`), with a PDF export (`agentic-ai.pdf`). |
-| `reddit/` | A research-oriented example built on a proprietary Reddit dataset. |
-| `customer-segmentation/` | A customer segmentation analysis built on the Complete Journey retail dataset. |
+| Exercise | Completed example | Student starter |
+|---|---|---|
+| Customer segmentation | [Analysis and instructions](customer-segmentation/README.md), [DOCX report](customer-segmentation/output/full/customer_segmentation_report.docx), [interactive explorer](customer-segmentation/output/full/segment_explorer.html), and [review overview](customer-segmentation/output/full/process_overview.html) | [Source data, transcript, and setup guide](customer-segmentation-base/SETUP.md) |
+| Reddit posting | [Analysis and instructions](reddit/README.md), [working paper](reddit/paper/main.pdf), and [analysis and review report](reddit/report.html) | [Transcript, data placeholder, and setup guide](reddit-base/SETUP.md) |
+
+The completed folders contain code, generated results, and review records. Each starter contains its original transcript and a `SETUP.md` with writing and review guidance. The customer starter includes its source data. The Reddit starter contains an empty `data/` placeholder because its source file is not tracked here.
+
+To begin an exercise, copy its starter folder to a working location. Ask Codex to read `SETUP.md` and `transcript.txt`, clarify consequential choices, and plan the work before running the analysis. Students create their own environment, analysis code, deliverables, and review record in that copy. The setup guides contain the writing and review instructions needed for the exercises.
+
+## Environments
+
+The completed examples are separate [Pixi](https://pixi.sh) projects. Run `pixi install` inside `customer-segmentation/` or `reddit/`, then follow that folder's README. There is no Pixi project at the repository root. Both existing Pixi manifests specify `linux-64`; they do not promise an identical install on macOS or Windows. The starters intentionally have no Pixi manifests because creating an environment is part of each transcript's assignment.
 
 ## Data
 
-### Complete Journey (customer segmentation)
+The customer segmentation example uses eight Parquet files from the simulated [Complete Journey dataset](https://github.com/cunningjames/completejourney_py). They are included unchanged in both `customer-segmentation/data/` and `customer-segmentation-base/data/`.
 
-The customer segmentation example uses the Complete Journey dataset, which contains household-level grocery transactions, demographics, and marketing campaign records from a retailer. We obtained the data from the [completejourney_py](https://github.com/cunningjames/completejourney_py) package, and the repository includes the following eight parquet files in `customer-segmentation/data/`:
-
-- `campaigns.parquet`
-- `campaign_descriptions.parquet`
-- `coupons.parquet`
-- `coupon_redemptions.parquet`
-- `demographics.parquet`
-- `products.parquet`
-- `promotions.parquet`
-- `transactions.parquet`
-
-### Reddit (research example)
-
-The Reddit example uses a proprietary dataset that is not tracked in this repository (the `.gitignore` excludes everything in `reddit/data/` except a placeholder file). To run the example, download [`user_daily_post_counts.parquet`](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing) (approximately 756 MB) from Google Drive and place it in `reddit/data/`.
+The Reddit example uses a proprietary Parquet file that is excluded from this repository. Obtain [`user_daily_post_counts.parquet`](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing) (approximately 756 MB) and place it in `reddit/data/` for the completed example or `reddit-base/data/` for the starter. Access to the file may depend on the link's sharing permissions. Do not commit the source file.

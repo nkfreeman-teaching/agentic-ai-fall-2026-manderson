@@ -1,0 +1,11 @@
+9e83ff6cca6cf269e594398f2276f2ad1cd28b2a9345b56bcaec4065eb5ab439  writing-loop/2026-09-22-openai-reddit/round-01/analyze.py
+6c03e6bab679d095d22f6b41e82880c23e3d9fcfd46da21335cd9e9ef8dcab7f  writing-loop/2026-09-22-openai-reddit/round-01/derived/daily_summary.parquet
+4543557a278fdde6d9cc745d598b33724c8986d5963aec08dd433c1d26a78afb  writing-loop/2026-09-22-openai-reddit/round-01/derived/summary.json
+6f837a893b75a537791f3d310eb0d974d0b8b31395e4fa45798fc7d7f1dfa84d  writing-loop/2026-09-22-openai-reddit/round-01/generate_outputs.py
+41dc262345d3f1940f65596a17a9fdf8cc69ee0d47dd2fa88a9fd9755476f02d  writing-loop/2026-09-22-openai-reddit/round-01/paper/figures/event_windows.pdf
+ee00a3f33bab303ad53046e69fb50db70ae11a3b453ddd2501e690f0cf1e38a8  writing-loop/2026-09-22-openai-reddit/round-01/paper/figures/monthly_volume.pdf
+f3c838e296b9f0ac88779346d20754f09d9b12b92a36992940c54f2db192627e  writing-loop/2026-09-22-openai-reddit/round-01/paper/figures/recent_activity.pdf
+5199bbc1fbff670fbeb2b0e8b80377ebc6a87dec4c4c323b224b73b983f23557  writing-loop/2026-09-22-openai-reddit/round-01/paper/main.pdf
+d47bfdefbe3a61785a0f95308bff59f34ce125cbc40741edc423a2b24a44f06e  writing-loop/2026-09-22-openai-reddit/round-01/paper/main.tex
+17e9e7e1d88efd4399cf42ad1d3ad06068171480771552a72c4e690796c9e682  writing-loop/2026-09-22-openai-reddit/round-01/paper/variables.tex
+14a9a02ef1ea34970fb94a6e87332b1508ada980494743c8165286f7a3aa9bca  writing-loop/2026-09-22-openai-reddit/round-01/paper/window_table.tex

@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\input{variables.tex}
+\title{Observed Reddit posting around two coding-tool preview announcements}
+\author{Nickolas K. Freeman}
+\date{September 22, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We examine daily posting counts associated with pseudonymous identifiers supplied as Reddit accounts. The file contains \dataUserDays{} identifier-day records and \dataPosts{} counted posts from \dataFirstDate{} through \dataLastRawDate{}. We describe posting volume and concentration, then estimate local changes around the February 2025 Claude Code and May 2025 cloud Codex research-preview announcements. The 30-day estimates are \claudeChange\% and \codexChange\%, respectively, with confidence intervals that include zero. Estimates change with the chosen window and trend. Unknown collection coverage and the absence of content or a comparison series prevent attribution to coding tools or identification of automated accounts.
+\end{abstract}
+
+\section{Research question}
+Agentic coding tools can create and publish text through multistep workflows. We ask what local changes in observed posting counts coincide with two coding-tool preview announcements. Counts alone offer a useful first description, but they cannot identify how a post was written. The outcome can also change when a platform's users, policies, or data collection change.
+
+Prior research examines distinct outcomes that count data can conflate. Burtch, Lee, and Chen found a decline in Stack Overflow activity after ChatGPT's release but did not detect the same decline in the Reddit developer communities they examined \cite{burtch2024}. Sun and colleagues used text-based detection to estimate a slower rise in machine-generated text on Reddit than on Medium and Quora during 2022--2024 \cite{sun2025}. Their detector and sample differ from the identifier-day counts used here. These studies motivate an examination of posting volume without making volume a measure of machine-generated text.
+
+\section{Data and methods}
+The supplied Parquet file has three fields. They are an integer identifier, a Coordinated Universal Time (UTC) calendar date, and a positive daily count labeled posts. The supplier describes identifiers as consistent for an account across dates, but the file cannot validate that mapping or link identifiers to named accounts. The file does not define whether counted items include comments. It also lacks communities, account metadata, sampling rules, collection logs, and a denominator of all Reddit posts. We treat its values as the observed corpus, not as a verified census of the platform. The source file remains unchanged. Analysis code reads it in Parquet row groups and writes separate derived summaries.
+
+We checked the account-date sort order, duplicate account-date keys, nulls, and nonpositive counts. We aggregated posts and distinct active accounts by date. We also calculated total posts, active days, and the maximum daily count for each account. A high-volume day is defined as at least 20 posts from one account. This threshold describes the upper tail and tests sensitivity to high-count identifier-days. It does not classify an account as a bot.
+
+The raw file spans \dataFirstDate{} to \dataLastRawDate{}. It contains \dataObservedDates{} observed dates among \dataCalendarDays{} calendar days. The early years have dates with no observed rows, which we do not recode as zero posting. The 2025 onward segment has \dataRecentDates{} consecutive observed dates through \dataAnalysisEnd{}. We exclude September 20--22, 2026 from trend exhibits because the counts fall rapidly at the file boundary: \dataLastStablePosts{} posts on September 19 and \dataLastDayPosts{} on September 22. This exclusion does not affect the 2025 release-window models.
+
+Anthropic announced a limited Claude Code research preview on February 24, 2025 \cite{anthropic2025}. OpenAI announced a cloud Codex research preview on May 16, 2025 \cite{openai2025}. OpenAI had already introduced Codex's command-line interface (CLI) in April \cite{openaiCli2025}, so May 16 is not the first availability of a Codex tool. Neither date measures Reddit adoption. For each announcement, we fit a separate ordinary least squares model to 30 observed calendar days on each side, omitting the announcement day:
+\[
+\log(1+P_t)=\alpha+\beta_1 t+\beta_2 I(t>0)+\beta_3\max(t,0)+\sum_{d=1}^{6}\gamma_d D_{dt}+\epsilon_t.
+\]
+Here, $P_t$ is the observed daily post total, $t$ is days relative to the announcement, $I(t>0)$ marks the following period, and $D_{dt}$ are day-of-week indicators. We interpret $100(\exp(\beta_2)-1)$ as the modeled immediate percentage change. Confidence intervals use heteroskedasticity and autocorrelation consistent standard errors with seven lags. We adjust the two primary $p$ values with Holm's method. The primary 30-day window focuses on the local period; we also fit 14-, 21-, 45-, and 60-day windows, a separate quadratic trend in the 30-day window, and a fit excluding identifier-days with at least 20 posts. These variants probe dependence on window, trend, and high-count days. The model describes a local discontinuity under its assumptions; it does not estimate a causal effect of either product.
+
+\section{Results}
+The full file contains \dataAccounts{} distinct identifiers and \dataPosts{} posts. The checks found no null cells, nonpositive counts, duplicate account-date rows, or violations of account-date order. Early years are sparse. Mean daily volume among observed dates rose from \dataOctoberTwentyFourMean{} posts in October 2024 to \dataJanuaryTwentyFiveMean{} in January 2025. Collection rules are unknown, so this rise cannot be interpreted as platform-wide growth.
+
+Figure~\ref{fig:recent} shows seven-day trailing means of daily post and active-identifier totals from January 2025 through September 19, 2026. The dashed and dotted lines identify release announcements, not changes inferred from the series. Mean daily volume was \dataTwentyFiveMean{} posts in 2025 and \dataTwentySixMean{} over the observed portion of 2026. The two totals move together over much of the period. Their larger background swings make the smaller release-window estimates difficult to interpret as changes in behavior.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/recent_activity.pdf}
+\caption{Seven-day trailing means of observed daily posts and active identifiers from January 2025 through September 19, 2026.}
+\label{fig:recent}
+\end{figure}
+
+The median identifier contributed \dataMedianAccountPosts{} posts in the full file, while the 99th percentile contributed \dataPnnAccountPosts{}. The most active \dataTopAccounts{} identifiers, representing 0.1\% of identifiers, contributed \dataTopShare{} of observed posts. We found \dataHighUserDays{} identifier-days with at least 20 posts, and the highest daily count was \dataMaxDaily{}. These values establish concentration, but high counts can reflect several human and automated practices.
+
+Table~\ref{tab:events} reports the immediate modeled changes under the primary 30-day linear specification. Both intervals include zero, and neither Holm-adjusted test rejects a zero immediate change at the 5\% level. Removing identifier-days with at least 20 posts excludes \claudeRemovedShare{} and \codexRemovedShare{} of posts in the two event windows; the resulting estimates are \claudeSensitivity\% and \codexSensitivity\%. This check measures dependence on prolific days, not bot prevalence.
+
+\FloatBarrier
+
+\begin{table}[H]
+\centering
+\caption{Modeled immediate changes in observed daily posts around two research-preview announcements.}
+\label{tab:events}
+\begin{tabular}{lrrr}
+\toprule
+Announcement & Change (\%) & 95\% interval (\%) & Holm $p$ \\
+\midrule
+Claude Code, February 24, 2025 & \claudeChange & [\claudeLow, \claudeHigh] & \claudeP \\
+Codex, May 16, 2025 & \codexChange & [\codexLow, \codexHigh] & \codexP \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The estimates depend on the window. Table~\ref{tab:windows} shows that the Codex estimate changes sign as the window expands. The 30-day quadratic specification gives \claudeQuadratic\% [\claudeQuadraticLow\%, \claudeQuadraticHigh\%] for Claude Code and \codexQuadratic\% [\codexQuadraticLow\%, \codexQuadraticHigh\%] for Codex. These variants are exploratory; their intervals are not adjusted for the additional comparisons. The broader Codex windows include a decline in both posts and active identifiers during March and April 2025, followed by a flatter period. Without collection records, we cannot separate a change in observed coverage from a change in behavior. The primary 30-day result is consequently a description conditional on its trend and window, not a stable estimate of a product effect.
+
+\begin{table}[H]
+\centering
+\caption{Exploratory window sensitivity of modeled immediate changes. Each cell gives the percentage estimate and 95\% interval under a separate linear model.}
+\label{tab:windows}
+\small
+\input{window_table.tex}
+\end{table}
+
+Figure~\ref{fig:events} shows the daily observations and weekday-adjusted fitted trends from the two primary 30-day models. The omitted announcement date is at zero; fitted lines are shown separately on either side. Daily variation and changing background slopes limit what can be read from the estimated jumps. The numerical intervals in Table~\ref{tab:events} describe uncertainty under the specified model.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/event_windows.pdf}
+\caption{Observed daily posts and weekday-adjusted fitted trends around two announcements.}
+\label{fig:events}
+\end{figure}
+
+\Needspace{10\baselineskip}
+\section{Interpretation and next data needs}
+The observed volume and account concentration provide a baseline for studying posting behavior, but they do not identify bot activity. Automated accounts can post infrequently, and prolific accounts can be human. Publication of coding tools is also an indirect exposure measure. The file records no tool use, and these products do not uniquely govern the ability to automate Reddit posting. Other platform changes could occur in the same windows.
+
+A stronger analysis would require documented collection coverage, post or comment type, community identifiers, timestamps within a day, content or validated bot labels, and a comparison series exposed to different adoption patterns. Those fields would permit tests of text generation, temporal regularity, and group-level heterogeneity. Until they are available, the supported conclusion is limited to the observed posting series and its uncertainty around the selected dates.
+
+\begin{thebibliography}{9}
+\bibitem{burtch2024} Gordon Burtch, Dokyun Lee, and Zhichen Chen. 2024. ``The consequences of generative AI for online knowledge communities.'' \emph{Scientific Reports} 14, article 10413. \href{https://doi.org/10.1038/s41598-024-61221-0}{doi:10.1038/s41598-024-61221-0}.
+\bibitem{sun2025} Zhen Sun, Zongmin Zhang, Xinyue Shen, Ziyi Zhang, Yule Liu, Michael Backes, Yang Zhang, and Xinlei He. 2025. ``Are We in the AI-Generated Text World Already? Quantifying and Monitoring AIGT on Social Media.'' \emph{Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics}, 22975--23005. \href{https://doi.org/10.18653/v1/2025.acl-long.1120}{doi:10.18653/v1/2025.acl-long.1120}.
+\bibitem{anthropic2025} Anthropic. 2025. ``Claude 3.7 Sonnet and Claude Code.'' February 24. \url{https://www.anthropic.com/news/claude-3-7-sonnet}.
+\bibitem{openai2025} OpenAI. 2025. ``Introducing Codex.'' May 16. \url{https://openai.com/index/introducing-codex/}.
+\bibitem{openaiCli2025} OpenAI. 2025. ``Introducing OpenAI o3 and o4-mini.'' April 16. \url{https://openai.com/index/introducing-o3-and-o4-mini/}.
+\end{thebibliography}
+
+\end{document}
