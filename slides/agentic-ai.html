@@ -230,7 +230,24 @@ pre.code .h { color: var(--c-memory); } pre.code .d { color: var(--c-skills); }
 #s-title .title-art { position: absolute; right: 70px; top: 100px; width: 820px; height: 820px; }
 .hint { position: absolute; right: 132px; bottom: 110px; font: 500 18px/1 "JetBrains Mono", monospace; color: var(--faint); letter-spacing: 0.08em; }
 
-/* ---------- slide 2: chat vs agent ---------- */
+/* ---------- slide 2: terms (styled after the ladder on slide 7) ---------- */
+#s-terms h2 { font-size: 56px; }
+.nest { height: 740px; margin-top: 30px; display: flex; }
+.ring { flex: 1; display: flex; flex-direction: column; border-radius: 28px; border: 1.5px solid color-mix(in srgb, var(--c) 60%, transparent); background: linear-gradient(160deg, color-mix(in srgb, var(--c) 10%, transparent), transparent 55%); }
+.ring > .ring { margin: 0 26px 22px; }
+.ring .hd { padding: 24px 32px 20px; }
+.ring .yr { font: 600 18px/1 "JetBrains Mono", monospace; color: var(--c); letter-spacing: 0.14em; }
+.ring .nm { font: 400 44px/1.1 "Fraunces", Georgia, serif; margin: 10px 0 6px; color: var(--ink); }
+.ring .nm span { font: 400 25px/1.3 "Inter", sans-serif; color: var(--ink-2); margin-left: 16px; }
+.ring .eg { font-size: 22px; color: var(--muted); line-height: 1.35; }
+.ring .note { margin-top: auto; padding: 0 32px 24px; font-size: 25px; font-weight: 600; color: var(--c); }
+.ring.ai { --c: var(--brand-gray); }
+.ring.ml { --c: color-mix(in srgb, var(--c-model) 45%, var(--brand-gray)); }
+.ring.dl { --c: color-mix(in srgb, var(--c-model) 75%, var(--brand-gray)); }
+.ring.llm { --c: var(--c-model); background: linear-gradient(160deg, color-mix(in srgb, var(--c) 16%, transparent), color-mix(in srgb, var(--c) 4%, transparent) 70%); border-width: 2px; }
+.ring.llm .nm { color: var(--c); }
+
+/* ---------- slide 3: chat vs agent ---------- */
 .versus { display: grid; grid-template-columns: 1fr 1.28fr; gap: 36px; margin-top: 50px; }
 .pane { border: 1px solid var(--line); border-radius: 26px; background: var(--panel); overflow: hidden; }
 .pane .bar { display: flex; align-items: center; gap: 12px; padding: 18px 26px; border-bottom: 1px solid var(--line); font: 600 19px/1 "JetBrains Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
@@ -250,7 +267,7 @@ pre.code .h { color: var(--c-memory); } pre.code .d { color: var(--c-skills); }
 .takeaway { margin-top: 36px; font: 400 36px/1.3 "Fraunces", Georgia, serif; color: var(--ink); }
 .takeaway b { font-weight: 500; }
 
-/* ---------- slide 6: ladder ---------- */
+/* ---------- slide 7: ladder ---------- */
 .ladder-wrap { display: grid; grid-template-columns: 1100px 1fr; gap: 60px; margin-top: 48px; align-items: end; }
 .ladder { position: relative; height: 690px; }
 .rung { position: absolute; left: 0; bottom: 0; border-radius: 28px; border: 1.5px solid color-mix(in srgb, var(--c) 60%, transparent); background: linear-gradient(160deg, color-mix(in srgb, var(--c) 10%, transparent), transparent 55%); padding: 24px 30px; }
@@ -265,7 +282,7 @@ pre.code .h { color: var(--c-memory); } pre.code .d { color: var(--c-skills); }
 .ladder-side p { font-size: 27px; line-height: 1.5; color: var(--ink-2); margin: 0 0 26px; }
 .ladder-side p b { color: var(--ink); font-weight: 600; }
 
-/* ---------- slide 8: chart ---------- */
+/* ---------- slide 9: chart ---------- */
 .chart-wrap { margin-top: 26px; position: relative; }
 #chart { width: 100%; height: 700px; display: block; overflow: visible; }
 #chart text { font-family: "Inter", sans-serif; }
@@ -284,7 +301,7 @@ pre.code .h { color: var(--c-memory); } pre.code .d { color: var(--c-skills); }
 #chart .anchor-lbl { fill: var(--muted); font-size: 18px; font-family: "JetBrains Mono", monospace; letter-spacing: 0.04em; }
 .tip { position: absolute; pointer-events: none; background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 16px; font-size: 18px; color: var(--ink); opacity: 0; transition: opacity 0.15s; white-space: nowrap; }
 
-/* ---------- slide 3: anatomy ---------- */
+/* ---------- slide 4: anatomy ---------- */
 #s-anatomy h2 { font-size: 56px; max-width: 1560px; }
 #anatomy { width: 100%; height: 800px; display: block; margin-top: 10px; overflow: visible; }
 #anatomy text { font-family: "Inter", sans-serif; }
@@ -297,12 +314,12 @@ pre.code .h { color: var(--c-memory); } pre.code .d { color: var(--c-skills); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 
-/* ---------- tick lists (slide 7) ---------- */
+/* ---------- tick lists (slide 8) ---------- */
 ul.ticks { list-style: none; padding: 0; margin: 18px 0 0; }
 ul.ticks li { position: relative; padding: 11px 0 11px 36px; font-size: 25px; line-height: 1.35; color: var(--ink-2); border-top: 1px solid var(--line); }
 ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; width: 12px; height: 12px; border-radius: 3px; background: var(--c); transform: rotate(45deg); }
 
-/* ---------- slide 5: context bar ---------- */
+/* ---------- slide 6: context bar ---------- */
 .ctx-defs { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 44px; }
 .ctx-defs .card { padding: 28px 32px; }
 .ctx-defs .card p + p { margin-top: 10px; }
@@ -323,13 +340,13 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
 .rot { margin-top: 32px; display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; font-size: 24px; line-height: 1.45; color: var(--ink-2); }
 .rot b.h { font: 400 34px/1.1 "Fraunces", Georgia, serif; color: var(--c-tools); font-weight: 400; }
 
-/* ---------- slide 4: tools, memory, skills ---------- */
+/* ---------- slide 5: tools, memory, skills ---------- */
 .tms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 48px; }
 .tms .card { height: 690px; display: flex; flex-direction: column; }
 .tms .card p { font-size: 23px; }
 .tms .foot { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); font-size: 21px; color: var(--muted); line-height: 1.45; }
 
-/* ---------- slide 7: loops and goals ---------- */
+/* ---------- slide 8: loops and goals ---------- */
 .loopgrid { display: grid; grid-template-columns: 600px 1fr; gap: 60px; margin-top: 30px; align-items: start; }
 #loopsvg { width: 600px; height: 600px; overflow: visible; }
 #loopsvg text { font-family: "Inter", sans-serif; }
@@ -343,13 +360,13 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
 .goals .bad { --c: var(--faint); }
 .goals .good { --c: var(--c-goal); }
 
-/* ---------- slide 9: definitions ---------- */
+/* ---------- slide 10: definitions ---------- */
 .gloss { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 22px; margin-top: 40px; }
 .g { padding: 18px 22px 20px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); border-top: 3px solid var(--c); }
 .g dt { font: 400 29px/1.1 "Fraunces", Georgia, serif; margin-bottom: 8px; color: var(--ink); }
 .g dd { margin: 0; font-size: 19.5px; line-height: 1.42; color: var(--ink-2); }
 
-/* ---------- slide 10: questions ---------- */
+/* ---------- slide 11: questions ---------- */
 #s-questions { padding: 0; }
 #s-questions::after { display: none; }
 #s-questions .lockup { position: absolute; left: 132px; top: 96px; width: 560px; }
@@ -435,18 +452,47 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   <div class="byline"><b>Nickolas K. Freeman</b><br>Institute of Data and Analytics · Culverhouse College of Business<br>Graduate seminar · September 2026</div>
   <div class="hint">→ to advance · S for speaker view · ? for keys</div>
   <aside class="notes">
-    <p><b>Target 0:00 to 0:30.</b> The next nine minutes cover the concepts, and then we watch an agent work.</p>
+    <p><b>Target 0:00 to 0:30.</b> The next ten minutes cover the concepts, and then we watch an agent work.</p>
     <ul>
       <li>Aim: a mental model and a shared vocabulary, so that the demo is easy to follow.</li>
-      <li>The picture on the right is the diagram on slide 3, shown small. Do not explain it here.</li>
+      <li>The picture on the right is the diagram on slide 4, shown small. Do not explain it here.</li>
       <li>Mixed audience of doctoral and masters students: no background is assumed, and daily users should come away with more precise terms.</li>
     </ul>
   </aside>
 </section>
 
-<!-- ============ 2. CHAT VS AGENT ============ -->
-<section class="slide" data-time="0:30" data-title="Chatbot versus agent">
-  <div class="kicker">01 · The difference</div>
+<!-- ============ 2. TERMS ============ -->
+<section class="slide" id="s-terms" data-time="0:30" data-title="AI, ML, and LLMs">
+  <div class="kicker">01 · The terms</div>
+  <h2>AI is a field from the 1950s, and LLMs are <em>one recent part</em> of it</h2>
+  <div class="nest">
+    <div class="ring ai f" data-f="1"><div class="hd"><div class="yr">1956</div><div class="nm">Artificial intelligence<span>computer systems that do tasks we associate with human intelligence</span></div><div class="eg">e.g., chess engines, route planning, and ELIZA (1966), a chatbot built from hand-written rules</div></div>
+      <div class="ring ml f" data-f="2"><div class="hd"><div class="yr">1959</div><div class="nm">Machine learning<span>systems that learn patterns from data instead of following hand-written rules</span></div><div class="eg">e.g., spam filters, credit scoring, and product recommendations</div></div>
+        <div class="ring dl f" data-f="3"><div class="hd"><div class="yr">2012</div><div class="nm">Deep learning<span>machine learning with neural networks of many layers</span></div><div class="eg">e.g., image recognition, speech-to-text, and machine translation</div></div>
+          <div class="ring llm f" data-f="4"><div class="hd"><div class="yr">2020</div><div class="nm">Large language models<span>deep networks trained on large amounts of text to predict the next token</span></div><div class="eg">e.g., GPT, Claude, Gemini, and Llama</div></div>
+            <div class="note">The model at the center of most agents today is an LLM.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Target 0:30 to 1:30.</b> Four clicks. The rings appear from the outside in, one per click.</p>
+    <ul>
+      <li>The main point is that each ring is a subset of the one around it. Every LLM is AI, but most AI is not an LLM, and the field is more than 60 years older than LLMs.</li>
+      <li>AI: the 1956 Dartmouth summer workshop named the field. ELIZA (1966) was a chatbot built from pattern-matching rules with no learning at all, so a chatbot does not imply an LLM, and AI does not imply learning from data.</li>
+      <li>Machine learning: Arthur Samuel coined the term in 1959 for a checkers program that improved by playing. Most AI in business use today (credit scoring, fraud detection, demand forecasting, recommendations) is machine learning rather than an LLM.</li>
+      <li>Deep learning: neural networks date to the 1950s and backpropagation to 1986. The 2012 date marks AlexNet, when networks of many layers became practical on GPUs.</li>
+      <li>LLMs: the transformer architecture (2017) made them possible, and GPT-3 (2020) showed what scale could do. Most students first used one through ChatGPT in November 2022.</li>
+      <li>The nesting is a simplification. Some generative methods do not use deep learning, and some language models are small. If a student objects, agree, and say the picture shows where today's systems sit.</li>
+      <li>After the last ring, say three terms aloud, since they are not on the slide. A model is the trained network (e.g., Claude Opus, GPT-5). A product is an app built around one or more models (e.g., ChatGPT, the Claude app). An agent is a system in which the model chooses its own actions (e.g., Claude Code, Codex). One product can offer both a chat mode and an agent mode, which the next slide contrasts.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- ============ 3. CHAT VS AGENT ============ -->
+<section class="slide" data-time="1:30" data-title="Chatbot versus agent">
+  <div class="kicker">02 · The difference</div>
   <h2>The same model can <em>answer a question</em> or <em>finish a job</em></h2>
   <div class="versus">
     <div class="pane b-model">
@@ -471,7 +517,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </div>
   <div class="takeaway f" data-f="2">Both panels use the same model.</div>
   <aside class="notes">
-    <p><b>Target 0:30 to 1:30.</b> Two clicks, one request, handled by two systems. Both windows open empty.</p>
+    <p><b>Target 1:30 to 2:30.</b> Two clicks, one request, handled by two systems. Both windows open empty.</p>
     <ul>
       <li>First click, the chat assistant: it cannot see the file, so it guesses. Here the guess is wrong, because the March dates are MM/DD/YYYY.</li>
       <li>Second click, the agent: it reads the script, runs it, inspects the data, edits the parser, reruns the automated tests, and reports. The line under the panels appears with it: both panels use the same model. Say aloud that the difference is the system around the model, and that the next slide names its parts.</li>
@@ -479,9 +525,9 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </aside>
 </section>
 
-<!-- ============ 3. ANATOMY ============ -->
-<section class="slide" id="s-anatomy" data-time="1:30" data-title="Anatomy">
-  <div class="kicker">02 · What an agent is</div>
+<!-- ============ 4. ANATOMY ============ -->
+<section class="slide" id="s-anatomy" data-time="2:30" data-title="Anatomy">
+  <div class="kicker">03 · What an agent is</div>
   <h2>An agent is a system in which a <em>model chooses its own actions</em> and takes them through tools</h2>
   <svg id="anatomy" viewBox="0 0 1656 800" role="img" aria-label="Diagram of an agent: a model inside a harness, with a context window, tools, memory, skills, a loop, and a goal.">
     <defs>
@@ -596,13 +642,13 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
     </g>
   </svg>
   <aside class="notes">
-    <p><b>Target 1:30 to 2:45.</b> Five clicks, with one sentence per part. The model appears alone first, then the harness with its context and tools, then the world the tools act on, then memory and skills, then the loop and the goal. Slides 4, 5, and 7 go deeper.</p>
+    <p><b>Target 2:30 to 3:45.</b> Five clicks, with one sentence per part. The model appears alone first, then the harness with its context and tools, then the world the tools act on, then memory and skills, then the loop and the goal. Slides 5, 6, and 8 go deeper.</p>
     <p>Read the heading slowly. The agent is the whole system, and the model is one part of it. Choosing the next step is what makes it agentic, since a script that calls a model in a fixed order is automation. A loop and a stated goal are common and useful, and neither is required.</p>
     <p>Source: Anthropic, "Building effective agents" (December 2024), which describes agents as systems in which models direct their own processes and tool use, and separates them from workflows, in which code sets the steps.</p>
     <ol>
       <li>Model: the neural network, which predicts the next token. Gloss the word the first time you say it, i.e., a token is a word piece, and 1,000 tokens is about 750 English words.</li>
       <li>Harness: the program around it (Claude Code, Codex, Cursor).</li>
-      <li>Context: everything the model receives on this turn. The context window is the limit on how much of it fits, which slide 5 illustrates.</li>
+      <li>Context: everything the model receives on this turn. The context window is the limit on how much of it fits, which slide 6 illustrates.</li>
       <li>Tools: the model requests an action, the harness runs it, and the result comes back into the context.</li>
       <li>Memory: notes on disk, reloaded into the context at the start of a session.</li>
       <li>Skills: instructions loaded only when relevant.</li>
@@ -615,9 +661,9 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </aside>
 </section>
 
-<!-- ============ 4. TOOLS, MEMORY, SKILLS ============ -->
-<section class="slide" data-time="2:45" data-title="Tools, memory, skills">
-  <div class="kicker">03 · The parts in detail</div>
+<!-- ============ 5. TOOLS, MEMORY, SKILLS ============ -->
+<section class="slide" data-time="3:45" data-title="Tools, memory, skills">
+  <div class="kicker">04 · The parts in detail</div>
   <h2>Tools, memory, and skills</h2>
   <div class="tms">
     <div class="card accent b-tools f">
@@ -652,7 +698,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
     </div>
   </div>
   <aside class="notes">
-    <p><b>Target 2:45 to 4:00.</b> Three clicks, one card each (tools, memory, skills). About 25 seconds per card.</p>
+    <p><b>Target 3:45 to 5:00.</b> Three clicks, one card each (tools, memory, skills). About 25 seconds per card.</p>
     <ul>
       <li>Tools: the model never touches the computer. It writes a request, and the harness decides whether to run it, which is where permissions are enforced. pytest is a program that runs a project's automated tests.</li>
       <li>MCP: a Zotero or database MCP server written once works in any harness that supports the protocol.</li>
@@ -662,9 +708,9 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </aside>
 </section>
 
-<!-- ============ 5. PROMPT & CONTEXT ============ -->
-<section class="slide" data-time="4:00" data-title="Prompt and context">
-  <div class="kicker">03 · The parts in detail</div>
+<!-- ============ 6. PROMPT & CONTEXT ============ -->
+<section class="slide" data-time="5:00" data-title="Prompt and context">
+  <div class="kicker">04 · The parts in detail</div>
   <h2>The prompt is a small part of what the model sees</h2>
   <div class="ctx-defs">
     <div class="card accent b-model">
@@ -701,7 +747,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </div>
   <div class="rot f"><b class="h">Context rot</b><div>Long or cluttered context can reduce accuracy well before the window is full, and details in the middle are the most likely to be missed. Harnesses respond by summarizing old turns (<i>compaction</i>), saving notes to files, and giving subtasks to <i>subagents</i>, each of which starts a separate context holding only its instructions and the subtask.</div></div>
   <aside class="notes">
-    <p><b>Target 4:00 to 5:15.</b> One click, which brings in context rot after the context bar. The key conceptual slide for experienced users.</p>
+    <p><b>Target 5:00 to 6:15.</b> One click, which brings in context rot after the context bar. The key conceptual slide for experienced users.</p>
     <ul>
       <li>The tool definition, memory, and skill segments of the bar are the parts from the previous slide, now counted against the window.</li>
       <li>In an agent session, the typed request is a small fraction of the context. In this made-up example, tool results take 64k of the 103k tokens in use (about 62%).</li>
@@ -712,9 +758,9 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </aside>
 </section>
 
-<!-- ============ 6. LADDER ============ -->
-<section class="slide" data-time="5:15" data-title="The job moves up">
-  <div class="kicker">03 · The parts in detail</div>
+<!-- ============ 7. LADDER ============ -->
+<section class="slide" data-time="6:15" data-title="The job moves up">
+  <div class="kicker">04 · The parts in detail</div>
   <h2>The model does more, and we design at a <em>higher level</em></h2>
   <div class="ladder-wrap">
     <div class="ladder">
@@ -730,7 +776,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
     </div>
   </div>
   <aside class="notes">
-    <p><b>Target 5:15 to 5:45.</b> Four quick clicks, built from the inside out.</p>
+    <p><b>Target 6:15 to 6:45.</b> Four quick clicks, built from the inside out.</p>
     <ul>
       <li>This slide follows the prompt and context slide and sets up the loops slide that comes next. Prompt engineering covers wording, examples, and format, and it is still useful.</li>
       <li>Context engineering starts from the fact that the prompt is a small part of what the model sees. Files, tool results, memory, and history often matter more.</li>
@@ -742,9 +788,9 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </aside>
 </section>
 
-<!-- ============ 7. LOOPS & GOALS ============ -->
-<section class="slide" data-time="5:45" data-title="Loops and goals">
-  <div class="kicker">03 · The parts in detail</div>
+<!-- ============ 8. LOOPS & GOALS ============ -->
+<section class="slide" data-time="6:45" data-title="Loops and goals">
+  <div class="kicker">04 · The parts in detail</div>
   <h2>The loop repeats until a checkable goal is met</h2>
   <div class="loopgrid">
     <svg id="loopsvg" viewBox="0 0 600 600" aria-label="Loop diagram: think, act, observe, repeat.">
@@ -785,7 +831,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
     </div>
   </div>
   <aside class="notes">
-    <p><b>Target 5:45 to 7:00.</b> No clicks.</p>
+    <p><b>Target 6:45 to 8:00.</b> No clicks.</p>
     <ul>
       <li>The think, act, observe cycle follows the ReAct pattern from 2022, and most agent products run a version of it.</li>
       <li>Loop engineering: once the agent loops on its own, the design of the loop matters more than the wording of any one message. The most useful feedback is something the agent can run itself, such as a test suite.</li>
@@ -796,9 +842,9 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </aside>
 </section>
 
-<!-- ============ 8. CHART ============ -->
-<section class="slide" data-time="7:00" data-title="Task length trend">
-  <div class="kicker">04 · Where it is heading</div>
+<!-- ============ 9. CHART ============ -->
+<section class="slide" data-time="8:00" data-title="Task length trend">
+  <div class="kicker">05 · Where it is heading</div>
   <h2>The tasks agents can finish keep getting longer</h2>
   <div class="chart-wrap">
     <svg id="chart" viewBox="0 0 1656 700" role="img" aria-label="Log-scale chart of the 50 percent and 80 percent time horizons of frontier AI models by release date from 2019 to 2026, rising from seconds to more than 16 hours, with the 80 percent series several times lower."></svg>
@@ -806,21 +852,21 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </div>
   <div class="source">Data: METR Time Horizon 1.1 (retrieved 19 September 2026).</div>
   <aside class="notes">
-    <p><b>Target 7:00 to 8:30.</b> One chart to close the parts on how fast the length of delegable tasks is growing. Two clicks.</p>
+    <p><b>Target 8:00 to 9:30.</b> One chart to close the parts on how fast the length of delegable tasks is growing. Two clicks.</p>
     <ul>
       <li>Reading rule, said aloud: the height of a point is the human time a task takes at which the model succeeds half the time. It is not how long the agent runs. Pick a model and read its height. GPT-4 (2023) is at about 4 minutes of human work, and Claude Opus 4.6 (Feb 2026) is at about 12 hours.</li>
       <li>Scope, said aloud: METR Time Horizon 1.1 uses software engineering, machine learning, and cybersecurity tasks, not all work. Some human times are expert estimates, and the oldest points come from an earlier, simpler task set.</li>
       <li>The top point, Claude Mythos Preview, sits above 16 hours, which is past what the task suite measures reliably. It is drawn in red for that reason and is excluded from the fitted line.</li>
-      <li>First click: the dashed line is a least-squares fit to frontier models since 2023. Give the rate in speech rather than reading a label, i.e., the horizon has been doubling roughly every four months.</li>
+      <li>First click: the dashed line is a least-squares fit to frontier models since 2023, excluding the point above 16 hours. The slide no longer labels this, so say it if asked. Give the rate in speech rather than reading a label, i.e., the horizon has been doubling roughly every four months.</li>
       <li>Second click: the open diamonds are the same models at 80% success. Mythos Preview drops from 17.4 hours to about 3 hours, and Opus 4.6 from 12 hours to 70 minutes. Across these models the stricter horizon runs four to ten times shorter, and both fitted lines rise at a similar rate, so the gap is not closing.</li>
       <li>The 80% series is the stricter measure, i.e., the task length the model finishes four times in five on this benchmark. Say plainly that it is a benchmark number rather than a promise about anyone's own work, which still needs its own checks.</li>
     </ul>
   </aside>
 </section>
 
-<!-- ============ 9. GLOSSARY ============ -->
-<section class="slide" data-time="8:30" data-title="Glossary">
-  <div class="kicker">05 · Definitions</div>
+<!-- ============ 10. GLOSSARY ============ -->
+<section class="slide" data-time="9:30" data-title="Glossary">
+  <div class="kicker">06 · Definitions</div>
   <h2>Definitions</h2>
   <dl class="gloss">
     <div class="g b-loop"><dt>Agent</dt><dd>A system in which a model chooses its own actions and takes them through tools</dd></div>
@@ -841,17 +887,17 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
     <div class="g b-harness"><dt>Subagent</dt><dd>A helper agent given one subtask, with a context of its own</dd></div>
   </dl>
   <aside class="notes">
-    <p><b>Target 8:30 to 8:45.</b> Do not read this slide. Say it is the handout, then move on.</p>
+    <p><b>Target 9:30 to 9:45.</b> Do not read this slide. Say it is the handout, then move on.</p>
   </aside>
 </section>
 
-<!-- ============ 10. QUESTIONS ============ -->
-<section class="slide" id="s-questions" data-time="8:45" data-title="Questions">
+<!-- ============ 11. QUESTIONS ============ -->
+<section class="slide" id="s-questions" data-time="9:45" data-title="Questions">
   <div class="lockup" role="img" aria-label="Culverhouse College of Business, Institute of Data and Analytics"></div>
   <h1>Questions</h1>
   <div class="byline"><b>Nickolas K. Freeman</b><br>Institute of Data and Analytics · Culverhouse College of Business<br>Graduate seminar · September 2026</div>
   <aside class="notes">
-    <p><b>Target 8:45 onward.</b> The demo comes first, so leave this slide up while switching to it and return here for questions. About eleven minutes of the slot remain.</p>
+    <p><b>Target 9:45 onward.</b> The demo comes first, so leave this slide up while switching to it and return here for questions. About ten minutes of the slot remain.</p>
     <ul>
       <li>Before starting the demo, name what to watch for: which program runs the model, what it reads before it acts, which actions need approval, which results change its next step, how it decides it is done, and what evidence it shows.</li>
       <li>Ask the audience to call out each part as they see it, which keeps them engaged and tests the vocabulary.</li>
@@ -1095,7 +1141,6 @@ const METR = {"source": "METR Time Horizon 1.1, https://metr.org/assets/benchmar
     const ft0 = Date.UTC(2023, 0, 1), ft1 = Date.UTC(2026, 6, 1);
     const trend = el("g", { class: "f", "data-f": "1" });
     el("path", { d: `M ${X(ft0)} ${Y(fitAt(ft0))} L ${X(ft1)} ${Y(fitAt(ft1))}`, class: "trend" }, trend);
-    el("text", { x: L + 24, y: Y(20), class: "lbl small" }, trend, "least-squares fit, frontier models since 2023, excluding the point above 16 hours");
 
     // points with 95% CI whiskers
     const labels = {
