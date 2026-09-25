@@ -302,7 +302,7 @@ ul.ticks { list-style: none; padding: 0; margin: 18px 0 0; }
 ul.ticks li { position: relative; padding: 11px 0 11px 36px; font-size: 25px; line-height: 1.35; color: var(--ink-2); border-top: 1px solid var(--line); }
 ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; width: 12px; height: 12px; border-radius: 3px; background: var(--c); transform: rotate(45deg); }
 
-/* ---------- slide 4: context bar ---------- */
+/* ---------- slide 5: context bar ---------- */
 .ctx-defs { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 44px; }
 .ctx-defs .card { padding: 28px 32px; }
 .ctx-defs .card p + p { margin-top: 10px; }
@@ -323,7 +323,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
 .rot { margin-top: 32px; display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; font-size: 24px; line-height: 1.45; color: var(--ink-2); }
 .rot b.h { font: 400 34px/1.1 "Fraunces", Georgia, serif; color: var(--c-tools); font-weight: 400; }
 
-/* ---------- slide 5: tools, memory, skills ---------- */
+/* ---------- slide 4: tools, memory, skills ---------- */
 .tms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 48px; }
 .tms .card { height: 690px; display: flex; flex-direction: column; }
 .tms .card p { font-size: 23px; }
@@ -388,7 +388,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   <div class="lockup" role="img" aria-label="Culverhouse College of Business, Institute of Data and Analytics"></div>
   <div class="left">
     <h1>Agentic AI<em>models that take actions</em></h1>
-    <div class="sub">What makes AI agentic, the vocabulary you will hear, and how the field arrived here between 2020 and 2026.</div>
+    <div class="sub">What makes AI agentic, the parts of an agent, and the vocabulary you will hear.</div>
   </div>
   <svg class="title-art" viewBox="0 0 900 900" role="img" aria-label="A model inside a harness, reaching out through tools to files, a terminal, and the web.">
     <defs>
@@ -469,13 +469,12 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
       </div>
     </div>
   </div>
-  <div class="takeaway f" data-f="3">Both panels use the same model.</div>
+  <div class="takeaway f" data-f="2">Both panels use the same model.</div>
   <aside class="notes">
-    <p><b>Target 0:30 to 1:30.</b> Three clicks, one request, handled by two systems. Both windows open empty.</p>
+    <p><b>Target 0:30 to 1:30.</b> Two clicks, one request, handled by two systems. Both windows open empty.</p>
     <ul>
       <li>First click, the chat assistant: it cannot see the file, so it guesses. Here the guess is wrong, because the March dates are MM/DD/YYYY.</li>
-      <li>Second click, the agent: it reads the script, runs it, inspects the data, edits the parser, reruns the automated tests, and reports.</li>
-      <li>Third click: both panels use the same model. Say aloud that the difference is the system around the model, and that the next slide names its parts.</li>
+      <li>Second click, the agent: it reads the script, runs it, inspects the data, edits the parser, reruns the automated tests, and reports. The line under the panels appears with it: both panels use the same model. Say aloud that the difference is the system around the model, and that the next slide names its parts.</li>
     </ul>
   </aside>
 </section>
@@ -497,8 +496,8 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
       <text x="56" y="142" class="cap">the program that runs the model</text>
     </g>
 
-    <!-- 3 context window -->
-    <g class="f" data-f="3">
+    <!-- 2 context window -->
+    <g class="f" data-f="2">
       <text x="70" y="206" class="ttl" fill="var(--c-context)">Context</text>
       <text x="70" y="232" class="cap">everything the model sees this turn</text>
       <rect x="70" y="250" width="330" height="346" rx="18" fill="none" stroke="var(--c-context)" stroke-opacity="0.6" stroke-width="2"/>
@@ -517,7 +516,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
       <rect x="84" y="426" width="302" height="46" rx="10" fill="var(--c-skills)" fill-opacity="0.3" stroke="var(--c-skills)" stroke-dasharray="5 5"/>
       <text x="100" y="456" font-size="19" fill="var(--ink)">Skill (loaded when needed)</text>
     </g>
-    <g class="f" data-f="3">
+    <g class="f" data-f="2">
       <rect x="84" y="480" width="302" height="102" rx="10" fill="var(--c-tools)" fill-opacity="0.26"/>
       <text x="100" y="510" font-size="19" fill="var(--ink)">Tool results</text>
       <text x="100" y="536" class="cap" font-size="16">file contents, errors,</text>
@@ -533,8 +532,8 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
       <text x="640" y="468" text-anchor="middle" class="cap" font-size="16">next token</text>
     </g>
 
-    <!-- 4 tools -->
-    <g class="f" data-f="3">
+    <!-- 2 tools -->
+    <g class="f" data-f="2">
       <text x="870" y="206" class="ttl" fill="var(--c-tools)">Tools</text>
       <text x="870" y="232" class="cap">actions the harness runs</text>
       <g class="mono">
@@ -549,6 +548,10 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
       <text x="825" y="452" text-anchor="middle" class="cap">requests</text>
       <path d="M 1005 582 L 1005 628 L 250 628 L 250 596" stroke="var(--c-tools)" stroke-width="3" fill="none" marker-end="url(#ah)" class="flow" stroke-linejoin="round"/>
       <text x="628" y="662" text-anchor="middle" class="cap">results are added to the context</text>
+    </g>
+
+    <!-- 3 the world -->
+    <g class="f" data-f="3">
       <text x="1280" y="206" class="ttl" fill="var(--ink-2)">The world</text>
       <g font-size="20" fill="var(--ink)">
         <rect x="1280" y="250" width="330" height="54" rx="14" fill="var(--panel-2)" stroke="var(--line-2)"/><text x="1304" y="284">Files and folders</text>
@@ -593,13 +596,13 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
     </g>
   </svg>
   <aside class="notes">
-    <p><b>Target 1:30 to 2:45.</b> Five clicks, with one sentence per part. The model appears alone first, then the harness around it, then two parts per click. Slides 4, 5, and 7 go deeper.</p>
+    <p><b>Target 1:30 to 2:45.</b> Five clicks, with one sentence per part. The model appears alone first, then the harness with its context and tools, then the world the tools act on, then memory and skills, then the loop and the goal. Slides 4, 5, and 7 go deeper.</p>
     <p>Read the heading slowly. The agent is the whole system, and the model is one part of it. Choosing the next step is what makes it agentic, since a script that calls a model in a fixed order is automation. A loop and a stated goal are common and useful, and neither is required.</p>
     <p>Source: Anthropic, "Building effective agents" (December 2024), which describes agents as systems in which models direct their own processes and tool use, and separates them from workflows, in which code sets the steps.</p>
     <ol>
       <li>Model: the neural network, which predicts the next token. Gloss the word the first time you say it, i.e., a token is a word piece, and 1,000 tokens is about 750 English words.</li>
       <li>Harness: the program around it (Claude Code, Codex, Cursor).</li>
-      <li>Context: everything the model receives on this turn. The context window is the limit on how much of it fits, which slide 4 illustrates.</li>
+      <li>Context: everything the model receives on this turn. The context window is the limit on how much of it fits, which slide 5 illustrates.</li>
       <li>Tools: the model requests an action, the harness runs it, and the result comes back into the context.</li>
       <li>Memory: notes on disk, reloaded into the context at the start of a session.</li>
       <li>Skills: instructions loaded only when relevant.</li>
@@ -612,8 +615,55 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
   </aside>
 </section>
 
-<!-- ============ 4. PROMPT & CONTEXT ============ -->
-<section class="slide" data-time="2:45" data-title="Prompt and context">
+<!-- ============ 4. TOOLS, MEMORY, SKILLS ============ -->
+<section class="slide" data-time="2:45" data-title="Tools, memory, skills">
+  <div class="kicker">03 · The parts in detail</div>
+  <h2>Tools, memory, and skills</h2>
+  <div class="tms">
+    <div class="card accent b-tools f">
+      <span class="label">Tools</span>
+      <h3>Functions the model can request</h3>
+      <p>The model writes a structured request. The harness runs it and returns the result.</p>
+<pre class="code">{ <span class="k">"tool"</span>: <span class="s">"run_command"</span>,
+  <span class="k">"input"</span>: {
+    <span class="k">"cmd"</span>: <span class="s">"pytest tests/"</span> } }</pre>
+      <div class="foot"><b style="color:var(--ink)">MCP</b> (Model Context Protocol) is an open standard, so one tool server works in many harnesses.</div>
+    </div>
+    <div class="card accent b-memory f">
+      <span class="label">Memory</span>
+      <h3>Notes that persist between sessions</h3>
+      <p>The model retains nothing between sessions. Memory is text the harness saves and reloads.</p>
+<pre class="code"><span class="h"># AGENTS.md</span>
+- Run the tests before reporting
+- data/raw is read-only
+- March files use MM/DD/YYYY</pre>
+      <div class="foot">Using an agent does not change the model's weights. Memory is more context, loaded at the start of a session.</div>
+    </div>
+    <div class="card accent b-skills f">
+      <span class="label">Skills</span>
+      <h3>Instructions loaded when needed</h3>
+      <p>A folder of instructions and scripts for one kind of task.</p>
+<pre class="code"><span class="d">skills/</span>
+  <span class="d">make-figure/</span>
+    SKILL.md  style.py
+  <span class="d">verify-citations/</span>
+    SKILL.md</pre>
+      <div class="foot">The agent sees each skill's name and description, and it reads the full instructions only when a task matches.</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Target 2:45 to 4:00.</b> Three clicks, one card each (tools, memory, skills). About 25 seconds per card.</p>
+    <ul>
+      <li>Tools: the model never touches the computer. It writes a request, and the harness decides whether to run it, which is where permissions are enforced. pytest is a program that runs a project's automated tests.</li>
+      <li>MCP: a Zotero or database MCP server written once works in any harness that supports the protocol.</li>
+      <li>Memory: AGENTS.md, CLAUDE.md, and GEMINI.md are plain text files that anyone can read and edit. A line in memory is an instruction, not an enforced rule. Read-only data is enforced by permissions, not by a note.</li>
+      <li>Skills (introduced by Anthropic in Oct 2025 and now an open format) load only when relevant, which keeps the context small.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- ============ 5. PROMPT & CONTEXT ============ -->
+<section class="slide" data-time="4:00" data-title="Prompt and context">
   <div class="kicker">03 · The parts in detail</div>
   <h2>The prompt is a small part of what the model sees</h2>
   <div class="ctx-defs">
@@ -649,61 +699,15 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
       <span class="b-muted"><i style="background:transparent;border:1px solid var(--line-2)"></i>Free 97k</span>
     </div>
   </div>
-  <div class="rot"><b class="h">Context rot</b><div>Long or cluttered context can reduce accuracy well before the window is full, and details in the middle are the most likely to be missed. Harnesses respond by summarizing old turns (<i>compaction</i>), saving notes to files, and giving subtasks to <i>subagents</i>, each of which starts a separate context holding only its instructions and the subtask.</div></div>
+  <div class="rot f"><b class="h">Context rot</b><div>Long or cluttered context can reduce accuracy well before the window is full, and details in the middle are the most likely to be missed. Harnesses respond by summarizing old turns (<i>compaction</i>), saving notes to files, and giving subtasks to <i>subagents</i>, each of which starts a separate context holding only its instructions and the subtask.</div></div>
   <aside class="notes">
-    <p><b>Target 2:45 to 4:00.</b> No clicks. The key conceptual slide for experienced users.</p>
+    <p><b>Target 4:00 to 5:15.</b> One click, which brings in context rot after the context bar. The key conceptual slide for experienced users.</p>
     <ul>
+      <li>The tool definition, memory, and skill segments of the bar are the parts from the previous slide, now counted against the window.</li>
       <li>In an agent session, the typed request is a small fraction of the context. In this made-up example, tool results take 64k of the 103k tokens in use (about 62%).</li>
-      <li>Say here that the model retains nothing between calls, so the harness resends the whole conversation, or a summary of it, on every turn. That is why context has a budget at all, and why a long session costs more.</li>
+      <li>Connect this to the memory card on the previous slide. The model retains nothing between calls, not only between sessions, so the harness resends the whole conversation, or a summary of it, on every turn. That is why context has a budget at all, and why a long session costs more.</li>
       <li>Context engineering spread as a term in mid-2025, popularized by Tobi Lütke and Andrej Karpathy. It holds that an agent's output depends more on what it is shown than on how the request is worded.</li>
       <li>Context rot: accuracy can drop in long or cluttered sessions, and information in the middle of a long context is the most likely to be missed (the "lost in the middle" result). Practical advice is to start a new session for a new task, keep standing instructions in files, and ask for summaries.</li>
-    </ul>
-  </aside>
-</section>
-
-<!-- ============ 5. TOOLS, MEMORY, SKILLS ============ -->
-<section class="slide" data-time="4:00" data-title="Tools, memory, skills">
-  <div class="kicker">03 · The parts in detail</div>
-  <h2>Tools, memory, and skills</h2>
-  <div class="tms">
-    <div class="card accent b-tools">
-      <span class="label">Tools</span>
-      <h3>Functions the model can request</h3>
-      <p>The model writes a structured request. The harness runs it and returns the result.</p>
-<pre class="code">{ <span class="k">"tool"</span>: <span class="s">"run_command"</span>,
-  <span class="k">"input"</span>: {
-    <span class="k">"cmd"</span>: <span class="s">"pytest tests/"</span> } }</pre>
-      <div class="foot"><b style="color:var(--ink)">MCP</b> (Model Context Protocol) is an open standard, so one tool server works in many harnesses.</div>
-    </div>
-    <div class="card accent b-memory">
-      <span class="label">Memory</span>
-      <h3>Notes that persist between sessions</h3>
-      <p>The model retains nothing between sessions. Memory is text the harness saves and reloads.</p>
-<pre class="code"><span class="h"># AGENTS.md</span>
-- Run the tests before reporting
-- data/raw is read-only
-- March files use MM/DD/YYYY</pre>
-      <div class="foot">Using an agent does not change the model's weights. Memory is more context, loaded at the start of a session.</div>
-    </div>
-    <div class="card accent b-skills">
-      <span class="label">Skills</span>
-      <h3>Instructions loaded when needed</h3>
-      <p>A folder of instructions and scripts for one kind of task.</p>
-<pre class="code"><span class="d">skills/</span>
-  <span class="d">make-figure/</span>
-    SKILL.md  style.py
-  <span class="d">verify-citations/</span>
-    SKILL.md</pre>
-      <div class="foot">The agent sees each skill's name and description, and it reads the full instructions only when a task matches.</div>
-    </div>
-  </div>
-  <aside class="notes">
-    <p><b>Target 4:00 to 5:15.</b> No clicks. About 25 seconds per card.</p>
-    <ul>
-      <li>Tools: the model never touches the computer. It writes a request, and the harness decides whether to run it, which is where permissions are enforced. pytest is a program that runs a project's automated tests.</li>
-      <li>MCP: a Zotero or database MCP server written once works in any harness that supports the protocol.</li>
-      <li>Memory: AGENTS.md, CLAUDE.md, and GEMINI.md are plain text files that anyone can read and edit. A line in memory is an instruction, not an enforced rule. Read-only data is enforced by permissions, not by a note.</li>
-      <li>Skills (introduced by Anthropic in Oct 2025 and now an open format) load only when relevant, which keeps the context small.</li>
     </ul>
   </aside>
 </section>
@@ -962,10 +966,8 @@ const METR = {"source": "METR Time Horizon 1.1, https://metr.org/assets/benchmar
   function toggleTheme() {
     const root = document.documentElement;
     root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
-    try { localStorage.setItem("agentic-theme-v2", root.dataset.theme); } catch (err) { /* storage unavailable */ }
     if (pw && !pw.closed) pw.document.documentElement.dataset.theme = root.dataset.theme;
   }
-  try { const t = localStorage.getItem("agentic-theme-v2"); if (t) document.documentElement.dataset.theme = t; } catch (err) { /* storage unavailable */ }
 
   // ---------- presenter window ----------
   let pw = null;
