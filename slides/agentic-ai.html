@@ -290,6 +290,8 @@ pre.code .h { color: var(--c-memory); } pre.code .d { color: var(--c-skills); }
 #chart .axis line, #chart .grid line { stroke: var(--line); }
 #chart .ytick-major line { stroke: var(--line-2); }
 #chart .pt { fill: var(--c-loop); stroke: var(--bg); stroke-width: 2.5; }
+#chart .dim { opacity: 0.6; }
+#chart .lead { stroke: var(--muted); stroke-width: 1.5; }
 #chart .pt.flag { fill: var(--c-goal); stroke: var(--bg); stroke-width: 2.5; }
 #chart .pt80 { fill: var(--bg); stroke: var(--c-memory); stroke-width: 2.5; }
 #chart .ci { stroke: var(--c-loop); stroke-width: 2.5; opacity: 0.45; }
@@ -857,6 +859,7 @@ ul.ticks li::before { content: ""; position: absolute; left: 4px; top: 22px; wid
       <li>Reading rule, said aloud: the height of a point is the human time a task takes at which the model succeeds half the time. It is not how long the agent runs. Pick a model and read its height. GPT-4 (2023) is at about 4 minutes of human work, and Claude Opus 4.6 (Feb 2026) is at about 12 hours.</li>
       <li>Scope, said aloud: METR Time Horizon 1.1 uses software engineering, machine learning, and cybersecurity tasks, not all work. Some human times are expert estimates, and the oldest points come from an earlier, simpler task set.</li>
       <li>The top point, Claude Mythos Preview, sits above 16 hours, which is past what the task suite measures reliably. It is drawn in red for that reason and is excluded from the fitted line.</li>
+      <li>The faded points are other models in the METR set, left unnamed to keep the chart readable. Hovering over any point shows its name, date, and interval.</li>
       <li>First click: the dashed line is a least-squares fit to frontier models since 2023, excluding the point above 16 hours. The slide no longer labels this, so say it if asked. Give the rate in speech rather than reading a label, i.e., the horizon has been doubling roughly every four months.</li>
       <li>Second click: the open diamonds are the same models at 80% success. Mythos Preview drops from 17.4 hours to about 3 hours, and Opus 4.6 from 12 hours to 70 minutes. Across these models the stricter horizon runs four to ten times shorter, and both fitted lines rise at a similar rate, so the gap is not closing.</li>
       <li>The 80% series is the stricter measure, i.e., the task length the model finishes four times in five on this benchmark. Say plainly that it is a benchmark number rather than a promise about anyone's own work, which still needs its own checks.</li>
@@ -1145,16 +1148,17 @@ const METR = {"source": "METR Time Horizon 1.1, https://metr.org/assets/benchmar
     // points with 95% CI whiskers
     const labels = {
       gpt2: ["GPT-2", 14, -12], davinci_002: ["GPT-3", 14, -12], gpt_3_5_turbo_instruct: ["GPT-3.5", 14, 6],
-      gpt_4: ["GPT-4", -16, -14, "end"], o1_inspect: ["o1", 14, 28], claude_3_7_sonnet_inspect: ["Claude 3.7 Sonnet", -16, -14, "end"],
-      gpt_5_2025_08_07_inspect: ["GPT-5", -16, 6, "end"], claude_opus_4_6_inspect: ["Claude Opus 4.6", -16, -22, "end"],
-      claude_mythos_preview_early_inspect: ["Claude Mythos Preview", -62, -68, "end"]
+      gpt_4: ["GPT-4", -16, -14, "end"], o1_inspect: ["o1", 26, 40, "start", true], claude_3_7_sonnet_inspect: ["Claude 3.7 Sonnet", -34, -26, "end", true],
+      gpt_5_2025_08_07_inspect: ["GPT-5", -34, -18, "end", true], claude_opus_4_6_inspect: ["Claude Opus 4.6", -34, -34, "end", true],
+      claude_mythos_preview_early_inspect: ["Claude Mythos Preview", -62, -80, "end", true]
     };
     const tip = document.getElementById("tip");
     pts.forEach((p) => {
       const flag = p.p50_min > 960;
       const cx = X(p.t), cy = Y(p.p50_min);
-      el("line", { x1: cx, x2: cx, y1: Y(Math.max(p.ci_low, 0.008)), y2: Y(Math.min(p.ci_high, 9000)), class: "ci" + (flag ? " flag" : "") }, svg);
-      const c = el("circle", { cx, cy, r: 9, class: "pt" + (flag ? " flag" : "") }, svg);
+      const dim = labels[p.key] ? "" : " dim";
+      el("line", { x1: cx, x2: cx, y1: Y(Math.max(p.ci_low, 0.008)), y2: Y(Math.min(p.ci_high, 9000)), class: "ci" + (flag ? " flag" : "") + dim }, svg);
+      const c = el("circle", { cx, cy, r: 9, class: "pt" + (flag ? " flag" : "") + dim }, svg);
       c.addEventListener("mouseenter", () => {
         const fmtm = (m) => m < 1 ? Math.round(m * 60) + " sec" : m < 90 ? m.toFixed(0) + " min" : (m / 60).toFixed(1) + " hr";
         tip.innerHTML = `<b>${(labels[p.key] || [p.key])[0]}</b> · ${p.date}<br>${fmtm(p.p50_min)} (95% CI ${fmtm(p.ci_low)} to ${fmtm(p.ci_high)})`;
@@ -1166,8 +1170,15 @@ const METR = {"source": "METR Time Horizon 1.1, https://metr.org/assets/benchmar
       c.addEventListener("mouseleave", () => { tip.style.opacity = 0; });
       const lab = labels[p.key];
       if (lab) {
-        el("text", { x: cx + lab[1], y: cy + lab[2], class: "lbl", "text-anchor": lab[3] || "start" }, svg, lab[0]);
-        if (flag) el("text", { x: cx + lab[1], y: cy + lab[2] + 24, class: "lbl small", "text-anchor": "end" }, svg, "beyond reliable measurement");
+        const tx = cx + lab[1], ty = cy + lab[2];
+        el("text", { x: tx, y: ty, class: "lbl", "text-anchor": lab[3] || "start" }, svg, lab[0]);
+        if (flag) el("text", { x: tx, y: ty + 24, class: "lbl small", "text-anchor": "end" }, svg, "beyond reliable measurement");
+        if (lab[4]) {
+          // start beside the label (below the second line for the flagged point), end just outside the dot
+          const lx = tx + (lab[3] === "end" ? 6 : -6), ly = ty + (flag ? 24 : 0) - 7;
+          const d = Math.hypot(cx - lx, cy - ly);
+          el("line", { x1: lx, y1: ly, x2: cx - (cx - lx) * 13 / d, y2: cy - (cy - ly) * 13 / d, class: "lead" }, svg);
+        }
       }
     });
 
