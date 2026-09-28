@@ -2,9 +2,23 @@
 
 This repository pairs a [workshop deck](slides/agentic-ai.html) ([PDF](slides/agentic-ai.pdf)) with two completed agentic AI examples and two student starters. The examples show how an agent can analyze data, build deliverables, seek independent criticism, verify findings, and revise its work. The starters let students run those processes themselves. Their results and review scores need not match the completed examples.
 
-## Workshop recording
+## Getting started
 
-The recording from the September 25, 2026 workshop will be linked here after the event.
+Step-by-step setup guides for [Mac](getting-started/mac.md) and [Windows](getting-started/windows.md) cover opening a terminal, downloading these materials, installing Codex and Pixi, and running both exercises with staged prompts. The Reddit exercise also needs a data file and LaTeX, and the guides cover both.
+
+## Workshop recording and transcript
+
+The [recording](https://alabama.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8d3f444c-8b6a-490b-9738-b4d00129a3a7) of the September 25, 2026 workshop is on Panopto. An [edited transcript](sessions/2026-09-25-transcript.md) with section timestamps accompanies it, and it lists each place where the edited text corrects a fact misstated in the recording. The session covered the following points:
+
+- **Terms.** Artificial intelligence (AI) is a field dating from the 1950s. Machine learning is the part of AI that learns patterns from data, deep learning is the part of machine learning that uses many-layered neural networks, and large language models (LLMs) are one kind of deep learning model. An LLM is one form of AI, not a synonym for it.
+- **Chat assistants and agents.** A chat assistant answers questions, and the user carries out the work. An agent uses the same kind of model but acts on the user's behalf by reading files, running code, and checking results.
+- **Model and harness.** The model is like a computer's processor, and the harness (e.g., Codex or Claude Code) is like its operating system. The harness supplies tools, a system prompt with the provider's guardrails, memory files, and skills. Any program on the computer that can be run from a terminal becomes a tool the agent can use.
+- **Context.** Everything the model sees on a turn, including the system prompt and every tool result, counts against a limited context window measured in tokens. When the window fills, the harness summarizes older material, and details can be lost without notice. Long or cluttered context can reduce accuracy before the window is full.
+- **From prompts to loops and goals.** Practice has moved from crafting prompts, to curating context, to designing loops in which an agent works, checks, and revises until a checkable goal is met. Speaking a long, unedited description of the vision, concerns, and uncertainties (Andrej Karpathy's "ramble") is a fast way to give an agent that context.
+- **Longer tasks.** METR's measurements show that the length of human task an agent can complete on its own has grown quickly. Claude Opus 4.6 succeeds half the time on software tasks that take a human expert about 12 hours.
+- **Independent review.** An agent that grades its own work is biased. A second agent, ideally from a different provider, can be told to find what is wrong and propose fixes. The main agent verifies each finding before acting on it and escalates disagreements to the person.
+- **Ownership.** Anything an agent produces on a person's behalf is that person's work. Ask the agent to explain any result, method, or figure that is unclear, for example by having it rebuild a step in a notebook and walk through it.
+- **Sensitive data.** An agent can build and test an analysis on synthetic data that matches the real data's columns and types. The person then runs the finished analysis on the real data without the model seeing it.
 
 ## Student offer
 
@@ -28,11 +42,11 @@ OpenAI's [2026 Back to School offer](https://help.openai.com/en/articles/2000149
 
 The completed folders contain code, generated results, and review records. Each starter contains its original transcript and a `SETUP.md` with writing and review guidance. The customer starter includes its source data. The Reddit starter contains an empty `data/` placeholder because its source file is not tracked here.
 
-To begin an exercise, copy its starter folder to a working location. Ask Codex to read `SETUP.md` and `transcript.txt`, clarify consequential choices, and plan the work before running the analysis. Students create their own environment, analysis code, deliverables, and review record in that copy. The setup guides contain the writing and review instructions needed for the exercises.
+To begin an exercise, copy its starter folder to a working location. Ask Codex to read `SETUP.md` and `transcript.txt`, clarify consequential choices, and plan the work before running the analysis. The [getting-started guides](#getting-started) give the exact steps and prompts. Students create their own environment, analysis code, deliverables, and review record in that copy. The setup guides contain the writing and review instructions needed for the exercises.
 
 ## Environments
 
-The completed examples are separate [Pixi](https://pixi.sh) projects. Run `pixi install` inside `customer-segmentation/` or `reddit/`, then follow that folder's README. There is no Pixi project at the repository root. Both existing Pixi manifests specify `linux-64`; they do not promise an identical install on macOS or Windows. The starters intentionally have no Pixi manifests because creating an environment is part of each transcript's assignment.
+The completed examples are separate [Pixi](https://pixi.sh) projects. Run `pixi install` inside `customer-segmentation/` or `reddit/`, then follow that folder's README. There is no Pixi project at the repository root. Both manifests are locked for Linux (`linux-64`), macOS (`osx-arm64` and `osx-64`), and Windows (`win-64`). The examples were run on Linux, and the macOS and Windows environments resolve but have not been tested on those systems. The starters intentionally have no Pixi manifests because creating an environment is part of each transcript's assignment.
 
 ## Data
 
