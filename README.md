@@ -4,7 +4,7 @@ This repository pairs a [workshop deck](slides/agentic-ai.html) ([PDF](slides/ag
 
 ## Getting started
 
-Step-by-step setup guides for [Mac](getting-started/mac.md) and [Windows](getting-started/windows.md) cover opening a terminal, downloading these materials, installing Codex and Pixi, and running both exercises with staged prompts. The Reddit exercise also needs a data file and LaTeX, and the guides cover both.
+Step-by-step setup guides for [Mac](getting-started/mac.md) ([PDF](getting-started/mac.pdf)) and [Windows](getting-started/windows.md) ([PDF](getting-started/windows.pdf)) cover opening a terminal, downloading these materials, installing Codex and Pixi, and running both exercises with staged prompts. The Reddit exercise also needs a data file and LaTeX, and the guides cover both. The PDFs are built from the markdown by `getting-started/build/build-pdf.sh`, which should be rerun after any edit to a guide.
 
 ## Workshop recording and transcript
 

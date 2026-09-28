@@ -1,0 +1,60 @@
+% Layout for the getting-started PDFs, included by build-pdf.sh.
+\setmainfont{texgyreheros}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Ligatures = TeXOff,
+]
+\setmonofont{DejaVuSansMono}[
+  Extension = .ttf,
+  BoldFont = *-Bold,
+  Scale = 0.85,
+]
+
+% Code blocks are the text students copy, so set them in a shaded box and
+% wrap long commands instead of letting them run off the page. Each box stays on
+% one page so a prompt is never split when copied.
+\usepackage{fvextra}
+\usepackage[most]{tcolorbox}
+\definecolor{codebg}{HTML}{F2F2F2}
+\definecolor{codeframe}{HTML}{BFBFBF}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  commandchars=\\\{\},
+  breaklines,
+  breakanywhere,
+  fontsize=\small,
+}
+\renewenvironment{Shaded}{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=codebg,
+    colframe=codeframe,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=6pt, right=6pt, top=4pt, bottom=4pt,
+  ]%
+}{\end{tcolorbox}}
+
+\definecolor{linkblue}{HTML}{1F5A96}
+
+% Straight quotes stay straight (TeXOff above), matching the markdown.
+\makeatletter
+\renewcommand{\maketitle}{%
+  {\noindent\LARGE\bfseries\color{linkblue}\@title\par}%
+  \vspace{0.3em}{\color{codeframe}\hrule height 0.6pt}\vspace{0.8em}%
+}
+\makeatother
+
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{linkblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.6em}
+% Move a heading to the next page rather than strand it at the bottom.
+\usepackage{needspace}
+\let\guidesection\section
+\renewcommand{\section}{\Needspace{8\baselineskip}\guidesection}
+
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.25}
