@@ -12,7 +12,7 @@ The guide has seven steps:
 6. Run the customer segmentation exercise.
 7. Run the Reddit exercise.
 
-If you missed the workshop, the [recording](https://alabama.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8d3f444c-8b6a-490b-9738-b4d00129a3a7) and the [edited transcript](../sessions/2026-09-25-transcript.md) show both exercises being started live.
+If you missed the workshop, the [recording](https://alabama.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8d3f444c-8b6a-490b-9738-b4d00129a3a7) and the [edited transcript](../sessions/2026-09-25-transcript.md) show the download, Pixi, and a live Codex run on the customer data (from 00:23:17), and explain both exercises (from 00:45:20). The demo used the Desktop and a shorter prompt, so follow this guide's folders and prompts instead.
 
 ## Before you start
 
@@ -26,9 +26,9 @@ Check each item before you install anything.
   - The offer does not apply to a Plus subscription billed through Apple or Google.
   - It asks for a payment method and renews at $20 a month unless you cancel, so put a reminder in your calendar now.
   - If you cancel early, the unused free months are lost.
-- **If you are on the Free or Go plan,** Codex works only in the desktop app, with the smaller GPT-6 Luna model. Free and Go access is meant for quick tasks. Start with customer prompts 1 and 2, and stop when Codex reports a limit. The review prompts and the Reddit exercise may not fit, so check your allowance before you download the Reddit file or start a review prompt.
+- **If you are on the Free or Go plan,** Codex works only in the desktop app, with the smaller GPT-6 Luna model, and OpenAI is still rolling out that access. After you sign in (step 3), check that the app offers **Codex** before you install anything else. If it does not, wait for access or use a Plus account. Free and Go access is meant for quick tasks. Start with customer prompts 1 and 2, and stop when Codex reports a limit. The review prompts and the Reddit exercise may not fit, so check your allowance before you download the Reddit file or start a review prompt.
 - **The Reddit data file.** The Reddit exercise needs a separate download of about 790 MB (step 7). You can do the customer exercise first.
-- **Time and power.** Setup involves several downloads, and the agent works for many minutes after each prompt. The work pauses when the Mac sleeps, so keep it plugged in with the lid open (step 3 also turns on a setting that keeps it awake).
+- **Time and power.** Setup involves several downloads, and the agent works for many minutes after each prompt. Nobody has timed a full setup or exercise on a laptop yet, so do not start right before a deadline. The work pauses when the Mac sleeps, so keep it plugged in with the lid open (step 3 also turns on a setting that keeps it awake).
 
 ## 1. Download the materials and set up a working folder
 
@@ -85,8 +85,8 @@ Codex comes in two forms. **Use the desktop app** unless you already use the Ter
 **Desktop app (recommended).** The desktop app is called ChatGPT, and Codex is one mode inside it.
 
 1. Go to OpenAI's [quickstart page](https://learn.chatgpt.com/docs/quickstart?setup=app). Under **Setup**, make sure **Desktop** is selected, then click the download button for macOS. If About This Mac said **Intel**, download the [Intel version](https://persistent.oaistatic.com/codex-app-prod/ChatGPT-latest-x64.dmg) instead.
-2. Open the downloaded file and follow its instructions (usually, drag the ChatGPT icon into Applications).
-3. Open ChatGPT from Applications and sign in with your ChatGPT account. If macOS asks whether you are sure you want to open it, click **Open**.
+2. The download is about 700 MB and may be named `Codex.dmg`. Open it in Downloads and drag the app icon into Applications.
+3. Open ChatGPT from Applications and sign in with your ChatGPT account. If it asks you to choose a workspace, choose your personal account, the one where you claimed the student offer. If macOS asks whether you are sure you want to open it, click **Open**.
 4. Choose **Codex** from the menu at the top of the sidebar, which switches between ChatGPT and Codex.
 5. Open **Settings** (Command+Comma), choose **General**, and turn on **Prevent sleep while running**, so the agent keeps working while you step away.
 
@@ -123,7 +123,7 @@ Git records every change to the files in a folder. With Git installed, Codex can
 
 1. Type `git --version` in the Terminal and press Return.
 2. If you see a version number, Git is already installed. Go to step 6.
-3. If a box asks to install the command line developer tools, click **Install** and wait for it to finish. This download can take several minutes.
+3. If a box asks to install the command line developer tools, click **Install**, then **Agree**. Leave the box open until it says the software was installed, which can take a while.
 4. Type `git --version` again. You should see a version number.
 
 ## 6. Run the customer segmentation exercise
@@ -141,9 +141,17 @@ To read `transcript.txt` or `SETUP.md` yourself, right-click it and choose **Ope
 **Desktop app.**
 
 1. In Codex, click **Add new project** next to **Chats** in the sidebar (or press Command+O).
-2. In the window that opens, press Shift+Command+G, type `~/agentic-ai/customer-segmentation-base`, and press Return. Then click **Open**.
+2. In the window that opens, press Shift+Command+G, type the line below, and press Return. Then click **Open**.
+
+   ```text
+   ~/agentic-ai/customer-segmentation-base
+   ```
+
 3. Find the permission control beneath the message box and choose **Ask for approval**.
-4. Click the model control (called **Power**) beneath the message box. On Plus, choose the **Sol** option at **Medium**. It may read **6 Sol Medium** or **6.1 Sol Medium**. On Free or Go, choose the **Luna** option. Do not choose an **Astra** option, anything marked **High**, **Max**, or **Ultra**, or a **Fast** speed. Astra allows about a third as many messages as Sol, Ultra starts extra subagents, and Fast uses your allowance 2.5 times as quickly.
+4. Click the model control beneath the message box. It is called **Power** and shows a short list.
+   - On Plus, choose **6 Sol Medium** (it may read **6.1 Sol Medium**). If neither is listed, click **Advanced**, pick the newest **Sol** model, and set the effort to **Medium**. If the only Sol model is **GPT-5.6 Sol** (this happened in the Windows app in September 2026), use it at **Medium**.
+   - On Free or Go, choose **Luna High**, which is the Luna choice.
+   - Avoid **Astra**, **Extra High**, **Max**, **Ultra**, and **Fast**. Astra allows about a third as many messages as Sol, Ultra starts extra subagents, and Fast uses your allowance 2.5 times as quickly.
 5. Check that the chat runs on your computer. The control beneath the message box should say **Local** (or **Work in: This computer**), not **Worktree** or **Cloud**, because the data files exist only on your computer.
 
 **Command-line version.**
@@ -151,25 +159,25 @@ To read `transcript.txt` or `SETUP.md` yourself, right-click it and choose **Ope
 1. In the Terminal, type `cd ~/agentic-ai/customer-segmentation-base` and press Return.
 2. Type `codex` and press Return.
 3. When Codex asks whether to trust the folder, choose the option that lets it work in this folder. If it starts in read-only mode anyway, type `/permissions` and choose **Ask for approval** (older versions call it **Auto**).
-4. The model name appears at the top of the session. Type `/model` and choose GPT-6 Sol (or GPT-6.1 Sol, if listed) with medium effort.
+4. The model name appears at the top of the session. Type `/model` and choose GPT-6 Sol (or GPT-6.1 Sol, if listed) with medium effort. If neither is listed, choose GPT-5.6 Sol with medium effort.
 
 ### When Codex asks permission
 
 In **Ask for approval** mode, Codex changes files inside the exercise folder on its own. It stops and asks before it uses the internet or touches anything outside the folder.
 
 - **Say yes** when it asks to install packages with `pixi`, to download LaTeX packages, to search Crossref or the web, or to open a file in your browser. The exercises need these. If Codex offers to stop asking about the same kind of command, choosing that option is fine.
-- **Say yes** when it asks to run `git` commands such as `git init`, `git add`, or `git commit` in this folder. Git keeps its records in a protected hidden folder, so Codex asks first.
+- **Say yes** when it asks to run `git` commands such as `git init`, `git add`, `git commit`, or `git config` (which records your name and email for this folder). Git keeps its records in a protected hidden folder, so Codex asks first.
 - **Say yes** if it asks to download a test browser for Playwright, a tool that lets the agent open the explorer and click through it. The download is a few hundred MB and stays in your user folder.
-- **Say no** if it asks to install a program for the whole computer, such as Homebrew, LibreOffice, or anything installed with `brew` or `winget`. Reply, "Do not install software outside this folder. Use a Pixi package instead, or skip that check and tell me you skipped it."
+- **Say no** if it asks to install a program for the whole computer, such as Homebrew, LibreOffice, or anything installed with `brew`. Reply, "Do not install software outside this folder. Use a Pixi package instead, or skip that check and tell me you skipped it."
 - **Say no, and ask it why,** if a command would delete files outside the exercise folder, starts with `sudo`, or asks for your password.
 
 ### Check your usage before each prompt
 
-Every prompt uses part of your Codex allowance, which resets every five hours and also has a weekly limit. See how much is left on the [usage dashboard](https://chatgpt.com/codex/settings/usage), or type `/status` in the command-line version. Write down the percentage left before and after each prompt. After prompts 1 and 2, you will know roughly what a prompt costs you. The scored review loop (the last, optional prompt) uses a large share of a Plus plan's weekly allowance, so start it only when most of the week's allowance remains. If Codex offers to sell you extra credits when you reach a limit, you do not need them. Wait for the reset instead.
+Every prompt uses part of your Codex allowance, which resets every five hours and also has a weekly limit. See how much is left on the [usage dashboard](https://chatgpt.com/codex/settings/usage), or type `/status` in the command-line version. OpenAI estimates that Plus allows roughly 15 to 150 Sol messages every five hours, depending on the task, and subagents' work counts too. Write down the percentage left before and after each prompt. After prompts 1 and 2, you will know roughly what a prompt costs you. The scored review loop (the last, optional prompt) uses a large share of a Plus plan's weekly allowance, so start it only when most of the week's allowance remains. If Codex offers to sell you extra credits when you reach a limit, you do not need them. Wait for the reset instead.
 
 ### Send the prompts one at a time
 
-Copy each prompt below into Codex, send it, and read the reply before you send the next one. Working in stages shows you results sooner, and a usage limit is less likely to stop the work halfway.
+Copy each prompt below into Codex, send it, and read the reply before you send the next one. On GitHub, the copy icon at the top right of each gray box copies the whole prompt. Codex has finished when it stops working and waits for your reply. Working in stages shows you results sooner, and a usage limit is less likely to stop the work halfway.
 
 **Prompt 1** asks for questions and a plan before any work begins:
 
@@ -182,7 +190,16 @@ starter files first, so I can see and undo your changes. Do not start the
 review loop yet.
 ```
 
-*You should see* numbered questions and then a plan. No results exist yet. Answer the questions in plain language. It is fine to say, "I don't know, what do you recommend and why?" The agent will likely ask for an email address, because the transcript asks it to search published research through Crossref, a free research database that asks users to identify themselves. Give your university email address.
+**Before prompt 1, check the tools.** Send this message first:
+
+```text
+Run pixi --version and git --version and tell me what each prints. Do not
+change anything.
+```
+
+*You should see* two version numbers (or a note that Git is missing, which is fine). If Pixi is not found, see the Troubleshooting row about Pixi.
+
+*You should see* numbered questions and then a plan. No results exist yet. Answer the questions in plain language. It is fine to say, "I don't know, what do you recommend and why?" The agent will likely ask for an email address, because the transcript asks it to search published research through Crossref, a free research database. Crossref works without an email, but giving one (your university address is fine) puts your searches in a faster, more reliable queue. The agent may also ask what name and email to record with its Git commits. Your name and university email are fine, and they stay on your computer.
 
 **Before you send prompt 2, check the plan.** The plan should name the folder ending in `-base`, mention the data files, and say where the report and explorer will be saved. If any of these is missing, or a step is unclear, ask about it and wait for a revised plan.
 
@@ -197,7 +214,7 @@ location of every file you created, and open the explorer in my browser.
 
 *You should see* a summary of the customer groups the agent found, a list of files, and the explorer open in your browser. The DOCX report is a Word document, so double-click it in Finder to open it. If you do not have Word, your university's Microsoft 365 account, Pages, or Google Docs can open it. To open the folder in Finder, type `open .` in the Terminal from the exercise folder, or ask Codex to open it.
 
-**Prompt 3** adds one round of independent criticism:
+**Prompt 3** adds one round of independent criticism. Subagents are extra copies of the agent that Codex starts to review the work.
 
 ```text
 Spawn two subagents as independent skeptical reviewers, one focused on
@@ -206,7 +223,7 @@ specific findings with a proposed fix for each. Verify every finding yourself,
 tell me which ones you accept or reject and why, then apply the accepted fixes.
 ```
 
-Subagents are extra copies of the agent that Codex starts to review the work. *You should see* a list of findings, each marked accepted or rejected with a reason, and updated files.
+*You should see* a list of findings, each marked accepted or rejected with a reason, and updated files.
 
 **Prompt 4 (optional)** runs the full scored review loop:
 
@@ -268,7 +285,7 @@ Parquet row groups) so it fits in a laptop's memory. Do not start the review
 loop yet.
 ```
 
-*You should see* numbered questions and a plan. As in the customer exercise, give your university email address when it asks for one for Crossref. Check the plan as in step 6, and also check that it mentions `data/user_daily_post_counts.parquet` and a sample run before the full run.
+*You should see* numbered questions and a plan. As in the customer exercise, answer the Crossref email question the same way. Check the plan as in step 6, and also check that it mentions `data/user_daily_post_counts.parquet` and a sample run before the full run.
 
 **Prompt 2** runs the analysis on a sample only:
 
@@ -290,7 +307,7 @@ found, list the exact name and location of every file you created, and open
 the PDF.
 ```
 
-*You should see* a summary of the findings, a list of files, and the paper open as a PDF. In the completed example, the first full analysis and paper took about 9 minutes on a fast Linux workstation, and a laptop may take longer.
+*You should see* a summary of the findings, a list of files, and the paper open as a PDF. In the completed example, the first full analysis and paper took about 9 minutes on a fast Linux workstation. It has not been timed on a laptop, and a laptop will likely take longer.
 
 **Prompt 4:**
 
@@ -326,7 +343,7 @@ Your paper does not need to match `reddit/paper/main.pdf` in the download.
 ## What to try next
 
 - Ask for a different number of customer groups, and ask the agent to compare the two results.
-- Copy a fresh `customer-segmentation-base` into `agentic-ai` and rename it `customer-segmentation-luna`. Open it in Codex, choose the **Luna** option, and send prompts 1 and 2. Compare the two folders' results and the usage each run took.
+- Run the customer exercise again with Luna, in a separate folder. In `agentic-ai`, choose **File**, then **New Folder** named `luna`. Copy `customer-segmentation-base` from the download into `luna`, as in step 1. In Codex, open the `customer-segmentation-base` folder inside `luna` as in step 6, choose **Luna High**, and send prompts 1 and 2. Compare the two folders' results and the usage each run took. If Finder ever asks whether to replace a folder, click **Stop**, because replacing deletes your finished work.
 - Try a dataset of your own. If it is sensitive, ask the agent to build and test the analysis on made-up data with the same columns, then run the finished analysis on the real data yourself.
 
 ## Troubleshooting
@@ -334,7 +351,8 @@ Your paper does not need to match `reddit/paper/main.pdf` in the download.
 | Problem | What to do |
 |---|---|
 | `command not found: codex` or `command not found: pixi` | Close the Terminal window and press Command+N to open a new one. Installers change settings that only new windows read. If it still fails, run the install command again, then open a new window. If it fails after that, restart the Mac and try once more before asking for help. |
-| The agent says Pixi is not installed | Quit the ChatGPT app with Command+Q and open it again, or open a new Terminal window. |
+| The agent says Pixi is not installed | Quit the ChatGPT app with Command+Q and open it again. If it still says so, send: "Pixi is installed at ~/.pixi/bin/pixi. Use that full path for every pixi command." |
+| Git cannot be installed | Skip it. The exercises work without Git, and Codex will say that Git is missing. |
 | Codex asks for approval before running a command | See "When Codex asks permission" in step 6. |
 | Codex asks before every single file change | You chose read-only. In the app, set the permission control to **Ask for approval**. In the Terminal, type `/permissions` and choose **Ask for approval** (older versions call it **Auto**). |
 | An install asks for a password you do not have, or is blocked | Your Mac is probably managed by your university. Ask your IT help desk, or use a personal computer. |
@@ -344,5 +362,5 @@ Your paper does not need to match `reddit/paper/main.pdf` in the download.
 | You cannot find a file the agent made | Ask Codex, "Where is the file you just created? Open its folder in Finder." |
 | Codex says it cannot find `SETUP.md`, or mentions `customer-segmentation` or `reddit` without `-base` | You opened the wrong folder. Start a new chat and open `agentic-ai/customer-segmentation-base` (or `reddit-base`) as in step 6. |
 | Codex says the Reddit `data` folder is empty | Repeat "Get the data file" in step 7, then check the file's name and size. |
-| The model named in step 6 is not in the list | See step 6, "Open the folder in Codex," item 4. |
+| The model named in step 6 is not in the list | Click **Advanced** in the model control and pick the newest **Sol** model at **Medium**. If only GPT-5.6 Sol is offered, use it. |
 | You want to start an exercise over | Delete the folder in `agentic-ai` and copy a fresh one from the download, as in step 1. For the Reddit exercise, first move `user_daily_post_counts.parquet` out of `reddit-base/data` into `agentic-ai`, and move it back into the new `data` folder afterward. |

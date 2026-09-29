@@ -34,7 +34,8 @@ function Table(tbl)
 end
 
 -- LaTeX will not break a line inside inline code, so a long file path can run
--- past the margin. Allow a line break after each slash or backslash.
+-- past the margin. Allow a line break after each slash, backslash, or
+-- underscore.
 local function latex_escape(s)
   local map = {
     ["\\"] = "\\textbackslash{}",
@@ -46,11 +47,11 @@ local function latex_escape(s)
 end
 
 function Code(el)
-  if #el.text <= 20 or not el.text:match("[\\/]") then
+  if #el.text <= 20 or not el.text:match("[\\/_]") then
     return el
   end
   local parts = {}
-  for piece, sep in el.text:gmatch("([^\\/]*)([\\/]?)") do
+  for piece, sep in el.text:gmatch("([^\\/_]*)([\\/_]?)") do
     if piece == "" and sep == "" then break end
     table.insert(parts, latex_escape(piece) .. latex_escape(sep) .. (sep ~= "" and "\\allowbreak{}" or ""))
   end

@@ -2,7 +2,7 @@
 
 *Students: this file gives the agent its instructions. To set up your computer and run this exercise, follow the getting-started guide for [Mac](https://github.com/nkfreeman-teaching/agentic-ai-fall-2026-manderson/blob/main/getting-started/mac.md) or [Windows](https://github.com/nkfreeman-teaching/agentic-ai-fall-2026-manderson/blob/main/getting-started/windows.md).*
 
-This folder starts the research exercise. Read `transcript.txt` for the assignment. The `data/` folder contains only a placeholder. Download [`user_daily_post_counts.parquet`](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing) (approximately 790 MB) and place it in `data/`. Keep that source file unchanged and out of Git.
+This folder starts the research exercise. Read `transcript.txt` for the assignment. The `data/` folder contains only a placeholder. The student downloads [`user_daily_post_counts.parquet`](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing) (792,034,341 bytes) and places it in `data/`. If the file is missing or a different size, stop and ask the student to follow step 7 of the getting-started guide. Do not download it yourself. Keep that source file unchanged and out of Git.
 
 Ask Codex to read this file and the transcript before it plans or runs the work. The transcript is the assignment, not a specification of the answer. Resolve consequential choices with the student, then create the Pixi environment, analysis, working paper, and process report in this folder. A different defensible analysis or review trajectory is acceptable.
 

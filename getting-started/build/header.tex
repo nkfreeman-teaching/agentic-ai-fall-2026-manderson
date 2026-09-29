@@ -13,7 +13,7 @@
   Scale = 0.85,
 ]
 % Keep interface words whole so a student can match them on screen.
-\hyphenation{PowerShell Select Explorer Terminal Finder}
+\hyphenation{PowerShell Select Explorer Terminal Finder TextEdit Notepad}
 
 % Code blocks are the text students copy, so set them in a shaded box and
 % wrap long commands instead of letting them run off the page. Each box stays on
@@ -57,6 +57,9 @@
 \let\guidesection\section
 \renewcommand{\section}{\Needspace{8\baselineskip}\guidesection}
 
+% Keep a short paragraph's last line off the next page.
+\widowpenalty=10000
+\clubpenalty=10000
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
 \renewcommand{\arraystretch}{1.25}
