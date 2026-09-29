@@ -18,7 +18,7 @@ If you missed the workshop, the [recording](https://alabama.hosted.panopto.com/P
 
 Check each item before you install anything.
 
-- **Windows 11, or an up-to-date Windows 10.** To check, press Windows+R, type `winver`, and press Enter. Windows 11 works best. Windows 10 must be version 1809 or newer with all updates installed. If yours is older, or your university prevents updates, ask your IT help desk or use another computer.
+- **Windows 11, or an up-to-date Windows 10.** To check, press Windows+R, type `winver`, and press Enter. Windows 11 works best. On Windows 10, the window should say **Version 22H2**, the final Windows 10 release. If it shows anything else, run Windows Update first. If your university prevents updates, ask your IT help desk or use another computer.
 - **At least 10 GB of free disk space.** To check, open **Settings**, then **System**, then **Storage**.
 - **Permission to install software.** Windows will show boxes that ask, "Do you want to allow this app to make changes to your device?" You need to be able to click **Yes**. On a laptop managed by your university, installs may be blocked or ask for an administrator password. If they do, ask your IT help desk or use a personal computer. Do not try to work around a university security setting.
 - **A ChatGPT account.** The Plus plan ($20 a month) is the plan these exercises were built for. Eligible U.S. students can get four free months through OpenAI's Back to School offer by [claiming it](https://chatgpt.com/students/2026/) before October 31, 2026, and the [offer terms](https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students) give the details. Keep these points in mind:
@@ -26,9 +26,9 @@ Check each item before you install anything.
   - The offer does not apply to a Plus subscription billed through Apple or Google.
   - It asks for a payment method and renews at $20 a month unless you cancel, so put a reminder in your calendar now.
   - If you cancel early, the unused free months are lost.
-- **If you stay on the Free plan,** Codex works only in the desktop app, with the smaller GPT-6 Luna model. Free access is meant for quick tasks, so you can start the customer exercise, but the later review prompts may not finish.
-- **The Reddit data file.** The Reddit exercise needs a separate download of about 756 MB (step 7). You can do the customer exercise first.
-- **Time and power.** Setup involves several downloads, and the agent works for many minutes after each prompt. The work pauses when the computer sleeps, so keep it plugged in. After you install ChatGPT, open its **Settings** (Control+Comma), choose **General**, and turn on **Prevent sleep while running**.
+- **If you are on the Free or Go plan,** Codex works only in the desktop app, with the smaller GPT-6 Luna model. Free and Go access is meant for quick tasks. Start with customer prompts 1 and 2, and stop when Codex reports a limit. The review prompts and the Reddit exercise may not fit, so check your allowance before you download the Reddit file or start a review prompt.
+- **The Reddit data file.** The Reddit exercise needs a separate download of about 790 MB (step 7). You can do the customer exercise first.
+- **Time and power.** Setup involves several downloads, and the agent works for many minutes after each prompt. The work pauses when the computer sleeps, so keep it plugged in (step 3 also turns on a setting that keeps it awake).
 
 You do not need Windows Subsystem for Linux (WSL). Codex runs directly on Windows.
 
@@ -83,7 +83,7 @@ Three tips:
 
 ## 3. Install Codex
 
-Codex comes in two forms. **Use the desktop app** unless you already use PowerShell comfortably. The desktop app is easier to start with and has a button for speaking your prompts (speaking uses part of your Codex allowance). The workshop demo used the command-line version, which runs in PowerShell and needs the Plus plan.
+Codex comes in two forms. **Use the desktop app** unless you already use PowerShell comfortably. The desktop app is easier to start with and has a button for speaking your prompts (on Plus, and speaking uses part of your Codex allowance). The workshop demo used the command-line version, which runs in PowerShell and needs the Plus plan.
 
 **Desktop app (recommended).** The desktop app is called ChatGPT, and Codex is one mode inside it.
 
@@ -97,7 +97,8 @@ Codex comes in two forms. **Use the desktop app** unless you already use PowerSh
 
 2. Open ChatGPT from the Start menu and sign in with your ChatGPT account.
 3. Choose **Codex** from the menu at the top of the sidebar, which switches between ChatGPT and Codex.
-4. You do not need to change any setting. If you ever see a choice between **Windows native** and **WSL**, keep **Windows native**.
+4. Open **Settings** (Control+Comma), choose **General**, and turn on **Prevent sleep while running**, so the agent keeps working while you step away.
+5. You do not need to change any other setting. If you ever see a choice between **Windows native** and **WSL**, keep **Windows native**.
 
 **Command-line version (alternative, needs Plus).** Paste this into PowerShell and press Enter:
 
@@ -135,7 +136,7 @@ Git records every change to the files in a folder. With Git installed, Codex can
 1. Paste this into PowerShell and press Enter:
 
    ```powershell
-   winget install --id Git.Git
+   winget install --id Git.Git -e --source winget
    ```
 
 2. If PowerShell asks whether you agree to the source terms, type `Y` and press Enter.
@@ -154,6 +155,8 @@ The `customer-segmentation-base` folder has three things:
 - `SETUP.md`, instructions written for the agent.
 - `data`, eight data files in Parquet, a compact data format. Windows cannot open them, and that is expected, because the agent reads them.
 
+To read `transcript.txt` or `SETUP.md` yourself, right-click it and choose **Open With**, then **Notepad**. To see a finished result before you start, go to the inner download folder from step 1, open `customer-segmentation`, then `output`, then `full`, and double-click `segment_explorer.html`.
+
 ### Open the folder in Codex
 
 **Desktop app.**
@@ -161,10 +164,8 @@ The `customer-segmentation-base` folder has three things:
 1. In Codex, click **Add new project** (or press Control+O).
 2. Go to `C:\Users\name\agentic-ai`, click `customer-segmentation-base` once, and click **Select Folder**. You can also type `%USERPROFILE%\agentic-ai\customer-segmentation-base` in the address bar.
 3. Find the permission control beneath the message box and choose **Ask for approval**.
-4. Click the model control (called **Power**) beneath the message box. On Plus, choose **GPT-6 Sol Medium**. On Free, choose the **Luna** option. Do not choose an **Astra** option or a **Fast** speed, because Astra allows about a third as many messages as Sol and Fast uses your allowance 2.5 times as quickly.
-5. Check that the chat runs **Local**, not **Worktree** or **Cloud**, because the data files exist only on your computer.
-
-To see what a finished result looks like before you start, open `customer-segmentation/output/full/segment_explorer.html` in the downloaded folder.
+4. Click the model control (called **Power**) beneath the message box. On Plus, choose the **Sol** option at **Medium**. It may read **6 Sol Medium** or **6.1 Sol Medium**. On Free or Go, choose the **Luna** option. Do not choose an **Astra** option, anything marked **High**, **Max**, or **Ultra**, or a **Fast** speed. Astra allows about a third as many messages as Sol, Ultra starts extra subagents, and Fast uses your allowance 2.5 times as quickly. If the list shows no GPT-6 option, only GPT-5.6 models (a known problem in the Windows app in September 2026), choose **GPT-5.6 Sol** at **Medium**.
+5. Check that the chat runs on your computer. The control beneath the message box should say **Local** (or **Work in: This computer**), not **Worktree** or **Cloud**, because the data files exist only on your computer.
 
 The first time Codex runs a command, Windows may ask, "Do you want to allow this app to make changes to your device?" Codex is setting up its safety sandbox, which keeps it inside the exercise folder. Click **Yes**. If you cannot (for example, on a university laptop), Codex falls back to a weaker sandbox and keeps working.
 
@@ -172,21 +173,22 @@ The first time Codex runs a command, Windows may ask, "Do you want to allow this
 
 1. In PowerShell, type `cd ~\agentic-ai\customer-segmentation-base` and press Enter.
 2. Type `codex` and press Enter.
-3. When Codex asks whether to trust the folder, choose the option that lets it work in this folder. If it starts in read-only mode anyway, type `/permissions` and choose **Auto**, which is what the command-line version calls **Ask for approval**.
-4. The model name appears at the top of the session. Type `/model` and choose GPT-6 Sol with medium effort.
+3. When Codex asks whether to trust the folder, choose the option that lets it work in this folder. If it starts in read-only mode anyway, type `/permissions` and choose **Ask for approval** (older versions call it **Auto**).
+4. The model name appears at the top of the session. Type `/model` and choose GPT-6 Sol (or GPT-6.1 Sol, if listed) with medium effort.
 
 ### When Codex asks permission
 
 In **Ask for approval** mode, Codex changes files inside the exercise folder on its own. It stops and asks before it uses the internet or touches anything outside the folder.
 
 - **Say yes** when it asks to install packages with `pixi`, to download LaTeX packages, to search Crossref or the web, or to open a file in your browser. The exercises need these. If Codex offers to stop asking about the same kind of command, choosing that option is fine.
+- **Say yes** when it asks to run `git` commands such as `git init`, `git add`, or `git commit` in this folder. Git keeps its records in a protected hidden folder, so Codex asks first.
 - **Say yes** if it asks to download a test browser for Playwright, a tool that lets the agent open the explorer and click through it. The download is a few hundred MB and stays in your user folder.
 - **Say no** if it asks to install a program for the whole computer, such as Homebrew, LibreOffice, or anything installed with `brew` or `winget`. Reply, "Do not install software outside this folder. Use a Pixi package instead, or skip that check and tell me you skipped it."
 - **Say no, and ask it why,** if a command would delete files outside the exercise folder, asks for your password, or opens a Windows box asking to allow changes (other than the first sandbox setup described above).
 
 ### Check your usage before each prompt
 
-Every prompt uses part of your Codex allowance, which resets every five hours and also has a weekly limit. See how much is left on the [usage dashboard](https://chatgpt.com/codex/settings/usage), or type `/status` in the command-line version. Prompt 4 uses a large share of a Plus plan's weekly allowance, so start it only when most of the week's allowance remains. If Codex offers to sell you extra credits when you reach a limit, you do not need them. Wait for the reset instead.
+Every prompt uses part of your Codex allowance, which resets every five hours and also has a weekly limit. See how much is left on the [usage dashboard](https://chatgpt.com/codex/settings/usage), or type `/status` in the command-line version. Write down the percentage left before and after each prompt. After prompts 1 and 2, you will know roughly what a prompt costs you. The scored review loop (the last, optional prompt) uses a large share of a Plus plan's weekly allowance, so start it only when most of the week's allowance remains. If Codex offers to sell you extra credits when you reach a limit, you do not need them. Wait for the reset instead.
 
 ### Send the prompts one at a time
 
@@ -205,16 +207,18 @@ review loop yet.
 
 *You should see* numbered questions and then a plan. No results exist yet. Answer the questions in plain language. It is fine to say, "I don't know, what do you recommend and why?" The agent will likely ask for an email address, because the transcript asks it to search published research through Crossref, a free research database that asks users to identify themselves. Give your university email address.
 
+**Before you send prompt 2, check the plan.** The plan should name the folder ending in `-base`, mention the data files, and say where the report and explorer will be saved. If any of these is missing, or a step is unclear, ask about it and wait for a revised plan.
+
 **Prompt 2** runs the analysis and builds the first drafts:
 
 ```text
-The plan looks good. Run the analysis, prototyping on a small sample first,
-and build first versions of the DOCX report and the HTML explorer. When you
-finish, summarize what you found, list the exact name and location of every
-file you created, and open the explorer in my browser.
+I checked the plan. Carry it out: run the analysis, prototyping on a small
+sample first, and build first versions of the DOCX report and the HTML
+explorer. When you finish, summarize what you found, list the exact name and
+location of every file you created, and open the explorer in my browser.
 ```
 
-*You should see* a summary of the customer groups the agent found, a list of files, and the explorer open in your browser. The DOCX report is a Word document, so double-click it in File Explorer to open it. To open the folder in File Explorer, type `explorer .` in PowerShell from the exercise folder, or ask Codex to open it.
+*You should see* a summary of the customer groups the agent found, a list of files, and the explorer open in your browser. The DOCX report is a Word document, so double-click it in File Explorer to open it. If you do not have Word, your university's Microsoft 365 account or Google Docs can open it. To open the folder in File Explorer, type `explorer .` in PowerShell from the exercise folder, or ask Codex to open it.
 
 **Prompt 3** adds one round of independent criticism:
 
@@ -256,12 +260,12 @@ The Reddit exercise asks the agent to write a short research paper in LaTeX, a t
 2. Open the [data file on Google Drive](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing). You do not need to sign in.
 3. Click the download button (a downward arrow, usually near the top right).
 4. Google says it cannot scan the file for viruses because it is large. Click **Download anyway**.
-5. Wait for the download to finish. The file is about 756 MB.
+5. Wait for the download to finish. The file is about 790 MB.
 6. In Downloads, right-click `user_daily_post_counts.parquet` and choose **Cut** (the scissors icon on Windows 11).
 7. Click the address bar, type `%USERPROFILE%\agentic-ai\reddit-base\data`, and press Enter.
 8. Press Control+V. The file moves into the `data` folder.
 
-**Check.** In File Explorer, right-click the file and choose **Properties**. The name must be `user_daily_post_counts` with type "PARQUET File" (File Explorer may hide the `.parquet` ending), and the size about 756 MB. If your browser renamed it (for example, with a `(1)` at the end), rename it.
+**Check.** In File Explorer, right-click the file and choose **Properties**. The name must be `user_daily_post_counts` with type "PARQUET File" (File Explorer may hide the `.parquet` ending), and the size about 755 MB (792,034,341 bytes). If your browser renamed it (for example, with a `(1)` at the end), rename it.
 
 ### LaTeX
 
@@ -287,20 +291,31 @@ Parquet row groups) so it fits in a laptop's memory. Do not start the review
 loop yet.
 ```
 
-*You should see* numbered questions and a plan. As in the customer exercise, give your university email address when it asks for one for Crossref.
+*You should see* numbered questions and a plan. As in the customer exercise, give your university email address when it asks for one for Crossref. Check the plan as in step 6, and also check that it mentions `data/user_daily_post_counts.parquet` and a sample run before the full run.
 
-**Prompt 2:**
+**Prompt 2** runs the analysis on a sample only:
 
 ```text
-The plan looks good. Run the analysis, prototyping on a small sample first,
-then on the full file. Write the first complete version of the LaTeX paper and
-compile it to PDF with tectonic. When you finish, summarize what you found,
-list the exact name and location of every file you created, and open the PDF.
+I checked the plan. Build the environment and run the analysis on a small
+sample only. Then tell me how much memory and disk space the full run will
+need, how long you expect it to take on this computer, and whether this
+computer has enough. Wait for me before you run the full file.
 ```
 
-*You should see* a summary of the findings, a list of files, and the paper open as a PDF. The full data file is large, so this prompt can take a long time.
+*You should see* results from the sample and an estimate for the full run. If Codex says this computer does not have enough memory or disk space, ask it what to change before you continue.
 
-**Prompt 3:**
+**Prompt 3** runs the full file and writes the paper:
+
+```text
+Go ahead with the full file. Write the first complete version of the LaTeX
+paper and compile it to PDF with tectonic. When you finish, summarize what you
+found, list the exact name and location of every file you created, and open
+the PDF.
+```
+
+*You should see* a summary of the findings, a list of files, and the paper open as a PDF. In the completed example, the first full analysis and paper took about 9 minutes on a fast Linux workstation, and a laptop may take longer.
+
+**Prompt 4:**
 
 ```text
 Spawn two subagents as independent skeptical reviewers of the paper, with the
@@ -312,7 +327,7 @@ recompile the paper.
 
 *You should see* a list of findings, each marked accepted or rejected with a reason, and an updated PDF.
 
-**Prompt 4 (optional):**
+**Prompt 5 (optional):**
 
 ```text
 Run the scored review loop described in SETUP.md, with three independent
@@ -334,24 +349,27 @@ Your paper does not need to match `reddit/paper/main.pdf` in the download.
 ## What to try next
 
 - Ask for a different number of customer groups, and ask the agent to compare the two results.
-- Send prompt 2 again with the **Luna** option, and compare the result and the usage it took.
+- Copy a fresh `customer-segmentation-base` into `agentic-ai` and rename it `customer-segmentation-luna`. Open it in Codex, choose the **Luna** option, and send prompts 1 and 2. Compare the two folders' results and the usage each run took.
 - Try a dataset of your own. If it is sensitive, ask the agent to build and test the analysis on made-up data with the same columns, then run the finished analysis on the real data yourself.
 
 ## Troubleshooting
 
 | Problem | What to do |
 |---|---|
-| `codex` or `pixi` "is not recognized as the name of a cmdlet" | Close PowerShell and open it again as in step 2. Installers change settings that only new windows read. |
+| `codex` or `pixi` "is not recognized as the name of a cmdlet" | Close PowerShell and open it again as in step 2. Installers change settings that only new windows read. If it still fails, run the install command again, or for Pixi use `winget install prefix-dev.pixi`, then open a new window. If it fails after that, restart the computer and try once more before asking for help. |
 | "running scripts is disabled on this system" | Run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`, type `Y`, and try again. If Windows says a policy overrides the setting, your computer is managed by your university. Ask your IT help desk or use a personal computer. |
 | `winget` is not recognized | Install ChatGPT with the download link in step 3, Pixi with the install command in step 4, and Git from [git-scm.com](https://git-scm.com/downloads/win). |
 | Your university blocks Microsoft Store installs | Ask your IT help desk to install the ChatGPT desktop app, or use a personal computer. |
 | The agent says Pixi or Git is not installed | Quit the ChatGPT app completely (see step 4) and open it again, or open a new PowerShell window. |
 | Codex asks for approval before running a command | See "When Codex asks permission" in step 6. |
-| Codex asks before every single file change | You chose read-only. In the app, set the permission control to **Ask for approval**. In PowerShell, type `/permissions` and choose **Auto**. |
+| Codex asks before every single file change | You chose read-only. In the app, set the permission control to **Ask for approval**. In PowerShell, type `/permissions` and choose **Ask for approval** (older versions call it **Auto**). |
 | Codex says its sandbox setup failed | You declined, or could not approve, the Windows administrator box. Codex keeps working with a weaker sandbox, which is fine for these exercises. |
 | Files are locked, or an install fails partway | Check that your folder is `C:\Users\name\agentic-ai` and not inside OneDrive, Desktop, or Documents. |
 | A usage limit message appears | Wait for the limit to reset. You do not need to buy credits. Then continue as in the next row. |
 | The computer went to sleep, or you closed Codex | In the app, click the conversation in the sidebar and send "Continue where you left off." In PowerShell, run `codex resume` from the exercise folder. |
 | The agent seems stuck | Click the stop button in the app, or press Escape in PowerShell. Then describe what should happen next. |
 | You cannot find a file the agent made | Ask Codex, "Where is the file you just created? Open its folder in File Explorer." |
+| Codex says it cannot find `SETUP.md`, or mentions `customer-segmentation` or `reddit` without `-base` | You opened the wrong folder. Start a new chat and open `agentic-ai/customer-segmentation-base` (or `reddit-base`) as in step 6. |
+| Codex says the Reddit `data` folder is empty | Repeat "Get the data file" in step 7, then check the file's name and size. |
+| The model named in step 6 is not in the list | See step 6, "Open the folder in Codex," item 4. |
 | You want to start an exercise over | Delete the folder in `agentic-ai` and copy a fresh one from the download, as in step 1. For the Reddit exercise, first move `user_daily_post_counts.parquet` out of `reddit-base/data` into `agentic-ai`, and move it back into the new `data` folder afterward. |
