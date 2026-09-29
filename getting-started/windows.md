@@ -18,12 +18,17 @@ If you missed the workshop, the [recording](https://alabama.hosted.panopto.com/P
 
 Check each item before you install anything.
 
-- **Windows 10 or 11.** To check, open **Settings**, then **System**, then **About**.
+- **Windows 11, or an up-to-date Windows 10.** To check, press Windows+R, type `winver`, and press Enter. Windows 11 works best. Windows 10 must be version 1809 or newer with all updates installed. If yours is older, or your university prevents updates, ask your IT help desk or use another computer.
 - **At least 10 GB of free disk space.** To check, open **Settings**, then **System**, then **Storage**.
 - **Permission to install software.** Windows will show boxes that ask, "Do you want to allow this app to make changes to your device?" You need to be able to click **Yes**. On a laptop managed by your university, installs may be blocked or ask for an administrator password. If they do, ask your IT help desk or use a personal computer. Do not try to work around a university security setting.
-- **A ChatGPT account.** The Plus plan ($20 a month) is the plan these exercises were built for. Eligible U.S. students can get four free months through OpenAI's [Back to School offer](https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students) by claiming it before October 31, 2026. The offer asks for a payment method and renews at $20 a month unless you cancel, so put a reminder in your calendar now.
+- **A ChatGPT account.** The Plus plan ($20 a month) is the plan these exercises were built for. Eligible U.S. students can get four free months through OpenAI's Back to School offer by [claiming it](https://chatgpt.com/students/2026/) before October 31, 2026, and the [offer terms](https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students) give the details. Keep these points in mind:
+  - Claim it while signed in to the ChatGPT account you will use for Codex.
+  - The offer does not apply to a Plus subscription billed through Apple or Google.
+  - It asks for a payment method and renews at $20 a month unless you cancel, so put a reminder in your calendar now.
+  - If you cancel early, the unused free months are lost.
 - **If you stay on the Free plan,** Codex works only in the desktop app, with the smaller GPT-6 Luna model. Free access is meant for quick tasks, so you can start the customer exercise, but the later review prompts may not finish.
-- **Time and power.** Setup involves several downloads, and the agent works for many minutes after each prompt. Keep the computer plugged in and awake while the agent works, because the work pauses when the computer sleeps.
+- **The Reddit data file.** The Reddit exercise needs a separate download of about 756 MB (step 7). You can do the customer exercise first.
+- **Time and power.** Setup involves several downloads, and the agent works for many minutes after each prompt. The work pauses when the computer sleeps, so keep it plugged in. After you install ChatGPT, open its **Settings** (Control+Comma), choose **General**, and turn on **Prevent sleep while running**.
 
 You do not need Windows Subsystem for Linux (WSL). Codex runs directly on Windows.
 
@@ -78,21 +83,21 @@ Three tips:
 
 ## 3. Install Codex
 
-Codex comes in two forms. **Use the desktop app** unless you already use PowerShell comfortably. The desktop app is easier to start with and has a button for speaking your prompts. The workshop demo used the command-line version, which runs in PowerShell and needs the Plus plan.
+Codex comes in two forms. **Use the desktop app** unless you already use PowerShell comfortably. The desktop app is easier to start with and has a button for speaking your prompts (speaking uses part of your Codex allowance). The workshop demo used the command-line version, which runs in PowerShell and needs the Plus plan.
 
 **Desktop app (recommended).** The desktop app is called ChatGPT, and Codex is one mode inside it.
 
-1. Go to OpenAI's [quickstart page](https://learn.chatgpt.com/docs/quickstart) and follow the link to install the ChatGPT desktop app from the Microsoft Store. If the Store is blocked, paste this into PowerShell instead and press Enter:
+1. Click this [ChatGPT for Windows download link](https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi) and open the small file it downloads. It installs ChatGPT through the Microsoft Store. If the Store window does not open, paste this into PowerShell instead and press Enter:
 
    ```powershell
    winget install --id 9PLM9XGG6VKS -s msstore
    ```
 
-   If PowerShell asks whether you agree to the source terms, type `Y` and press Enter.
+   If PowerShell asks whether you agree to the source terms, type `Y` and press Enter. If your university blocks Microsoft Store installs, both routes fail, so ask your IT help desk to install the ChatGPT desktop app, or use a personal computer.
 
 2. Open ChatGPT from the Start menu and sign in with your ChatGPT account.
 3. Choose **Codex** from the menu at the top of the sidebar, which switches between ChatGPT and Codex.
-4. In **Settings**, leave the agent setting at **Windows native**.
+4. You do not need to change any setting. If you ever see a choice between **Windows native** and **WSL**, keep **Windows native**.
 
 **Command-line version (alternative, needs Plus).** Paste this into PowerShell and press Enter:
 
@@ -100,9 +105,9 @@ Codex comes in two forms. **Use the desktop app** unless you already use PowerSh
 powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
 ```
 
-Then check the install:
+If it asks "Start Codex now? [y/N]", type `n` and press Enter. Then check the install:
 
-1. Close PowerShell and open a new window. Installers change settings that only new windows read.
+1. Close PowerShell, then open it again as in step 2. Installers change settings that only new windows read.
 2. Type `codex --version` and press Enter. You should see a version number.
 
 The first time you run `codex`, choose **Sign in with ChatGPT** and finish signing in in your browser.
@@ -117,7 +122,7 @@ Pixi creates a separate Python environment, i.e., a private set of Python tools,
    powershell -ExecutionPolicy Bypass -c "irm -useb https://pixi.sh/install.ps1 | iex"
    ```
 
-2. Close PowerShell and open a new window.
+2. Close PowerShell, then open it again as in step 2.
 3. Type `pixi --version` and press Enter. You should see a version number.
 4. If the ChatGPT app was open during the install, quit it and open it again, so that it can find Pixi. If its icon still shows near the clock after you close the window, right-click the icon and choose **Quit**.
 
@@ -133,9 +138,11 @@ Git records every change to the files in a folder. With Git installed, Codex can
    winget install --id Git.Git
    ```
 
-2. If Windows asks whether to allow the app to make changes, click **Yes**.
-3. Close PowerShell and open a new window.
-4. Type `git --version` and press Enter. You should see a version number.
+2. If PowerShell asks whether you agree to the source terms, type `Y` and press Enter.
+3. If Windows asks whether to allow the app to make changes, click **Yes**.
+4. Close PowerShell, then open it again as in step 2.
+5. Type `git --version` and press Enter. You should see a version number.
+6. If the ChatGPT app is open, quit it and open it again (see step 4), so that it can find Git.
 
 If `winget` is not recognized, download Git from [git-scm.com](https://git-scm.com/downloads/win) instead and accept the installer's default choices.
 
@@ -154,7 +161,10 @@ The `customer-segmentation-base` folder has three things:
 1. In Codex, click **Add new project** (or press Control+O).
 2. Go to `C:\Users\name\agentic-ai`, click `customer-segmentation-base` once, and click **Select Folder**. You can also type `%USERPROFILE%\agentic-ai\customer-segmentation-base` in the address bar.
 3. Find the permission control beneath the message box and choose **Ask for approval**.
-4. Check the model name, which is also beneath the message box. On Plus, choose GPT-6 Sol at medium effort. On Free, GPT-6 Luna is the one available. Effort controls how long the model thinks before it acts.
+4. Click the model control (called **Power**) beneath the message box. On Plus, choose **GPT-6 Sol Medium**. On Free, choose the **Luna** option. Do not choose an **Astra** option or a **Fast** speed, because Astra allows about a third as many messages as Sol and Fast uses your allowance 2.5 times as quickly.
+5. Check that the chat runs **Local**, not **Worktree** or **Cloud**, because the data files exist only on your computer.
+
+To see what a finished result looks like before you start, open `customer-segmentation/output/full/segment_explorer.html` in the downloaded folder.
 
 The first time Codex runs a command, Windows may ask, "Do you want to allow this app to make changes to your device?" Codex is setting up its safety sandbox, which keeps it inside the exercise folder. Click **Yes**. If you cannot (for example, on a university laptop), Codex falls back to a weaker sandbox and keeps working.
 
@@ -162,15 +172,17 @@ The first time Codex runs a command, Windows may ask, "Do you want to allow this
 
 1. In PowerShell, type `cd ~\agentic-ai\customer-segmentation-base` and press Enter.
 2. Type `codex` and press Enter.
-3. When Codex asks whether to trust the folder, choose the option that lets it work in this folder. Do not choose read-only.
-4. The model name appears at the top of the session. Type `/model` to choose GPT-6 Sol at medium effort.
+3. When Codex asks whether to trust the folder, choose the option that lets it work in this folder. If it starts in read-only mode anyway, type `/permissions` and choose **Auto**, which is what the command-line version calls **Ask for approval**.
+4. The model name appears at the top of the session. Type `/model` and choose GPT-6 Sol with medium effort.
 
 ### When Codex asks permission
 
 In **Ask for approval** mode, Codex changes files inside the exercise folder on its own. It stops and asks before it uses the internet or touches anything outside the folder.
 
 - **Say yes** when it asks to install packages with `pixi`, to download LaTeX packages, to search Crossref or the web, or to open a file in your browser. The exercises need these. If Codex offers to stop asking about the same kind of command, choosing that option is fine.
-- **Say no, and ask it why,** if a command would delete files outside the exercise folder or asks for your password.
+- **Say yes** if it asks to download a test browser for Playwright, a tool that lets the agent open the explorer and click through it. The download is a few hundred MB and stays in your user folder.
+- **Say no** if it asks to install a program for the whole computer, such as Homebrew, LibreOffice, or anything installed with `brew` or `winget`. Reply, "Do not install software outside this folder. Use a Pixi package instead, or skip that check and tell me you skipped it."
+- **Say no, and ask it why,** if a command would delete files outside the exercise folder, asks for your password, or opens a Windows box asking to allow changes (other than the first sandbox setup described above).
 
 ### Check your usage before each prompt
 
@@ -186,8 +198,9 @@ Copy each prompt below into Codex, send it, and read the reply before you send t
 Read SETUP.md and transcript.txt. They describe my assignment. Before you run
 anything, ask me about any choice that would change the result, then give me a
 step-by-step plan. Use Pixi to create the environment in this folder. If Git
-is installed, set up a Git repository in this folder so I can see and undo
-your changes. Do not start the review loop yet.
+is installed, set up a Git repository in this folder and commit the unchanged
+starter files first, so I can see and undo your changes. Do not start the
+review loop yet.
 ```
 
 *You should see* numbered questions and then a plan. No results exist yet. Answer the questions in plain language. It is fine to say, "I don't know, what do you recommend and why?" The agent will likely ask for an email address, because the transcript asks it to search published research through Crossref, a free research database that asks users to identify themselves. Give your university email address.
@@ -244,7 +257,9 @@ The Reddit exercise asks the agent to write a short research paper in LaTeX, a t
 3. Click the download button (a downward arrow, usually near the top right).
 4. Google says it cannot scan the file for viruses because it is large. Click **Download anyway**.
 5. Wait for the download to finish. The file is about 756 MB.
-6. Move `user_daily_post_counts.parquet` from Downloads into `C:\Users\name\agentic-ai\reddit-base\data\`.
+6. In Downloads, right-click `user_daily_post_counts.parquet` and choose **Cut** (the scissors icon on Windows 11).
+7. Click the address bar, type `%USERPROFILE%\agentic-ai\reddit-base\data`, and press Enter.
+8. Press Control+V. The file moves into the `data` folder.
 
 **Check.** In File Explorer, right-click the file and choose **Properties**. The name must be `user_daily_post_counts` with type "PARQUET File" (File Explorer may hide the `.parquet` ending), and the size about 756 MB. If your browser renamed it (for example, with a `(1)` at the end), rename it.
 
@@ -265,9 +280,11 @@ Read SETUP.md and transcript.txt. They describe my assignment. Before you run
 anything, ask me about any choice that would change the result, then give me a
 step-by-step plan. Use Pixi to create the environment in this folder, and add
 tectonic from conda-forge to that environment to compile the LaTeX paper. If
-Git is installed, set up a Git repository in this folder. The data file is
-large, so prototype on a small sample before scanning all of it. Do not start
-the review loop yet.
+Git is installed, set up a Git repository in this folder and commit the
+unchanged starter files first. The data file has about 283 million rows, so
+prototype on a small sample, and read the full file in pieces (for example,
+Parquet row groups) so it fits in a laptop's memory. Do not start the review
+loop yet.
 ```
 
 *You should see* numbered questions and a plan. As in the customer exercise, give your university email address when it asks for one for Crossref.
@@ -305,20 +322,36 @@ Finish with the process report.
 
 *You should see* several rounds of scores and a process report that records them.
 
+### Understand the result
+
+Open the PDF and ask about anything unclear. For example:
+
+- "Which result in the paper would change most if the definition of a bot changed? Show me."
+- "Rebuild the main figure step by step and explain each step."
+
+Your paper does not need to match `reddit/paper/main.pdf` in the download.
+
+## What to try next
+
+- Ask for a different number of customer groups, and ask the agent to compare the two results.
+- Send prompt 2 again with the **Luna** option, and compare the result and the usage it took.
+- Try a dataset of your own. If it is sensitive, ask the agent to build and test the analysis on made-up data with the same columns, then run the finished analysis on the real data yourself.
+
 ## Troubleshooting
 
 | Problem | What to do |
 |---|---|
-| `codex` or `pixi` "is not recognized as the name of a cmdlet" | Close PowerShell and open a new window. Installers change settings that only new windows read. |
+| `codex` or `pixi` "is not recognized as the name of a cmdlet" | Close PowerShell and open it again as in step 2. Installers change settings that only new windows read. |
 | "running scripts is disabled on this system" | Run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`, type `Y`, and try again. If Windows says a policy overrides the setting, your computer is managed by your university. Ask your IT help desk or use a personal computer. |
-| `winget` is not recognized, or the Microsoft Store is blocked | Install ChatGPT from the [quickstart page](https://learn.chatgpt.com/docs/quickstart), Pixi with the install command in step 4, and Git from [git-scm.com](https://git-scm.com/downloads/win). |
-| The agent says Pixi is not installed | Quit the ChatGPT app completely (see step 4) and open it again, or open a new PowerShell window. |
+| `winget` is not recognized | Install ChatGPT with the download link in step 3, Pixi with the install command in step 4, and Git from [git-scm.com](https://git-scm.com/downloads/win). |
+| Your university blocks Microsoft Store installs | Ask your IT help desk to install the ChatGPT desktop app, or use a personal computer. |
+| The agent says Pixi or Git is not installed | Quit the ChatGPT app completely (see step 4) and open it again, or open a new PowerShell window. |
 | Codex asks for approval before running a command | See "When Codex asks permission" in step 6. |
-| Codex asks before every single file change | You chose read-only. In the app, set the permission control to **Ask for approval**. In PowerShell, type `/permissions` and choose the option that lets Codex work in the folder. |
+| Codex asks before every single file change | You chose read-only. In the app, set the permission control to **Ask for approval**. In PowerShell, type `/permissions` and choose **Auto**. |
 | Codex says its sandbox setup failed | You declined, or could not approve, the Windows administrator box. Codex keeps working with a weaker sandbox, which is fine for these exercises. |
 | Files are locked, or an install fails partway | Check that your folder is `C:\Users\name\agentic-ai` and not inside OneDrive, Desktop, or Documents. |
 | A usage limit message appears | Wait for the limit to reset. You do not need to buy credits. Then continue as in the next row. |
 | The computer went to sleep, or you closed Codex | In the app, click the conversation in the sidebar and send "Continue where you left off." In PowerShell, run `codex resume` from the exercise folder. |
 | The agent seems stuck | Click the stop button in the app, or press Escape in PowerShell. Then describe what should happen next. |
 | You cannot find a file the agent made | Ask Codex, "Where is the file you just created? Open its folder in File Explorer." |
-| You want to start an exercise over | Delete the folder in `agentic-ai` and copy a fresh one from the download, as in step 1. |
+| You want to start an exercise over | Delete the folder in `agentic-ai` and copy a fresh one from the download, as in step 1. For the Reddit exercise, first move `user_daily_post_counts.parquet` out of `reddit-base/data` into `agentic-ai`, and move it back into the new `data` folder afterward. |
