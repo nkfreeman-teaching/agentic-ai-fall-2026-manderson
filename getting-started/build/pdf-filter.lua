@@ -9,7 +9,11 @@ function Link(el)
   if target:match("^%a[%w+.-]*:") or target:match("^#") then
     return el
   end
-  if target:sub(1, 3) == "../" then
+  -- A reader of one guide's PDF who follows the link to the other guide
+  -- should land on its PDF, not its markdown page.
+  if target == "mac.md" or target == "windows.md" then
+    el.target = base .. "getting-started/" .. target:gsub("%.md$", ".pdf")
+  elseif target:sub(1, 3) == "../" then
     el.target = base .. target:sub(4)
   else
     el.target = base .. "getting-started/" .. target

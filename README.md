@@ -1,10 +1,12 @@
 # Agentic AI workshops
 
+**Setting up your own computer?** Start with the step-by-step guide for [Mac](getting-started/mac.md) ([PDF](getting-started/mac.pdf)) or [Windows](getting-started/windows.md) ([PDF](getting-started/windows.pdf)). It covers everything from downloading these files to running both exercises, and it assumes no programming experience.
+
 This repository pairs a [workshop deck](slides/agentic-ai.html) ([PDF](slides/agentic-ai.pdf)) with two completed agentic AI examples and two student starters. The examples show how an agent can analyze data, build deliverables, seek independent criticism, verify findings, and revise its work. The starters let students run those processes themselves. Their results and review scores need not match the completed examples.
 
 ## Getting started
 
-Step-by-step setup guides for [Mac](getting-started/mac.md) ([PDF](getting-started/mac.pdf)) and [Windows](getting-started/windows.md) ([PDF](getting-started/windows.pdf)) cover opening a terminal, downloading these materials, installing Codex and Pixi, and running both exercises with staged prompts. The Reddit exercise also needs a data file and LaTeX, and the guides cover both. The PDFs are built from the markdown by `getting-started/build/build-pdf.sh`, which should be rerun after any edit to a guide.
+The getting-started guides for [Mac](getting-started/mac.md) ([PDF](getting-started/mac.pdf)) and [Windows](getting-started/windows.md) ([PDF](getting-started/windows.pdf)) list what a computer and ChatGPT account need before setup, then cover downloading these materials, opening a terminal, installing Codex, Pixi, and Git, and running both exercises with staged prompts. The Reddit exercise also needs a data file and LaTeX, and the guides cover both.
 
 ## Workshop recording and transcript
 
@@ -37,19 +39,19 @@ OpenAI's [2026 Back to School offer](https://help.openai.com/en/articles/2000149
 
 | Exercise | Completed example | Student starter |
 |---|---|---|
-| Customer segmentation | [Analysis and instructions](customer-segmentation/README.md), [DOCX report](customer-segmentation/output/full/customer_segmentation_report.docx), [interactive explorer](customer-segmentation/output/full/segment_explorer.html), and [review overview](customer-segmentation/output/full/process_overview.html) | [Source data, transcript, and setup guide](customer-segmentation-base/SETUP.md) |
-| Reddit posting | [Analysis and instructions](reddit/README.md), [working paper](reddit/paper/main.pdf), and [analysis and review report](reddit/report.html) | [Transcript, data placeholder, and setup guide](reddit-base/SETUP.md) |
+| Customer segmentation | [Analysis and instructions](customer-segmentation/README.md), [DOCX report](customer-segmentation/output/full/customer_segmentation_report.docx), [interactive explorer](customer-segmentation/output/full/segment_explorer.html), and [review overview](customer-segmentation/output/full/process_overview.html) | [Source data, transcript, and agent instructions](customer-segmentation-base/SETUP.md) |
+| Reddit posting | [Analysis and instructions](reddit/README.md), [working paper](reddit/paper/main.pdf), and [analysis and review report](reddit/report.html) | [Transcript, data placeholder, and agent instructions](reddit-base/SETUP.md) |
 
-The completed folders contain code, generated results, and review records. Each starter contains its original transcript and a `SETUP.md` with writing and review guidance. The customer starter includes its source data. The Reddit starter contains an empty `data/` placeholder because its source file is not tracked here.
+The completed folders contain code, generated results, and review records. Each starter contains its original transcript and a `SETUP.md` file, which gives the agent its writing and review instructions. The customer starter includes its source data. The Reddit starter contains an empty `data/` placeholder because its source file is not tracked here.
 
-To begin an exercise, copy its starter folder to a working location. Ask Codex to read `SETUP.md` and `transcript.txt`, clarify consequential choices, and plan the work before running the analysis. The [getting-started guides](#getting-started) give the exact steps and prompts. Students create their own environment, analysis code, deliverables, and review record in that copy. The setup guides contain the writing and review instructions needed for the exercises.
+To begin an exercise, copy its starter folder to a working location. Ask Codex to read `SETUP.md` and `transcript.txt`, clarify consequential choices, and plan the work before running the analysis. The [getting-started guides](#getting-started) give the exact steps and prompts. Students create their own environment, analysis code, deliverables, and review record in that copy.
 
 ## Environments
 
-The completed examples are separate [Pixi](https://pixi.sh) projects. Run `pixi install` inside `customer-segmentation/` or `reddit/`, then follow that folder's README. There is no Pixi project at the repository root. Both manifests are locked for Linux (`linux-64`), macOS (`osx-arm64` and `osx-64`), and Windows (`win-64`). The examples were run on Linux, and the macOS and Windows environments resolve but have not been tested on those systems. The starters intentionally have no Pixi manifests because creating an environment is part of each transcript's assignment.
+Students do not need to run the completed examples, because their outputs are already in the repository. The completed examples are separate [Pixi](https://pixi.sh) projects. To rerun one, run `pixi install` inside `customer-segmentation/` or `reddit/`, then follow that folder's README. There is no Pixi project at the repository root. Both manifests are locked for Linux (`linux-64`), macOS (`osx-arm64` and `osx-64`), and Windows (`win-64`). The examples were run on Linux, and the macOS and Windows environments resolve but have not been tested on those systems. The starters intentionally have no Pixi manifests because creating an environment is part of each transcript's assignment. The PDF versions of the getting-started guides are built from the markdown by `getting-started/build/build-pdf.sh`, which should be rerun after any edit to a guide.
 
 ## Data
 
 The customer segmentation example uses eight Parquet files from the simulated [Complete Journey dataset](https://github.com/cunningjames/completejourney_py). They are included unchanged in both `customer-segmentation/data/` and `customer-segmentation-base/data/`.
 
-The Reddit example uses a proprietary Parquet file that is excluded from this repository. Obtain [`user_daily_post_counts.parquet`](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing) (approximately 756 MB) and place it in `reddit/data/` for the completed example or `reddit-base/data/` for the starter. Access to the file may depend on the link's sharing permissions. Do not commit the source file.
+The Reddit example uses a proprietary Parquet file that is excluded from this repository. Obtain [`user_daily_post_counts.parquet`](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing) (approximately 756 MB) and place it in the `data/` folder of the working copy of `reddit-base` (step 7 of the getting-started guides), or in `reddit/data/` to rerun the completed example. Google Drive warns that it cannot scan a file this large for viruses, and **Download anyway** continues the download. Do not commit the source file.

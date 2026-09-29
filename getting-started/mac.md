@@ -1,111 +1,188 @@
 # Getting started on a Mac
 
-This guide sets up a Mac to run the two workshop exercises with Codex, OpenAI's coding agent. It covers opening the Terminal, downloading the workshop materials, installing Codex and Pixi (a tool that creates Python environments), running the customer segmentation exercise, and adding what the Reddit exercise needs (a data file and LaTeX). Windows users should follow the [Windows guide](windows.md) instead. The [workshop transcript](../sessions/2026-09-25-transcript.md) and [recording](https://alabama.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8d3f444c-8b6a-490b-9738-b4d00129a3a7) show both exercises being started live.
+This guide takes you from a Mac with nothing installed to running the two workshop exercises with Codex, OpenAI's coding agent. You do not need any programming experience, because the agent writes and runs the code. On Windows, use the [Windows guide](windows.md) instead.
 
-Each exercise requires the following:
+The guide has seven steps:
 
-- A ChatGPT account. The Plus plan gives full Codex access, and eligible students can claim four free months through OpenAI's [Back to School offer](https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students) by October 31, 2026. The Free plan offers only limited Codex access in the desktop app.
-- A Mac with an internet connection and a few gigabytes of free disk space (more for the optional full LaTeX install in step 7).
-- No Python or programming experience. The agent writes and runs the code.
+1. Download the workshop materials and set up a working folder.
+2. Open the Terminal.
+3. Install Codex.
+4. Install Pixi.
+5. Install Git.
+6. Run the customer segmentation exercise.
+7. Run the Reddit exercise.
 
-## 1. Open the Terminal and learn six commands
+If you missed the workshop, the [recording](https://alabama.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8d3f444c-8b6a-490b-9738-b4d00129a3a7) and the [edited transcript](../sessions/2026-09-25-transcript.md) show both exercises being started live.
 
-The Terminal is a window where commands are typed instead of clicked. Even students who plan to use the Codex desktop app need it to install Pixi and to check that installs worked.
+## Before you start
 
-To open it, press Command+Space, type `Terminal`, and press Return. A window opens with a prompt ending in `%`. Type a command after the prompt and press Return to run it.
+Check each item before you install anything.
+
+- **macOS 14 (Sonoma) or newer.** The ChatGPT desktop app needs it. To check, open the Apple menu (top-left corner of the screen) and choose **About This Mac**.
+- **At least 10 GB of free disk space.** To check, open the Apple menu, choose **System Settings**, then **General**, then **Storage**.
+- **Your Mac login password.** Some installs ask for it. On a Mac managed by your university, installs may be blocked. If they are, ask your IT help desk or use a personal computer. Do not try to work around a university security setting.
+- **A ChatGPT account.** The Plus plan ($20 a month) is the plan these exercises were built for. Eligible U.S. students can get four free months through OpenAI's [Back to School offer](https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students) by claiming it before October 31, 2026. The offer asks for a payment method and renews at $20 a month unless you cancel, so put a reminder in your calendar now.
+- **If you stay on the Free plan,** Codex works only in the desktop app, with the smaller GPT-6 Luna model. Free access is meant for quick tasks, so you can start the customer exercise, but the later review prompts may not finish.
+- **Time and power.** Setup involves several downloads, and the agent works for many minutes after each prompt. Keep the Mac plugged in with the lid open while the agent works, because the work pauses when the Mac sleeps.
+
+## 1. Download the materials and set up a working folder
+
+You will copy two starter folders, one per exercise, into a new folder named `agentic-ai` in your home folder.
+
+1. Open the [workshop repository](https://github.com/nkfreeman-teaching/agentic-ai-fall-2026-manderson) in your web browser.
+2. Click the green **Code** button, then click **Download ZIP**.
+3. Open Finder and press Option+Command+L to open your Downloads folder.
+4. Look for a folder named `agentic-ai-fall-2026-manderson-main`. Safari often unzips downloads for you. If you see only a file named `agentic-ai-fall-2026-manderson-main.zip`, double-click it to unzip it.
+5. In Finder, press Shift+Command+H to open your home folder. It has your user name and a house icon.
+6. Choose **File**, then **New Folder**. Name the new folder `agentic-ai` and press Return.
+7. Go back to Downloads and open the `agentic-ai-fall-2026-manderson-main` folder.
+8. Click `customer-segmentation-base`, then hold Command and click `reddit-base`, so both are selected. Press Command+C to copy them.
+9. Open the `agentic-ai` folder in your home folder and press Command+V to paste.
+
+**Check.** The `agentic-ai` folder now contains `customer-segmentation-base` and `reddit-base`. Open `customer-segmentation-base`. You should see `SETUP.md`, `transcript.txt`, and a `data` folder.
+
+Two points about this setup:
+
+- **Why the home folder.** Desktop and Documents are often synced to iCloud. The agent creates thousands of small files, and syncing them causes slowdowns and errors.
+- **Why a copy.** If an attempt goes wrong, you can delete the copy and paste a fresh one. The copy also keeps the agent away from the completed examples in the download, so it cannot copy their answers.
+
+## 2. Open the Terminal
+
+The Terminal is a window where you type commands instead of clicking. You need it to install Pixi and to check that each install worked.
+
+1. Press Command+Space, type `Terminal`, and press Return.
+2. A window opens with a line ending in `%`. This line is the prompt.
+3. To run a command, type or paste it after the prompt and press Return. Paste with Command+V, as usual.
+
+Try it now. Type `cd ~/agentic-ai` and press Return, then type `ls` and press Return. You should see `customer-segmentation-base` and `reddit-base`.
+
+These commands are all you need:
 
 | Command | What it does |
 |---|---|
-| `pwd` | Prints the folder the Terminal is currently in |
-| `ls` | Lists the files in the current folder |
+| `pwd` | Shows which folder the Terminal is in |
+| `ls` | Lists the files in that folder |
 | `cd agentic-ai` | Moves into the folder named `agentic-ai` |
 | `cd ..` | Moves up one folder |
-| `cd ~` | Returns to the home folder |
+| `cd ~` | Returns to your home folder (`~` is short for your home folder) |
 | `open .` | Opens the current folder in Finder |
 
-Three habits make the Terminal much easier to use:
+Three tips:
 
-- Type `cd ` (with a trailing space), then drag a folder from Finder into the Terminal window. The Terminal fills in the folder's full path, so pressing Return moves into that folder.
-- Press Tab partway through a file or folder name, and the Terminal completes it.
-- Press Control+C to stop a command that is running. Paste with Command+V as usual.
-
-## 2. Download the workshop materials
-
-1. Open the [workshop repository](https://github.com/nkfreeman-teaching/agentic-ai-fall-2026-manderson), click the green **Code** button, and choose **Download ZIP**.
-2. Double-click `agentic-ai-fall-2026-manderson-main.zip` in the Downloads folder. Finder unzips it into a folder with the same name.
-3. Create a working folder named `agentic-ai` in the home folder (the folder with the house icon in the Finder sidebar). Keeping the work outside Desktop and Documents avoids problems if iCloud syncs those folders, since the Python environments contain thousands of small files.
-4. Copy `customer-segmentation-base` (and later `reddit-base`) from the unzipped folder into `agentic-ai`.
-
-Working in a copy of a starter folder matters for two reasons. The original stays unchanged if an attempt needs to start over, and the agent cannot look at the completed example in the neighboring folder and copy it.
-
-The same step from the Terminal is:
-
-```bash
-mkdir -p ~/agentic-ai
-cp -R ~/Downloads/agentic-ai-fall-2026-manderson-main/customer-segmentation-base ~/agentic-ai/
-```
+- Press Tab partway through a file or folder name, and the Terminal finishes it for you.
+- Type `cd ` (with a space after it), then drag a folder from Finder into the Terminal window and press Return. The Terminal moves into that folder.
+- Press Control+C to stop a command that is running.
 
 ## 3. Install Codex
 
-Codex comes in two forms, and either one works for the exercises. The desktop app is easier to start with and has a dictation button for spoken prompts. The command-line version runs inside the Terminal, which is what the workshop demo used.
+Codex comes in two forms. **Use the desktop app** unless you already use the Terminal comfortably. The desktop app is easier to start with and has a button for speaking your prompts. The workshop demo used the command-line version, which runs in the Terminal and needs the Plus plan.
 
-**Desktop app.** OpenAI's desktop app is now called the ChatGPT desktop app, and Codex is one mode inside it. Download it from OpenAI's [quickstart page](https://learn.chatgpt.com/docs/quickstart), open it, and sign in with the ChatGPT account. Choose **Codex** from the menu at the top of the sidebar (it switches between ChatGPT and Codex).
+**Desktop app (recommended).** The desktop app is called ChatGPT, and Codex is one mode inside it.
 
-**Command-line version.** Paste this into the Terminal and press Return:
+1. Go to OpenAI's [quickstart page](https://learn.chatgpt.com/docs/quickstart) and click the link to download the ChatGPT desktop app.
+2. Open the downloaded file and follow its instructions (usually, drag the ChatGPT icon into Applications).
+3. Open ChatGPT from Applications and sign in with your ChatGPT account.
+4. Choose **Codex** from the menu at the top of the sidebar, which switches between ChatGPT and Codex.
+
+**Command-line version (alternative, needs Plus).** Paste this into the Terminal and press Return:
 
 ```bash
 curl -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
 
-Students who already use Homebrew can run `brew install --cask codex` instead. Close the Terminal window, open a new one, and run `codex --version`. A version number means the install worked. The first time `codex` starts, choose **Sign in with ChatGPT** and finish signing in in the browser.
+Then check the install:
+
+1. Close the Terminal window and open a new one. Installers change settings that only new windows read.
+2. Type `codex --version` and press Return. You should see a version number.
+
+If you already use Homebrew (a tool for installing Mac software), `brew install --cask codex` works too. The first time you run `codex`, choose **Sign in with ChatGPT** and finish signing in in your browser.
 
 ## 4. Install Pixi
 
-Pixi creates a separate Python environment inside each project folder, so the packages one project needs never conflict with another. The exercises ask the agent to use it. Paste this into the Terminal:
+Pixi creates a separate Python environment, i.e., a private set of Python tools, inside each exercise folder. The exercises ask the agent to use it, so you install it once and the agent does the rest.
 
-```bash
-curl -fsSL https://pixi.sh/install.sh | sh
-```
+1. Paste this into the Terminal and press Return:
 
-Close the Terminal window, open a new one, and run `pixi --version`. If a version number appears, Pixi is installed and the agent can use it. If the ChatGPT desktop app was open during the install, quit it (Command+Q) and reopen it so that it can find Pixi.
+   ```bash
+   curl -fsSL https://pixi.sh/install.sh | sh
+   ```
 
-## 5. Optional: install Git
+2. Close the Terminal window and open a new one.
+3. Type `pixi --version` and press Return. You should see a version number.
+4. If the ChatGPT app was open during the install, quit it with Command+Q and open it again, so that it can find Pixi.
 
-Codex works without Git, but the desktop app uses Git to show exactly what changed and to undo changes. Run `git --version` in the Terminal. If Git is missing, macOS offers to install the Command Line Developer Tools. Accept, wait for the install to finish, and run `git --version` again.
+## 5. Install Git (recommended)
+
+Git records every change to the files in a folder. With Git installed, Codex can show you exactly what it changed and undo a change. Codex works without Git, but it is easier to follow with it.
+
+1. Type `git --version` in the Terminal and press Return.
+2. If you see a version number, Git is already installed. Go to step 6.
+3. If a box asks to install the command line developer tools, click **Install** and wait for it to finish. This download can take several minutes.
+4. Type `git --version` again. You should see a version number.
 
 ## 6. Run the customer segmentation exercise
 
-The starter folder contains eight data files, a dictated `transcript.txt` that describes the assignment, and a `SETUP.md` with writing and review guidance for the agent. The data are in Parquet, a compact format that a double-click will not open. That is expected, because the agent reads the files.
+The `customer-segmentation-base` folder has three things:
 
-**Open the folder in Codex.**
+- `transcript.txt`, a dictated description of the assignment.
+- `SETUP.md`, instructions written for the agent.
+- `data`, eight data files in Parquet, a compact data format. Double-clicking them does nothing useful, and that is expected, because the agent reads them.
 
-- *Desktop app:* In Codex, add a project (or open a folder) and select `~/agentic-ai/customer-segmentation-base`. Leave the permission setting beneath the message box at its default, so Codex asks before doing anything outside the folder.
-- *Terminal:* Run `cd ~/agentic-ai/customer-segmentation-base`, then `codex`. Answer yes when Codex asks whether to trust the folder.
+### Open the folder in Codex
 
-The model name appears in the app beneath the message box and in the Terminal at the top of the session. GPT-6 Sol at medium effort is a good default (type `/model` in the Terminal to change it). Effort controls how much the model reasons before it acts.
+**Desktop app.**
 
-**Work in stages.** The full exercise ends in a review loop in which many reviewer agents score the work over several rounds, and that loop uses a large share of a Plus plan's weekly Codex usage. Sending the prompts below one at a time shows results sooner and makes it less likely that a usage limit interrupts the work midway. Read the agent's reply after each prompt before sending the next one.
+1. In Codex, add a new project (or open a folder).
+2. In the window that opens, press Shift+Command+G, type `~/agentic-ai/customer-segmentation-base`, and press Return. Then click **Open**.
+3. Find the permission control beneath the message box and choose **Ask for approval**.
+4. Check the model name, which is also beneath the message box. On Plus, choose GPT-6 Sol at medium effort. On Free, GPT-6 Luna is the one available. Effort controls how long the model thinks before it acts.
 
-Prompt 1 asks for questions and a plan before any work begins:
+**Command-line version.**
+
+1. In the Terminal, type `cd ~/agentic-ai/customer-segmentation-base` and press Return.
+2. Type `codex` and press Return.
+3. When Codex asks whether to trust the folder, choose the option that lets it work in this folder. Do not choose read-only.
+4. The model name appears at the top of the session. Type `/model` to choose GPT-6 Sol at medium effort.
+
+### When Codex asks permission
+
+In **Ask for approval** mode, Codex changes files inside the exercise folder on its own. It stops and asks before it uses the internet or touches anything outside the folder.
+
+- **Say yes** when it asks to install packages with `pixi`, to download LaTeX packages, to search Crossref or the web, or to open a file in your browser. The exercises need these. If Codex offers to stop asking about the same kind of command, choosing that option is fine.
+- **Say no, and ask it why,** if a command would delete files outside the exercise folder, starts with `sudo`, or asks for your password.
+
+### Check your usage before each prompt
+
+Every prompt uses part of your Codex allowance, which resets every five hours and also has a weekly limit. See how much is left on the [usage dashboard](https://chatgpt.com/codex/settings/usage), or type `/status` in the command-line version. Prompt 4 uses a large share of a Plus plan's weekly allowance, so start it only when most of the week's allowance remains. If Codex offers to sell you extra credits when you reach a limit, you do not need them. Wait for the reset instead.
+
+### Send the prompts one at a time
+
+Copy each prompt below into Codex, send it, and read the reply before you send the next one. Working in stages shows you results sooner, and a usage limit is less likely to stop the work halfway.
+
+**Prompt 1** asks for questions and a plan before any work begins:
 
 ```text
 Read SETUP.md and transcript.txt. They describe my assignment. Before you run
 anything, ask me about any choice that would change the result, then give me a
-step-by-step plan. Use Pixi to create the environment in this folder. Do not
-start the review loop yet.
+step-by-step plan. Use Pixi to create the environment in this folder. If Git
+is installed, set up a Git repository in this folder so I can see and undo
+your changes. Do not start the review loop yet.
 ```
 
-Answer its questions in plain language. It is fine to say, "I don't know, what do you recommend and why?"
+*You should see* numbered questions and then a plan. No results exist yet. Answer the questions in plain language. It is fine to say, "I don't know, what do you recommend and why?" The agent will likely ask for an email address, because the transcript asks it to search published research through Crossref, a free research database that asks users to identify themselves. Give your university email address.
 
-Prompt 2 runs the analysis and builds the first drafts:
+**Prompt 2** runs the analysis and builds the first drafts:
 
 ```text
 The plan looks good. Run the analysis, prototyping on a small sample first,
 and build first versions of the DOCX report and the HTML explorer. When you
-finish, summarize what you found and open the explorer in my browser.
+finish, summarize what you found, list the exact name and location of every
+file you created, and open the explorer in my browser.
 ```
 
-Prompt 3 adds one round of independent criticism:
+*You should see* a summary of the customer groups the agent found, a list of files, and the explorer open in your browser. The DOCX report is a Word document, so double-click it in Finder to open it. To open the folder in Finder, type `open .` in the Terminal from the exercise folder, or ask Codex to open it.
+
+**Prompt 3** adds one round of independent criticism:
 
 ```text
 Spawn two subagents as independent skeptical reviewers, one focused on
@@ -114,7 +191,9 @@ specific findings with a proposed fix for each. Verify every finding yourself,
 tell me which ones you accept or reject and why, then apply the accepted fixes.
 ```
 
-Prompt 4 is optional and runs the full scored review loop:
+Subagents are extra copies of the agent that Codex starts to review the work. *You should see* a list of findings, each marked accepted or rejected with a reason, and updated files.
+
+**Prompt 4 (optional)** runs the full scored review loop:
 
 ```text
 Run the scored review loop described in SETUP.md, with three independent
@@ -122,39 +201,100 @@ reviewer subagents per pass and the scoring and stopping rules it gives.
 Finish with the process overview.
 ```
 
-In the Terminal, `/status` shows the model and session settings. If a usage limit is reached, the work can continue after the limit resets. In the Terminal, `codex resume` reopens the previous session.
+*You should see* several rounds of scores that should rise over time, and a process overview, i.e., an HTML page that records the scores and changes.
 
-**Understand the result.** Everything the agent produces is the student's responsibility. Open the report and the explorer and ask about anything unclear, for example, "Why did you choose five segments instead of four?" or "Walk me through how the spending features are calculated, step by step." The results do not need to match the completed example in `customer-segmentation/`. A different, well-justified segmentation is a good outcome.
+### Understand the result
+
+You are responsible for everything the agent produces for you. Open the report and the explorer, and ask about anything unclear. For example:
+
+- "Why did you choose five segments instead of four?"
+- "Walk me through how the spending features are calculated, step by step."
+
+Your results do not need to match the completed example in the `customer-segmentation` folder of the download. A different, well-justified segmentation is a good outcome.
 
 ## 7. Run the Reddit exercise
 
-The Reddit exercise asks the agent to write a short research paper in LaTeX, a typesetting system common in academic writing. It needs two things the customer exercise does not.
+The Reddit exercise asks the agent to write a short research paper in LaTeX, a typesetting system common in academic writing. It needs a large data file that is not in the download.
 
-**Download the data file.** Download [`user_daily_post_counts.parquet`](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing) (approximately 756 MB) from Google Drive. Move it into `~/agentic-ai/reddit-base/data/`, and check that the file name is exactly `user_daily_post_counts.parquet`.
+### Get the data file
 
-**LaTeX through Pixi (recommended).** No separate install is needed. Tectonic is a small LaTeX engine that Pixi can install inside the project, and it downloads whatever LaTeX packages the paper needs the first time it compiles. The first Reddit prompt below asks the agent to set it up.
+1. Check that `~/agentic-ai/reddit-base` exists. If it does not, copy `reddit-base` from the download as in step 1.
+2. Open the [data file on Google Drive](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing). You do not need to sign in.
+3. Click the download button (a downward arrow, usually near the top right).
+4. Google says it cannot scan the file for viruses because it is large. Click **Download anyway**.
+5. Wait for the download to finish. The file is about 756 MB.
+6. Move `user_daily_post_counts.parquet` from Downloads into `~/agentic-ai/reddit-base/data/`.
 
-**Full LaTeX install (optional).** Students who want LaTeX for their own papers, outside these exercises, can install [MacTeX](https://www.tug.org/mactex/), which includes the TeXShop editor and every common package. MacTeX is a download of roughly 6 GB. The same page offers BasicTeX, which is much smaller but installs fewer packages. After installing, open a new Terminal and run `latexmk -v` to confirm the install. With MacTeX installed, the agent can use `latexmk` instead of Tectonic.
+**Check.** In Finder, click the file once and press Command+I. The name must be exactly `user_daily_post_counts.parquet`, and the size about 756 MB. If your browser renamed it (for example, with a `(1)` at the end), rename it.
 
-**Prompts.** Open `~/agentic-ai/reddit-base` in Codex as in step 6, and use the same staged approach. The first prompt differs.
+### LaTeX
+
+You do not need to install LaTeX yourself. The first Reddit prompt asks the agent to add Tectonic, a small LaTeX program, inside the exercise folder. The first time the paper compiles, Tectonic downloads the pieces it needs, so say yes when Codex asks.
+
+If you want LaTeX for your own papers later, you can install [MacTeX](https://www.tug.org/mactex/), which is a download of about 6 GB. It is not needed for these exercises.
+
+### Send the prompts one at a time
+
+Open `~/agentic-ai/reddit-base` in Codex as in step 6, check your usage, and send these prompts one at a time.
+
+**Prompt 1:**
 
 ```text
 Read SETUP.md and transcript.txt. They describe my assignment. Before you run
 anything, ask me about any choice that would change the result, then give me a
 step-by-step plan. Use Pixi to create the environment in this folder, and add
-tectonic from conda-forge to that environment to compile the LaTeX paper. The
-data file is large, so prototype on a small sample before scanning all of it.
-Do not start the review loop yet.
+tectonic from conda-forge to that environment to compile the LaTeX paper. If
+Git is installed, set up a Git repository in this folder. The data file is
+large, so prototype on a small sample before scanning all of it. Do not start
+the review loop yet.
 ```
 
-The transcript asks the agent to search published research through the Crossref API, whose "polite pool" asks callers to identify themselves with an email address. Give the agent a university email address when it asks. Continue with prompts 2 through 4 from step 6, replacing "DOCX report and the HTML explorer" with "LaTeX paper" and the methods and marketing reviewers with the reviewer perspectives in the Reddit `SETUP.md`.
+*You should see* numbered questions and a plan. As in the customer exercise, give your university email address when it asks for one for Crossref.
+
+**Prompt 2:**
+
+```text
+The plan looks good. Run the analysis, prototyping on a small sample first,
+then on the full file. Write the first complete version of the LaTeX paper and
+compile it to PDF with tectonic. When you finish, summarize what you found,
+list the exact name and location of every file you created, and open the PDF.
+```
+
+*You should see* a summary of the findings, a list of files, and the paper open as a PDF. The full data file is large, so this prompt can take a long time.
+
+**Prompt 3:**
+
+```text
+Spawn two subagents as independent skeptical reviewers of the paper, with the
+different perspectives described in SETUP.md. Each should return specific
+findings with a proposed fix for each. Verify every finding yourself, tell me
+which ones you accept or reject and why, then apply the accepted fixes and
+recompile the paper.
+```
+
+*You should see* a list of findings, each marked accepted or rejected with a reason, and an updated PDF.
+
+**Prompt 4 (optional):**
+
+```text
+Run the scored review loop described in SETUP.md, with three independent
+reviewer subagents per round and the scoring and stopping rules it gives.
+Finish with the process report.
+```
+
+*You should see* several rounds of scores and a process report that records them.
 
 ## Troubleshooting
 
-| Problem | Fix |
+| Problem | What to do |
 |---|---|
-| `command not found: codex` or `command not found: pixi` | Close the Terminal window and open a new one. Installers update settings that only new windows read. |
-| The agent says Pixi is not installed | Quit and reopen the ChatGPT desktop app, or start a new Terminal session, after installing Pixi. |
-| Codex asks for approval before running a command | Read the command, then approve it if it works inside the project folder. Asking first is the safe default. |
-| A usage limit message appears | Wait for the limit to reset, then continue. In the Terminal, `codex resume` reopens the session. |
-| The agent seems stuck | Click the stop button in the app, or press Escape in the Terminal, then describe what should happen next. |
+| `command not found: codex` or `command not found: pixi` | Close the Terminal window and open a new one. Installers change settings that only new windows read. |
+| The agent says Pixi is not installed | Quit the ChatGPT app with Command+Q and open it again, or open a new Terminal window. |
+| Codex asks for approval before running a command | See "When Codex asks permission" in step 6. |
+| Codex asks before every single file change | You chose read-only. In the app, set the permission control to **Ask for approval**. In the Terminal, type `/permissions` and choose the option that lets Codex work in the folder. |
+| An install asks for a password you do not have, or is blocked | Your Mac is probably managed by your university. Ask your IT help desk, or use a personal computer. |
+| A usage limit message appears | Wait for the limit to reset. You do not need to buy credits. Then continue as in the next row. |
+| The Mac went to sleep, or you closed Codex | In the app, click the conversation in the sidebar and send "Continue where you left off." In the Terminal, run `codex resume` from the exercise folder. |
+| The agent seems stuck | Click the stop button in the app, or press Escape in the Terminal. Then describe what should happen next. |
+| You cannot find a file the agent made | Ask Codex, "Where is the file you just created? Open its folder in Finder." |
+| You want to start an exercise over | Delete the folder in `agentic-ai` and copy a fresh one from the download, as in step 1. |
