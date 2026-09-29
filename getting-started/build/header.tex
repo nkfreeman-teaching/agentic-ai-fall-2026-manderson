@@ -12,6 +12,11 @@
   BoldFont = *-Bold,
   Scale = 0.85,
 ]
+% Never hyphenate a word inside inline code (e.g., "tran-script.txt"). Language
+% 255 has no hyphenation patterns, so TeX adds no hyphens of its own, but unlike
+% HyphenChar = None it still lets a line break after a hyphen in a file name.
+\let\guideorigtexttt\texttt
+\renewcommand{\texttt}[1]{\guideorigtexttt{\language=255 #1}}
 % Keep interface words whole so a student can match them on screen.
 \hyphenation{PowerShell Select Explorer Terminal Finder TextEdit Notepad}
 

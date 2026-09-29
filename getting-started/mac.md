@@ -20,6 +20,7 @@ Check each item before you install anything.
 
 - **macOS 14 (Sonoma) or newer.** The ChatGPT desktop app needs it. To check, open the Apple menu (top-left corner of the screen) and choose **About This Mac**. If the macOS number is lower than 14, open **System Settings**, then **General**, then **Software Update**. If no update to 14 or later is offered, this Mac cannot run the app, so use another computer. Also note whether the **Chip** or **Processor** line says Apple or Intel, because step 3 needs it.
 - **At least 10 GB of free disk space.** To check, open the Apple menu, choose **System Settings**, then **General**, then **Storage**.
+- **Memory.** Note how much your Mac has (Apple menu, **About This Mac**, then the **Memory** line). The customer exercise is small. The Reddit exercise has only been run on a workstation, so on a laptop with 8 GB, read the memory estimate Codex gives after Reddit prompt 2 carefully before you run the full file.
 - **Your Mac login password.** Some installs ask for it. On a Mac managed by your university, installs may be blocked. If they are, ask your IT help desk or use a personal computer. Do not try to work around a university security setting.
 - **A ChatGPT account.** The Plus plan ($20 a month) is the plan these exercises were built for. Eligible U.S. students can get four free months through OpenAI's Back to School offer by [claiming it](https://chatgpt.com/students/2026/) before October 31, 2026, and the [offer terms](https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students) give the details. Keep these points in mind:
   - Claim it while signed in to the ChatGPT account you will use for Codex.
@@ -86,7 +87,7 @@ Codex comes in two forms. **Use the desktop app** unless you already use the Ter
 
 1. Go to OpenAI's [quickstart page](https://learn.chatgpt.com/docs/quickstart?setup=app). Under **Setup**, make sure **Desktop** is selected, then click the download button for macOS. If About This Mac said **Intel**, download the [Intel version](https://persistent.oaistatic.com/codex-app-prod/ChatGPT-latest-x64.dmg) instead.
 2. The download is about 700 MB and may be named `Codex.dmg`. Open it in Downloads and drag the app icon into Applications.
-3. Open ChatGPT from Applications and sign in with your ChatGPT account. If it asks you to choose a workspace, choose your personal account, the one where you claimed the student offer. If macOS asks whether you are sure you want to open it, click **Open**.
+3. Open ChatGPT from Applications. If macOS asks whether you are sure you want to open it, click **Open**. Then sign in with your ChatGPT account. If it asks you to choose a workspace, choose your personal account, the one where you claimed the student offer.
 4. Choose **Codex** from the menu at the top of the sidebar, which switches between ChatGPT and Codex.
 5. Open **Settings** (Command+Comma), choose **General**, and turn on **Prevent sleep while running**, so the agent keeps working while you step away.
 
@@ -149,7 +150,7 @@ To read `transcript.txt` or `SETUP.md` yourself, right-click it and choose **Ope
 
 3. Find the permission control beneath the message box and choose **Ask for approval**.
 4. Click the model control beneath the message box. It is called **Power** and shows a short list.
-   - On Plus, choose **6 Sol Medium** (it may read **6.1 Sol Medium**). If neither is listed, click **Advanced**, pick the newest **Sol** model, and set the effort to **Medium**. If the only Sol model is **GPT-5.6 Sol** (this happened in the Windows app in September 2026), use it at **Medium**.
+   - On Plus, choose **6 Sol Medium** (it may read **6.1 Sol Medium**). If neither is listed, click **Advanced**, pick the newest **Sol** model, and set the effort to **Medium**. If the only Sol model is **GPT-5.6 Sol** (this happened in the Windows app in September 2026), use it at **Medium**, and check your usage after each prompt, because it uses your allowance about twice as fast as GPT-6 Sol.
    - On Free or Go, choose **Luna High**, which is the Luna choice.
    - Avoid **Astra**, **Extra High**, **Max**, **Ultra**, and **Fast**. Astra allows about a third as many messages as Sol, Ultra starts extra subagents, and Fast uses your allowance 2.5 times as quickly.
 5. Check that the chat runs on your computer. The control beneath the message box should say **Local** (or **Work in: This computer**), not **Worktree** or **Cloud**, because the data files exist only on your computer.
@@ -177,7 +178,17 @@ Every prompt uses part of your Codex allowance, which resets every five hours an
 
 ### Send the prompts one at a time
 
-Copy each prompt below into Codex, send it, and read the reply before you send the next one. On GitHub, the copy icon at the top right of each gray box copies the whole prompt. Codex has finished when it stops working and waits for your reply. Working in stages shows you results sooner, and a usage limit is less likely to stop the work halfway.
+Copy each prompt below into Codex, send it, and read the reply before you send the next one. On GitHub, the copy icon at the top right of each gray box copies the whole prompt. In the PDF, drag across all the text in the box, copy it, and paste it (the line breaks are fine). Codex has finished when it stops working and waits for your reply. Working in stages shows you results sooner, and a usage limit is less likely to stop the work halfway.
+
+**First message: check the folder and tools.** Before prompt 1, send this:
+
+```text
+Tell me the full path of the folder you are working in and list what it
+contains. Then run pixi --version and git --version and tell me what each
+prints. Do not change anything.
+```
+
+*You should see* a path ending in `customer-segmentation-base`, the files `SETUP.md` and `transcript.txt`, a `data` folder with eight files, and two version numbers (a note that Git is missing is fine). If the path ends in anything else, you opened the wrong folder, so open the right one as described above. If Pixi is not found, see the Troubleshooting row about Pixi.
 
 **Prompt 1** asks for questions and a plan before any work begins:
 
@@ -190,15 +201,6 @@ starter files first, so I can see and undo your changes. Do not start the
 review loop yet.
 ```
 
-**Before prompt 1, check the tools.** Send this message first:
-
-```text
-Run pixi --version and git --version and tell me what each prints. Do not
-change anything.
-```
-
-*You should see* two version numbers (or a note that Git is missing, which is fine). If Pixi is not found, see the Troubleshooting row about Pixi.
-
 *You should see* numbered questions and then a plan. No results exist yet. Answer the questions in plain language. It is fine to say, "I don't know, what do you recommend and why?" The agent will likely ask for an email address, because the transcript asks it to search published research through Crossref, a free research database. Crossref works without an email, but giving one (your university address is fine) puts your searches in a faster, more reliable queue. The agent may also ask what name and email to record with its Git commits. Your name and university email are fine, and they stay on your computer.
 
 **Before you send prompt 2, check the plan.** The plan should name the folder ending in `-base`, mention the data files, and say where the report and explorer will be saved. If any of these is missing, or a step is unclear, ask about it and wait for a revised plan.
@@ -209,7 +211,8 @@ change anything.
 I checked the plan. Carry it out: run the analysis, prototyping on a small
 sample first, and build first versions of the DOCX report and the HTML
 explorer. When you finish, summarize what you found, list the exact name and
-location of every file you created, and open the explorer in my browser.
+location of every file you created, and open the explorer in my browser. Then
+stop. Do not start reviewer subagents or the review loop until I ask.
 ```
 
 *You should see* a summary of the customer groups the agent found, a list of files, and the explorer open in your browser. The DOCX report is a Word document, so double-click it in Finder to open it. If you do not have Word, your university's Microsoft 365 account, Pages, or Google Docs can open it. To open the folder in Finder, type `open .` in the Terminal from the exercise folder, or ask Codex to open it.
@@ -221,6 +224,7 @@ Spawn two subagents as independent skeptical reviewers, one focused on
 methods and one on marketing, as described in SETUP.md. Each should return
 specific findings with a proposed fix for each. Verify every finding yourself,
 tell me which ones you accept or reject and why, then apply the accepted fixes.
+Then stop. Do not start the scored review loop until I ask.
 ```
 
 *You should see* a list of findings, each marked accepted or rejected with a reason, and updated files.
@@ -269,7 +273,21 @@ If you want LaTeX for your own papers later, you can install [MacTeX](https://ww
 
 ### Send the prompts one at a time
 
-Open `~/agentic-ai/reddit-base` in Codex as in step 6, check your usage, and send these prompts one at a time.
+Open the Reddit folder in Codex the same way as in step 6:
+
+1. Click **Add new project** (or press Command+O), press Shift+Command+G, type the line below, press Return, and click **Open**.
+
+   ```text
+   ~/agentic-ai/reddit-base
+   ```
+
+2. Set the permission control to **Ask for approval**.
+3. Choose the same model as in step 6 (**6 Sol Medium**, or **Luna High** on Free or Go).
+4. Check that the chat runs **Local**.
+5. Check your usage.
+6. Send the first message from step 6. This time the path should end in `reddit-base`, and the `data` folder should contain `user_daily_post_counts.parquet`.
+
+Then send these prompts one at a time.
 
 **Prompt 1:**
 
@@ -304,10 +322,11 @@ computer has enough. Wait for me before you run the full file.
 Go ahead with the full file. Write the first complete version of the LaTeX
 paper and compile it to PDF with tectonic. When you finish, summarize what you
 found, list the exact name and location of every file you created, and open
-the PDF.
+the PDF. Then stop. Do not start reviewer subagents or the review loop until
+I ask.
 ```
 
-*You should see* a summary of the findings, a list of files, and the paper open as a PDF. In the completed example, the first full analysis and paper took about 9 minutes on a fast Linux workstation. It has not been timed on a laptop, and a laptop will likely take longer.
+*You should see* a summary of the findings, a list of files, and the paper open as a PDF. In the completed example, the first full analysis and paper took about 9 minutes on a fast Linux workstation with the larger Astra model. It has not been timed on a laptop, and a laptop will likely take longer.
 
 **Prompt 4:**
 
@@ -316,7 +335,8 @@ Spawn two subagents as independent skeptical reviewers of the paper, with the
 different perspectives described in SETUP.md. Each should return specific
 findings with a proposed fix for each. Verify every finding yourself, tell me
 which ones you accept or reject and why, then apply the accepted fixes and
-recompile the paper.
+recompile the paper. Then stop. Do not start the scored review loop until I
+ask.
 ```
 
 *You should see* a list of findings, each marked accepted or rejected with a reason, and an updated PDF.

@@ -20,6 +20,7 @@ Check each item before you install anything.
 
 - **Windows 11, or an up-to-date Windows 10.** To check, press Windows+R, type `winver`, and press Enter. Windows 11 works best. On Windows 10, the window should say **Version 22H2**, the final Windows 10 release. If it shows anything else, run Windows Update first. If your university prevents updates, ask your IT help desk or use another computer.
 - **At least 10 GB of free disk space.** To check, open **Settings**, then **System**, then **Storage**.
+- **Memory.** Note how much your computer has (**Settings**, then **System**, then **About**, then **Installed RAM**). The customer exercise is small. The Reddit exercise has only been run on a workstation, so on a laptop with 8 GB, read the memory estimate Codex gives after Reddit prompt 2 carefully before you run the full file.
 - **Permission to install software.** Windows will show boxes that ask, "Do you want to allow this app to make changes to your device?" You need to be able to click **Yes**. On a laptop managed by your university, installs may be blocked or ask for an administrator password. If they do, ask your IT help desk or use a personal computer. Do not try to work around a university security setting.
 - **A ChatGPT account.** The Plus plan ($20 a month) is the plan these exercises were built for. Eligible U.S. students can get four free months through OpenAI's Back to School offer by [claiming it](https://chatgpt.com/students/2026/) before October 31, 2026, and the [offer terms](https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students) give the details. Keep these points in mind:
   - Claim it while signed in to the ChatGPT account you will use for Codex.
@@ -127,7 +128,11 @@ Pixi creates a separate Python environment, i.e., a private set of Python tools,
 3. Type `pixi --version` and press Enter. You should see a version number.
 4. If the ChatGPT app was open during the install, quit it and open it again, so that it can find Pixi. If its icon still shows near the clock after you close the window, right-click the icon and choose **Quit**.
 
-If the install command fails, `winget install prefix-dev.pixi` is another way to install Pixi.
+If the install command fails, paste this into PowerShell instead and press Enter:
+
+```powershell
+winget install prefix-dev.pixi
+```
 
 ## 5. Install Git (recommended)
 
@@ -155,14 +160,14 @@ The `customer-segmentation-base` folder has three things:
 - `SETUP.md`, instructions written for the agent.
 - `data`, eight data files in Parquet, a compact data format. Windows cannot open them, and that is expected, because the agent reads them.
 
-To read `transcript.txt` or `SETUP.md` yourself, right-click it and choose **Open With**, then **Notepad**. To see a finished result before you start, go to the inner download folder from step 1, open `customer-segmentation`, then `output`, then `full`, and double-click `segment_explorer.html`.
+To read `transcript.txt` or `SETUP.md` yourself, right-click it and choose **Open with**, then **Notepad** (if Notepad is not listed, click **Choose another app**, then **Notepad**). To see a finished result before you start, go to the inner download folder from step 1, open `customer-segmentation`, then `output`, then `full`, and double-click `segment_explorer.html`.
 
 ### Open the folder in Codex
 
 **Desktop app.**
 
-1. In Codex, click **Add new project** (or press Control+O).
-2. Go to `C:\Users\name\agentic-ai`, click `customer-segmentation-base` once, and click **Select Folder**. You can also type this in the address bar:
+1. In Codex, click **Add new project** next to **Chats** in the sidebar (or press Control+O).
+2. In the window that opens, click the address bar at the top, type the line below, and press Enter. Then click **Select Folder**.
 
    ```text
    %USERPROFILE%\agentic-ai\customer-segmentation-base
@@ -170,7 +175,7 @@ To read `transcript.txt` or `SETUP.md` yourself, right-click it and choose **Ope
 
 3. Find the permission control beneath the message box and choose **Ask for approval**.
 4. Click the model control beneath the message box. It is called **Power** and shows a short list.
-   - On Plus, choose **6 Sol Medium** (it may read **6.1 Sol Medium**). If neither is listed, click **Advanced**, pick the newest **Sol** model, and set the effort to **Medium**. If the only Sol model is **GPT-5.6 Sol** (this happened in the Windows app in September 2026), use it at **Medium**.
+   - On Plus, choose **6 Sol Medium** (it may read **6.1 Sol Medium**). If neither is listed, click **Advanced**, pick the newest **Sol** model, and set the effort to **Medium**. If the only Sol model is **GPT-5.6 Sol** (this happened in the Windows app in September 2026), use it at **Medium**, and check your usage after each prompt, because it uses your allowance about twice as fast as GPT-6 Sol.
    - On Free or Go, choose **Luna High**, which is the Luna choice.
    - Avoid **Astra**, **Extra High**, **Max**, **Ultra**, and **Fast**. Astra allows about a third as many messages as Sol, Ultra starts extra subagents, and Fast uses your allowance 2.5 times as quickly.
 5. Check that the chat runs on your computer. The control beneath the message box should say **Local** (or **Work in: This computer**), not **Worktree** or **Cloud**, because the data files exist only on your computer.
@@ -200,7 +205,17 @@ Every prompt uses part of your Codex allowance, which resets every five hours an
 
 ### Send the prompts one at a time
 
-Copy each prompt below into Codex, send it, and read the reply before you send the next one. On GitHub, the copy icon at the top right of each gray box copies the whole prompt. Codex has finished when it stops working and waits for your reply. Working in stages shows you results sooner, and a usage limit is less likely to stop the work halfway.
+Copy each prompt below into Codex, send it, and read the reply before you send the next one. On GitHub, the copy icon at the top right of each gray box copies the whole prompt. In the PDF, drag across all the text in the box, copy it, and paste it (the line breaks are fine). Codex has finished when it stops working and waits for your reply. Working in stages shows you results sooner, and a usage limit is less likely to stop the work halfway.
+
+**First message: check the folder and tools.** Before prompt 1, send this:
+
+```text
+Tell me the full path of the folder you are working in and list what it
+contains. Then run pixi --version and git --version and tell me what each
+prints. Do not change anything.
+```
+
+*You should see* a path ending in `customer-segmentation-base`, the files `SETUP.md` and `transcript.txt`, a `data` folder with eight files, and two version numbers (a note that Git is missing is fine). If the path ends in anything else, you opened the wrong folder, so open the right one as described above. If Pixi is not found, see the Troubleshooting row about Pixi.
 
 **Prompt 1** asks for questions and a plan before any work begins:
 
@@ -213,15 +228,6 @@ starter files first, so I can see and undo your changes. Do not start the
 review loop yet.
 ```
 
-**Before prompt 1, check the tools.** Send this message first:
-
-```text
-Run pixi --version and git --version and tell me what each prints. Do not
-change anything.
-```
-
-*You should see* two version numbers (or a note that Git is missing, which is fine). If Pixi is not found, see the Troubleshooting row about Pixi.
-
 *You should see* numbered questions and then a plan. No results exist yet. Answer the questions in plain language. It is fine to say, "I don't know, what do you recommend and why?" The agent will likely ask for an email address, because the transcript asks it to search published research through Crossref, a free research database. Crossref works without an email, but giving one (your university address is fine) puts your searches in a faster, more reliable queue. The agent may also ask what name and email to record with its Git commits. Your name and university email are fine, and they stay on your computer.
 
 **Before you send prompt 2, check the plan.** The plan should name the folder ending in `-base`, mention the data files, and say where the report and explorer will be saved. If any of these is missing, or a step is unclear, ask about it and wait for a revised plan.
@@ -232,7 +238,8 @@ change anything.
 I checked the plan. Carry it out: run the analysis, prototyping on a small
 sample first, and build first versions of the DOCX report and the HTML
 explorer. When you finish, summarize what you found, list the exact name and
-location of every file you created, and open the explorer in my browser.
+location of every file you created, and open the explorer in my browser. Then
+stop. Do not start reviewer subagents or the review loop until I ask.
 ```
 
 *You should see* a summary of the customer groups the agent found, a list of files, and the explorer open in your browser. The DOCX report is a Word document, so double-click it in File Explorer to open it. If you do not have Word, your university's Microsoft 365 account or Google Docs can open it. To open the folder in File Explorer, type `explorer .` in PowerShell from the exercise folder, or ask Codex to open it.
@@ -244,6 +251,7 @@ Spawn two subagents as independent skeptical reviewers, one focused on
 methods and one on marketing, as described in SETUP.md. Each should return
 specific findings with a proposed fix for each. Verify every finding yourself,
 tell me which ones you accept or reject and why, then apply the accepted fixes.
+Then stop. Do not start the scored review loop until I ask.
 ```
 
 *You should see* a list of findings, each marked accepted or rejected with a reason, and updated files.
@@ -277,7 +285,7 @@ The Reddit exercise asks the agent to write a short research paper in LaTeX, a t
 2. Open the [data file on Google Drive](https://drive.google.com/file/d/1SzuIzRBhRdKuvNmBKqvhI-WFv4lRfXBr/view?usp=sharing). You do not need to sign in.
 3. Click the download button (a downward arrow, usually near the top right).
 4. Google says it cannot scan the file for viruses because it is large. Click **Download anyway**.
-5. Wait for the download to finish. The file is about 790 MB.
+5. Wait for the download to finish. The file is about 790 MB. If Microsoft Edge says the file isn't commonly downloaded, point to it in the downloads list, click the three dots (**...**), choose **Keep**, then **Keep anyway**.
 6. Press Windows+E and click **Downloads** in the left panel. Right-click `user_daily_post_counts.parquet` and choose **Cut** (the scissors icon on Windows 11).
 7. Click the address bar, type the line below, and press Enter.
 
@@ -297,7 +305,21 @@ If you want LaTeX for your own papers later, you can install [MiKTeX](https://mi
 
 ### Send the prompts one at a time
 
-Open `C:\Users\name\agentic-ai\reddit-base` in Codex as in step 6, check your usage, and send these prompts one at a time.
+Open the Reddit folder in Codex the same way as in step 6:
+
+1. Click **Add new project** (or press Control+O), click the address bar, type the line below, press Enter, and click **Select Folder**.
+
+   ```text
+   %USERPROFILE%\agentic-ai\reddit-base
+   ```
+
+2. Set the permission control to **Ask for approval**.
+3. Choose the same model as in step 6 (**6 Sol Medium**, or **Luna High** on Free or Go).
+4. Check that the chat runs **Local**.
+5. Check your usage.
+6. Send the first message from step 6. This time the path should end in `reddit-base`, and the `data` folder should contain `user_daily_post_counts.parquet`.
+
+Then send these prompts one at a time.
 
 **Prompt 1:**
 
@@ -332,10 +354,11 @@ computer has enough. Wait for me before you run the full file.
 Go ahead with the full file. Write the first complete version of the LaTeX
 paper and compile it to PDF with tectonic. When you finish, summarize what you
 found, list the exact name and location of every file you created, and open
-the PDF.
+the PDF. Then stop. Do not start reviewer subagents or the review loop until
+I ask.
 ```
 
-*You should see* a summary of the findings, a list of files, and the paper open as a PDF. In the completed example, the first full analysis and paper took about 9 minutes on a fast Linux workstation. It has not been timed on a laptop, and a laptop will likely take longer.
+*You should see* a summary of the findings, a list of files, and the paper open as a PDF. In the completed example, the first full analysis and paper took about 9 minutes on a fast Linux workstation with the larger Astra model. It has not been timed on a laptop, and a laptop will likely take longer.
 
 **Prompt 4:**
 
@@ -344,7 +367,8 @@ Spawn two subagents as independent skeptical reviewers of the paper, with the
 different perspectives described in SETUP.md. Each should return specific
 findings with a proposed fix for each. Verify every finding yourself, tell me
 which ones you accept or reject and why, then apply the accepted fixes and
-recompile the paper.
+recompile the paper. Then stop. Do not start the scored review loop until I
+ask.
 ```
 
 *You should see* a list of findings, each marked accepted or rejected with a reason, and an updated PDF.
@@ -378,11 +402,11 @@ Your paper does not need to match `reddit/paper/main.pdf` in the download.
 
 | Problem | What to do |
 |---|---|
-| `codex` or `pixi` "is not recognized as the name of a cmdlet" | Close PowerShell and open it again as in step 2. Installers change settings that only new windows read. If it still fails, run the install command again, or for Pixi use `winget install prefix-dev.pixi`, then open a new window. If it fails after that, restart the computer and try once more before asking for help. |
-| "running scripts is disabled on this system" | Run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`, type `Y`, and try again. If Windows says a policy overrides the setting, your computer is managed by your university. Ask your IT help desk or use a personal computer. |
+| `codex` or `pixi` "is not recognized as the name of a cmdlet" | Close PowerShell and open it again as in step 2. Installers change settings that only new windows read. If it still fails, run the install command again (for Pixi, you can use the alternative command at the end of step 4), then open a new window. If it fails after that, restart the computer and try once more before asking for help. |
+| "running scripts is disabled on this system" | Run the command under "If scripts are disabled" below this table. |
 | `winget` is not recognized | Install ChatGPT with the download link in step 3, Pixi with the install command in step 4, and Git from [git-scm.com](https://git-scm.com/downloads/win). |
 | Your university blocks Microsoft Store installs | Ask your IT help desk to install the ChatGPT desktop app, or use a personal computer. |
-| The agent says Pixi or Git is not installed | Quit the ChatGPT app completely (see step 4) and open it again. If it still says Pixi is missing, send: "Pixi is installed at %USERPROFILE%\.pixi\bin\pixi.exe. Use that full path for every pixi command." |
+| The agent says Pixi or Git is not installed | Quit the ChatGPT app completely (see step 4) and open it again. If it still says Pixi is missing, send: "Pixi is installed at `$env:USERPROFILE\.pixi\bin\pixi.exe`. Use that full path for every pixi command." |
 | Git cannot be installed | Skip it. The exercises work without Git, and Codex will say that Git is missing. |
 | Codex asks for approval before running a command | See "When Codex asks permission" in step 6. |
 | Codex asks before every single file change | You chose read-only. In the app, set the permission control to **Ask for approval**. In PowerShell, type `/permissions` and choose **Ask for approval** (older versions call it **Auto**). |
@@ -396,3 +420,13 @@ Your paper does not need to match `reddit/paper/main.pdf` in the download.
 | Codex says the Reddit `data` folder is empty | Repeat "Get the data file" in step 7, then check the file's name and size. |
 | The model named in step 6 is not in the list | Click **Advanced** in the model control and pick the newest **Sol** model at **Medium**. If only GPT-5.6 Sol is offered, use it. |
 | You want to start an exercise over | Delete the folder in `agentic-ai` and copy a fresh one from the download, as in step 1. For the Reddit exercise, first move `user_daily_post_counts.parquet` out of `reddit-base/data` into `agentic-ai`, and move it back into the new `data` folder afterward. |
+
+### If scripts are disabled
+
+If PowerShell says "running scripts is disabled on this system", paste this into PowerShell, press Enter, type `Y`, and press Enter again. Then try the command that failed.
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+This lets PowerShell run scripts for your user account only. If Windows says a policy overrides the setting, your computer is managed by your university, so ask your IT help desk or use a personal computer.

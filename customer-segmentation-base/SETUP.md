@@ -2,7 +2,7 @@
 
 *Students: this file gives the agent its instructions. To set up your computer and run this exercise, follow the getting-started guide for [Mac](https://github.com/nkfreeman-teaching/agentic-ai-fall-2026-manderson/blob/main/getting-started/mac.md) or [Windows](https://github.com/nkfreeman-teaching/agentic-ai-fall-2026-manderson/blob/main/getting-started/windows.md).*
 
-This folder starts the customer segmentation exercise. Read `transcript.txt` for the assignment. The eight Parquet files in `data/` are the source data. Keep them unchanged. Ask Codex to read this file and the transcript before it plans or runs the work, and resolve consequential choices with the student. Create the Pixi environment, analysis, report, explorer, and process overview in this folder. A different defensible segmentation or review trajectory is acceptable.
+This folder starts the customer segmentation exercise. Read `transcript.txt` for the assignment. The eight Parquet files in `data/` are the source data. Keep them unchanged. Read this file and the transcript before you plan or run the work, and resolve consequential choices with the student. Create the Pixi environment, analysis, report, explorer, and process overview in this folder. A different defensible segmentation or review trajectory is acceptable.
 
 ## Analysis and writing
 
